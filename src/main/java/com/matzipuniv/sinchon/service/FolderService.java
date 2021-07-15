@@ -7,6 +7,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RequiredArgsConstructor
 @Service
 public class FolderService {
@@ -18,5 +21,12 @@ public class FolderService {
                 .orElseThrow(() -> new IllegalArgumentException("해당 폴더가 없습니다. num = "+num));
 
         return new FolderResponseDto(entity);
+    }
+
+    @Transactional(readOnly = true)
+    public List<FolderResponseDto> findAll(){
+        return folderRepository.findAll().stream()
+                .map(FolderResponseDto::new)
+                .collect(Collectors.toList());
     }
 }
