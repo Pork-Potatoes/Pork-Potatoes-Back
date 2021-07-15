@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 public class User extends BaseTimeEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Long userNum;
 
     @Column
@@ -35,7 +36,7 @@ public class User extends BaseTimeEntity{
     private LocalDateTime authenticatedDate;
 
     @Builder
-    public User(String nickname, String profileUrl, int coin, String university, String email, LocalDateTime authenticatedDate){
+    public User(String nickname, String profileUrl, Integer coin, String university, String email, LocalDateTime authenticatedDate){
         this.nickname = nickname;
         this.profileUrl = profileUrl;
         this.coin = coin;

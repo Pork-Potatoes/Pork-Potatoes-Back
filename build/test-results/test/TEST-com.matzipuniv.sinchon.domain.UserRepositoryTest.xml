@@ -1,0 +1,1225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.matzipuniv.sinchon.domain.UserRepositoryTest" tests="2" skipped="0" failures="2" errors="0" timestamp="2021-07-15T16:14:13" hostname="DESKTOP-5M6U2KJ" time="131.355">
+  <properties/>
+  <testcase name="유저정보_불러오기()" classname="com.matzipuniv.sinchon.domain.UserRepositoryTest" time="122.521">
+    <failure message="org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint [null]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement" type="org.springframework.dao.DataIntegrityViolationException">org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint [null]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:276)
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:233)
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:566)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:743)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:711)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.commitTransactionAfterReturning(TransactionAspectSupport.java:654)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:407)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:174)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:215)
+	at com.sun.proxy.$Proxy109.deleteAll(Unknown Source)
+	at com.matzipuniv.sinchon.domain.UserRepositoryTest.cleanup(UserRepositoryTest.java:25)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:688)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:149)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptLifecycleMethod(TimeoutExtension.java:126)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptAfterEachMethod(TimeoutExtension.java:108)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(ExecutableInvoker.java:115)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.lambda$invoke$0(ExecutableInvoker.java:105)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:104)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:98)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeMethodInExtensionContext(ClassBasedTestDescriptor.java:490)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$synthesizeAfterEachMethodAdapter$20(ClassBasedTestDescriptor.java:480)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeAfterEachMethods$9(TestMethodTestDescriptor.java:236)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeAllAfterMethodsOrCallbacks$12(TestMethodTestDescriptor.java:269)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeAllAfterMethodsOrCallbacks$13(TestMethodTestDescriptor.java:269)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeAllAfterMethodsOrCallbacks(TestMethodTestDescriptor.java:268)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeAfterEachMethods(TestMethodTestDescriptor.java:234)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:135)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:65)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:129)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:127)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:126)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:84)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:129)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:127)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:126)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:84)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:129)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:127)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:126)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:84)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:32)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:51)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:108)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:88)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:67)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:52)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:96)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:75)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:99)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:79)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:75)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:61)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:94)
+	at com.sun.proxy.$Proxy2.stop(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.stop(TestWorker.java:133)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:182)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:164)
+	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:414)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:48)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:56)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+Caused by: org.hibernate.exception.ConstraintViolationException: could not execute statement
+	at org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:59)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:42)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:113)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:99)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:200)
+	at org.hibernate.engine.jdbc.batch.internal.NonBatchingBatch.addToBatch(NonBatchingBatch.java:46)
+	at org.hibernate.persister.entity.AbstractEntityPersister.delete(AbstractEntityPersister.java:3614)
+	at org.hibernate.persister.entity.AbstractEntityPersister.delete(AbstractEntityPersister.java:3874)
+	at org.hibernate.action.internal.EntityDeleteAction.execute(EntityDeleteAction.java:123)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:604)
+	at org.hibernate.engine.spi.ActionQueue.lambda$executeActions$1(ActionQueue.java:478)
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:723)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:475)
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:345)
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:40)
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:93)
+	at org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1362)
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:453)
+	at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:3212)
+	at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:2380)
+	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:447)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:183)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.access$300(JdbcResourceLocalTransactionCoordinatorImpl.java:40)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:281)
+	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:101)
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:562)
+	... 111 more
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`matzipuniv`.`folder`, CONSTRAINT `FK_restaurant_list_user_num_user_user_num` FOREIGN KEY (`user`) REFERENCES `user` (`user_num`) ON DELETE RESTRICT ON UPDATE RESTRICT)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1092)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1040)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1347)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1025)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:197)
+	... 132 more
+</failure>
+  </testcase>
+  <testcase name="BaseTimeEntity_등록()" classname="com.matzipuniv.sinchon.domain.UserRepositoryTest" time="8.83">
+    <failure message="org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint [null]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement" type="org.springframework.dao.DataIntegrityViolationException">org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint [null]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:276)
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:233)
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:566)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:743)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:711)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.commitTransactionAfterReturning(TransactionAspectSupport.java:654)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:407)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:174)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:215)
+	at com.sun.proxy.$Proxy109.deleteAll(Unknown Source)
+	at com.matzipuniv.sinchon.domain.UserRepositoryTest.cleanup(UserRepositoryTest.java:25)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:688)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:149)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptLifecycleMethod(TimeoutExtension.java:126)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptAfterEachMethod(TimeoutExtension.java:108)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(ExecutableInvoker.java:115)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.lambda$invoke$0(ExecutableInvoker.java:105)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:104)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:98)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeMethodInExtensionContext(ClassBasedTestDescriptor.java:490)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$synthesizeAfterEachMethodAdapter$20(ClassBasedTestDescriptor.java:480)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeAfterEachMethods$9(TestMethodTestDescriptor.java:236)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeAllAfterMethodsOrCallbacks$12(TestMethodTestDescriptor.java:269)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeAllAfterMethodsOrCallbacks$13(TestMethodTestDescriptor.java:269)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeAllAfterMethodsOrCallbacks(TestMethodTestDescriptor.java:268)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeAfterEachMethods(TestMethodTestDescriptor.java:234)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:135)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:65)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:129)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:127)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:126)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:84)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:129)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:127)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:126)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:84)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:129)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:127)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:126)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:84)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:32)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:51)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:108)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:88)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:67)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:52)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:96)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:75)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:99)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:79)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:75)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:61)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:94)
+	at com.sun.proxy.$Proxy2.stop(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.stop(TestWorker.java:133)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:182)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:164)
+	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:414)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:48)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:56)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+Caused by: org.hibernate.exception.ConstraintViolationException: could not execute statement
+	at org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:59)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:42)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:113)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:99)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:200)
+	at org.hibernate.engine.jdbc.batch.internal.NonBatchingBatch.addToBatch(NonBatchingBatch.java:46)
+	at org.hibernate.persister.entity.AbstractEntityPersister.delete(AbstractEntityPersister.java:3614)
+	at org.hibernate.persister.entity.AbstractEntityPersister.delete(AbstractEntityPersister.java:3874)
+	at org.hibernate.action.internal.EntityDeleteAction.execute(EntityDeleteAction.java:123)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:604)
+	at org.hibernate.engine.spi.ActionQueue.lambda$executeActions$1(ActionQueue.java:478)
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:723)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:475)
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:345)
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:40)
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:93)
+	at org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1362)
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:453)
+	at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:3212)
+	at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:2380)
+	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:447)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:183)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.access$300(JdbcResourceLocalTransactionCoordinatorImpl.java:40)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:281)
+	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:101)
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:562)
+	... 111 more
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`matzipuniv`.`folder`, CONSTRAINT `FK_restaurant_list_user_num_user_user_num` FOREIGN KEY (`user`) REFERENCES `user` (`user_num`) ON DELETE RESTRICT ON UPDATE RESTRICT)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1092)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1040)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1347)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1025)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:197)
+	... 132 more
+</failure>
+  </testcase>
+  <system-out><![CDATA[01:14:09.604 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+01:14:09.614 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+01:14:09.642 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.matzipuniv.sinchon.domain.UserRepositoryTest] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+01:14:09.651 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.matzipuniv.sinchon.domain.UserRepositoryTest], using SpringBootContextLoader
+01:14:09.654 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.matzipuniv.sinchon.domain.UserRepositoryTest]: class path resource [com/matzipuniv/sinchon/domain/UserRepositoryTest-context.xml] does not exist
+01:14:09.654 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.matzipuniv.sinchon.domain.UserRepositoryTest]: class path resource [com/matzipuniv/sinchon/domain/UserRepositoryTestContext.groovy] does not exist
+01:14:09.655 [Test worker] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.matzipuniv.sinchon.domain.UserRepositoryTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+01:14:09.655 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.matzipuniv.sinchon.domain.UserRepositoryTest]: UserRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+01:14:09.691 [Test worker] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [com.matzipuniv.sinchon.domain.UserRepositoryTest]
+01:14:09.762 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [C:\Users\LG-PC\OneDrive\Documents\GitHub\Pork-Potatoes-Back\build\classes\java\main\com\matzipuniv\sinchon\Application.class]
+01:14:09.764 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.matzipuniv.sinchon.Application for test class com.matzipuniv.sinchon.domain.UserRepositoryTest
+01:14:09.855 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [com.matzipuniv.sinchon.domain.UserRepositoryTest]: using defaults.
+01:14:09.855 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+01:14:09.871 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@754dfda6, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@218cbf03, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@33983023, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@6e57fa7, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@1cdf1210, org.springframework.test.context.support.DirtiesContextTestExecutionListener@586fd22f, org.springframework.test.context.transaction.TransactionalTestExecutionListener@2a84e829, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@7b1a299, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@639a6fed, org.springframework.test.context.event.EventPublishingTestExecutionListener@4542271b, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@480a5a3a, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@42a59cc8, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@72707676, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@26defddc, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@3c1fb8b7, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@52323020, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@23002fd6]
+01:14:09.874 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@27a342da testClass = UserRepositoryTest, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@235c24e4 testClass = UserRepositoryTest, locations = '{}', classes = '{class com.matzipuniv.sinchon.Application}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@74f866c3, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@ac42b82, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@3fa6664f, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@2e5bbb18, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@63ac82e6, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@3fae03a], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true]], class annotated with @DirtiesContext [false] with mode [null].
+01:14:09.900 [Test worker] DEBUG org.springframework.test.context.support.TestPropertySourceUtils - Adding inlined properties to environment: {spring.jmx.enabled=false, org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.4.4)
+
+2021-07-16 01:14:10.147  INFO 21400 --- [    Test worker] c.m.sinchon.domain.UserRepositoryTest    : Starting UserRepositoryTest using Java 15.0.3 on DESKTOP-5M6U2KJ with PID 21400 (started by LG-PC in C:\Users\LG-PC\OneDrive\Documents\GitHub\Pork-Potatoes-Back)
+2021-07-16 01:14:10.150  INFO 21400 --- [    Test worker] c.m.sinchon.domain.UserRepositoryTest    : No active profile set, falling back to default profiles: default
+2021-07-16 01:14:10.797  INFO 21400 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-07-16 01:14:10.854  INFO 21400 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 51 ms. Found 3 JPA repository interfaces.
+2021-07-16 01:14:11.359  INFO 21400 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-07-16 01:14:11.408  INFO 21400 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.29.Final
+2021-07-16 01:14:11.534  INFO 21400 --- [    Test worker] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-07-16 01:14:11.641  INFO 21400 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-07-16 01:14:11.913  INFO 21400 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-07-16 01:14:11.928  INFO 21400 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-07-16 01:14:12.474  INFO 21400 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-07-16 01:14:12.483  INFO 21400 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-07-16 01:14:13.020  WARN 21400 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-07-16 01:14:13.231  INFO 21400 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-07-16 01:14:13.621  INFO 21400 --- [    Test worker] c.m.sinchon.domain.UserRepositoryTest    : Started UserRepositoryTest in 3.716 seconds (JVM running for 4.741)
+Hibernate: 
+    /* insert com.matzipuniv.sinchon.domain.User
+        */ insert 
+        into
+            user
+            (created_date, authenticated_date, coin, email, nickname, profile_url, university) 
+        values
+            (?, ?, ?, ?, ?, ?, ?)
+2021-07-16 01:14:13.891 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [TIMESTAMP] - [2021-07-16T01:14:13.839702500]
+2021-07-16 01:14:13.893 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [TIMESTAMP] - [null]
+2021-07-16 01:14:13.894 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [INTEGER] - [0]
+2021-07-16 01:14:13.896 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [testemail]
+2021-07-16 01:14:13.896 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [testname]
+2021-07-16 01:14:13.897 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [null]
+2021-07-16 01:14:13.897 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [null]
+Hibernate: 
+    /* select
+        generatedAlias0 
+    from
+        User as generatedAlias0 */ select
+            user0_.user_num as user_num1_2_,
+            user0_.created_date as created_2_2_,
+            user0_.authenticated_date as authenti3_2_,
+            user0_.coin as coin4_2_,
+            user0_.email as email5_2_,
+            user0_.nickname as nickname6_2_,
+            user0_.profile_url as profile_7_2_,
+            user0_.university as universi8_2_ 
+        from
+            user user0_
+2021-07-16 01:14:14.102 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [12]
+2021-07-16 01:14:14.105 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-15T19:24:37]
+2021-07-16 01:14:14.105 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:14:14.106 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:14:14.107 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:14:14.107 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:14:14.107 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:14:14.107 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:14:14.108 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [13]
+2021-07-16 01:14:14.108 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-15T21:20:15]
+2021-07-16 01:14:14.108 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T21:20:15]
+2021-07-16 01:14:14.108 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [1]
+2021-07-16 01:14:14.109 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [e]
+2021-07-16 01:14:14.109 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [a]
+2021-07-16 01:14:14.109 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [p]
+2021-07-16 01:14:14.109 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [u]
+2021-07-16 01:14:14.109 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [14]
+2021-07-16 01:14:14.110 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-15T21:20:50]
+2021-07-16 01:14:14.110 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T21:20:50]
+2021-07-16 01:14:14.110 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [1]
+2021-07-16 01:14:14.110 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [e]
+2021-07-16 01:14:14.111 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [a]
+2021-07-16 01:14:14.111 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [p]
+2021-07-16 01:14:14.111 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [u]
+2021-07-16 01:14:14.111 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [15]
+2021-07-16 01:14:14.112 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-15T21:21:53]
+2021-07-16 01:14:14.112 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T21:21:53]
+2021-07-16 01:14:14.112 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [1]
+2021-07-16 01:14:14.112 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [e]
+2021-07-16 01:14:14.113 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [a]
+2021-07-16 01:14:14.113 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [p]
+2021-07-16 01:14:14.113 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [u]
+2021-07-16 01:14:14.113 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [16]
+2021-07-16 01:14:14.114 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-15T21:23:07]
+2021-07-16 01:14:14.114 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T21:23:07]
+2021-07-16 01:14:14.114 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [1]
+2021-07-16 01:14:14.114 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [e]
+2021-07-16 01:14:14.114 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [a]
+2021-07-16 01:14:14.115 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [p]
+2021-07-16 01:14:14.115 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [u]
+2021-07-16 01:14:14.115 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [17]
+2021-07-16 01:14:14.116 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-15T21:24:12]
+2021-07-16 01:14:14.116 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T21:24:12]
+2021-07-16 01:14:14.116 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [1]
+2021-07-16 01:14:14.116 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [e]
+2021-07-16 01:14:14.116 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [a]
+2021-07-16 01:14:14.116 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [p]
+2021-07-16 01:14:14.116 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [u]
+2021-07-16 01:14:14.117 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [18]
+2021-07-16 01:14:14.117 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-15T21:25:26]
+2021-07-16 01:14:14.117 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T21:25:26]
+2021-07-16 01:14:14.118 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [1]
+2021-07-16 01:14:14.118 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [e]
+2021-07-16 01:14:14.118 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [a]
+2021-07-16 01:14:14.118 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [p]
+2021-07-16 01:14:14.118 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [u]
+2021-07-16 01:14:14.118 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [19]
+2021-07-16 01:14:14.119 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:39:26]
+2021-07-16 01:14:14.119 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:14:14.119 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:14:14.119 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:14:14.119 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:14:14.119 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:14:14.119 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:14:14.119 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [20]
+2021-07-16 01:14:14.120 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:39:27]
+2021-07-16 01:14:14.120 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T00:00]
+2021-07-16 01:14:14.120 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:14:14.120 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:14:14.120 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:14:14.121 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:14:14.121 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:14:14.121 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [21]
+2021-07-16 01:14:14.121 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:44:18]
+2021-07-16 01:14:14.122 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:14:14.122 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:14:14.122 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:14:14.122 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:14:14.122 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:14:14.122 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:14:14.123 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [22]
+2021-07-16 01:14:14.123 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:44:19]
+2021-07-16 01:14:14.124 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T00:00]
+2021-07-16 01:14:14.124 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:14:14.124 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:14:14.124 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:14:14.124 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:14:14.124 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:14:14.124 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [23]
+2021-07-16 01:14:14.125 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:52:29]
+2021-07-16 01:14:14.125 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:14:14.125 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:14:14.125 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:14:14.126 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:14:14.126 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:14:14.126 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:14:14.126 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [24]
+2021-07-16 01:14:14.126 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:52:29]
+2021-07-16 01:14:14.126 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T00:00]
+2021-07-16 01:14:14.127 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:14:14.127 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:14:14.127 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:14:14.127 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:14:14.127 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:14:14.127 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [25]
+2021-07-16 01:14:14.128 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:54:41]
+2021-07-16 01:14:14.128 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:14:14.128 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:14:14.129 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:14:14.129 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:14:14.129 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:14:14.129 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:14:14.129 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [26]
+2021-07-16 01:14:14.131 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:54:41]
+2021-07-16 01:14:14.131 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T00:00]
+2021-07-16 01:14:14.131 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:14:14.131 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:14:14.132 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:14:14.132 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:14:14.132 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:14:14.132 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [27]
+2021-07-16 01:14:14.132 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:55:27]
+2021-07-16 01:14:14.132 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:14:14.133 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:14:14.133 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:14:14.133 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:14:14.133 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:14:14.133 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:14:14.133 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [28]
+2021-07-16 01:14:14.134 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:55:28]
+2021-07-16 01:14:14.134 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T00:00]
+2021-07-16 01:14:14.134 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:14:14.134 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:14:14.134 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:14:14.134 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:14:14.134 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:14:14.134 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [29]
+2021-07-16 01:14:14.135 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:58:29]
+2021-07-16 01:14:14.135 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:14:14.135 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:14:14.135 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:14:14.135 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:14:14.135 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:14:14.136 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:14:14.136 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [30]
+2021-07-16 01:14:14.136 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:59:37]
+2021-07-16 01:14:14.137 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T00:00]
+2021-07-16 01:14:14.137 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:14:14.137 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:14:14.137 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:14:14.137 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:14:14.137 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:14:14.137 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [31]
+2021-07-16 01:14:14.138 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T01:09:21]
+2021-07-16 01:14:14.138 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:14:14.138 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:14:14.138 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:14:14.138 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:14:14.138 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:14:14.138 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:14:14.139 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [32]
+2021-07-16 01:14:14.139 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T01:09:21]
+2021-07-16 01:14:14.139 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T00:00]
+2021-07-16 01:14:14.139 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:14:14.139 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:14:14.139 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:14:14.139 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:14:14.140 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:14:14.140 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [33]
+2021-07-16 01:14:14.140 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T01:10:52]
+2021-07-16 01:14:14.140 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T00:00]
+2021-07-16 01:14:14.140 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:14:14.141 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:14:14.141 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:14:14.141 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:14:14.141 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:14:14.141 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [34]
+2021-07-16 01:14:14.141 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T01:14:14]
+2021-07-16 01:14:14.141 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:14:14.141 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:14:14.142 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:14:14.142 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:14:14.142 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:14:14.142 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:15:17.484  WARN 21400 --- [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m5s461ms960?s800ns).
+Hibernate: 
+    /* select
+        generatedAlias0 
+    from
+        User as generatedAlias0 */ select
+            user0_.user_num as user_num1_2_,
+            user0_.created_date as created_2_2_,
+            user0_.authenticated_date as authenti3_2_,
+            user0_.coin as coin4_2_,
+            user0_.email as email5_2_,
+            user0_.nickname as nickname6_2_,
+            user0_.profile_url as profile_7_2_,
+            user0_.university as universi8_2_ 
+        from
+            user user0_
+2021-07-16 01:16:15.679 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [12]
+2021-07-16 01:16:15.680 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-15T19:24:37]
+2021-07-16 01:16:15.681 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:16:15.682 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:15.683 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:15.684 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:15.685 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:15.686 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:15.687 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [13]
+2021-07-16 01:16:15.688 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-15T21:20:15]
+2021-07-16 01:16:15.689 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T21:20:15]
+2021-07-16 01:16:15.690 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [1]
+2021-07-16 01:16:15.691 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [e]
+2021-07-16 01:16:15.691 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [a]
+2021-07-16 01:16:15.692 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [p]
+2021-07-16 01:16:15.693 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [u]
+2021-07-16 01:16:15.694 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [14]
+2021-07-16 01:16:15.695 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-15T21:20:50]
+2021-07-16 01:16:15.696 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T21:20:50]
+2021-07-16 01:16:15.697 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [1]
+2021-07-16 01:16:15.698 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [e]
+2021-07-16 01:16:15.699 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [a]
+2021-07-16 01:16:15.700 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [p]
+2021-07-16 01:16:15.701 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [u]
+2021-07-16 01:16:15.702 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [15]
+2021-07-16 01:16:15.703 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-15T21:21:53]
+2021-07-16 01:16:15.704 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T21:21:53]
+2021-07-16 01:16:15.705 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [1]
+2021-07-16 01:16:15.706 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [e]
+2021-07-16 01:16:15.707 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [a]
+2021-07-16 01:16:15.707 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [p]
+2021-07-16 01:16:15.708 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [u]
+2021-07-16 01:16:15.709 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [16]
+2021-07-16 01:16:15.710 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-15T21:23:07]
+2021-07-16 01:16:15.712 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T21:23:07]
+2021-07-16 01:16:15.713 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [1]
+2021-07-16 01:16:15.713 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [e]
+2021-07-16 01:16:15.714 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [a]
+2021-07-16 01:16:15.715 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [p]
+2021-07-16 01:16:15.716 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [u]
+2021-07-16 01:16:15.717 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [17]
+2021-07-16 01:16:15.718 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-15T21:24:12]
+2021-07-16 01:16:15.721 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T21:24:12]
+2021-07-16 01:16:15.722 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [1]
+2021-07-16 01:16:15.723 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [e]
+2021-07-16 01:16:15.724 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [a]
+2021-07-16 01:16:15.725 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [p]
+2021-07-16 01:16:15.726 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [u]
+2021-07-16 01:16:15.727 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [18]
+2021-07-16 01:16:15.728 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-15T21:25:26]
+2021-07-16 01:16:15.729 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T21:25:26]
+2021-07-16 01:16:15.730 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [1]
+2021-07-16 01:16:15.730 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [e]
+2021-07-16 01:16:15.731 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [a]
+2021-07-16 01:16:15.732 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [p]
+2021-07-16 01:16:15.733 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [u]
+2021-07-16 01:16:15.734 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [19]
+2021-07-16 01:16:15.735 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:39:26]
+2021-07-16 01:16:15.736 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:16:15.737 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:15.738 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:15.739 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:15.739 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:15.740 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:15.741 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [20]
+2021-07-16 01:16:15.742 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:39:27]
+2021-07-16 01:16:15.743 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T00:00]
+2021-07-16 01:16:15.744 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:15.745 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:15.746 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:15.747 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:15.748 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:15.749 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [21]
+2021-07-16 01:16:15.750 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:44:18]
+2021-07-16 01:16:15.750 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:16:15.751 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:15.752 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:15.753 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:15.754 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:15.755 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:15.756 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [22]
+2021-07-16 01:16:15.757 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:44:19]
+2021-07-16 01:16:15.758 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T00:00]
+2021-07-16 01:16:15.759 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:15.760 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:15.761 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:15.762 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:15.763 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:15.763 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [23]
+2021-07-16 01:16:15.765 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:52:29]
+2021-07-16 01:16:15.765 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:16:15.766 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:15.767 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:15.768 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:15.769 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:15.770 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:15.771 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [24]
+2021-07-16 01:16:15.772 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:52:29]
+2021-07-16 01:16:15.773 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T00:00]
+2021-07-16 01:16:15.774 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:15.775 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:15.776 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:15.777 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:15.778 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:15.779 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [25]
+2021-07-16 01:16:15.781 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:54:41]
+2021-07-16 01:16:15.782 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:16:15.783 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:15.784 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:15.785 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:15.786 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:15.787 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:15.788 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [26]
+2021-07-16 01:16:15.790 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:54:41]
+2021-07-16 01:16:15.791 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T00:00]
+2021-07-16 01:16:15.792 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:15.793 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:15.793 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:15.794 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:15.795 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:15.796 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [27]
+2021-07-16 01:16:15.797 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:55:27]
+2021-07-16 01:16:15.798 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:16:15.799 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:15.800 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:15.801 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:15.802 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:15.803 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:15.804 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [28]
+2021-07-16 01:16:15.805 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:55:28]
+2021-07-16 01:16:15.806 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T00:00]
+2021-07-16 01:16:15.807 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:15.808 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:15.809 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:15.809 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:15.810 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:15.811 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [29]
+2021-07-16 01:16:15.812 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:58:29]
+2021-07-16 01:16:15.813 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:16:15.814 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:15.815 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:15.816 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:15.817 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:15.818 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:15.819 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [30]
+2021-07-16 01:16:15.820 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:59:37]
+2021-07-16 01:16:15.821 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T00:00]
+2021-07-16 01:16:15.822 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:15.823 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:15.824 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:15.825 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:15.825 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:15.826 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [31]
+2021-07-16 01:16:15.827 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T01:09:21]
+2021-07-16 01:16:15.828 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:16:15.829 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:15.830 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:15.831 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:15.832 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:15.833 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:15.834 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [32]
+2021-07-16 01:16:15.835 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T01:09:21]
+2021-07-16 01:16:15.836 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T00:00]
+2021-07-16 01:16:15.837 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:15.838 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:15.839 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:15.839 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:15.840 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:15.841 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [33]
+2021-07-16 01:16:15.842 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T01:10:52]
+2021-07-16 01:16:15.847 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T00:00]
+2021-07-16 01:16:15.855 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:15.857 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:15.858 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:15.859 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:15.860 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:15.862 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [34]
+2021-07-16 01:16:15.863 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T01:14:14]
+2021-07-16 01:16:15.864 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:16:15.865 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:15.866 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:15.867 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:15.868 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:15.869 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+Hibernate: 
+    /* delete com.matzipuniv.sinchon.domain.User */ delete 
+        from
+            user 
+        where
+            user_num=?
+2021-07-16 01:16:15.948 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [12]
+2021-07-16 01:16:15.980  WARN 21400 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1451, SQLState: 23000
+2021-07-16 01:16:15.981 ERROR 21400 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : Cannot delete or update a parent row: a foreign key constraint fails (`matzipuniv`.`folder`, CONSTRAINT `FK_restaurant_list_user_num_user_user_num` FOREIGN KEY (`user`) REFERENCES `user` (`user_num`) ON DELETE RESTRICT ON UPDATE RESTRICT)
+2021-07-16 01:16:15.985  INFO 21400 --- [    Test worker] o.h.e.j.b.internal.AbstractBatchImpl     : HHH000010: On release of batch it still contained JDBC statements
+Hibernate: 
+    /* insert com.matzipuniv.sinchon.domain.User
+        */ insert 
+        into
+            user
+            (created_date, authenticated_date, coin, email, nickname, profile_url, university) 
+        values
+            (?, ?, ?, ?, ?, ?, ?)
+2021-07-16 01:16:16.185 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [TIMESTAMP] - [2021-07-16T01:16:16.179607300]
+2021-07-16 01:16:16.187 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [TIMESTAMP] - [2021-07-15T00:00]
+2021-07-16 01:16:16.188 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [INTEGER] - [0]
+2021-07-16 01:16:16.189 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [testemail]
+2021-07-16 01:16:16.190 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [testname]
+2021-07-16 01:16:16.191 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [null]
+2021-07-16 01:16:16.192 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [null]
+Hibernate: 
+    /* select
+        generatedAlias0 
+    from
+        User as generatedAlias0 */ select
+            user0_.user_num as user_num1_2_,
+            user0_.created_date as created_2_2_,
+            user0_.authenticated_date as authenti3_2_,
+            user0_.coin as coin4_2_,
+            user0_.email as email5_2_,
+            user0_.nickname as nickname6_2_,
+            user0_.profile_url as profile_7_2_,
+            user0_.university as universi8_2_ 
+        from
+            user user0_
+2021-07-16 01:16:16.229 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [12]
+2021-07-16 01:16:16.231 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-15T19:24:37]
+2021-07-16 01:16:16.232 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:16:16.233 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:16.234 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:16.235 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:16.236 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:16.237 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:16.238 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [13]
+2021-07-16 01:16:16.239 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-15T21:20:15]
+2021-07-16 01:16:16.241 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T21:20:15]
+2021-07-16 01:16:16.242 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [1]
+2021-07-16 01:16:16.243 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [e]
+2021-07-16 01:16:16.243 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [a]
+2021-07-16 01:16:16.244 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [p]
+2021-07-16 01:16:16.245 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [u]
+2021-07-16 01:16:16.246 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [14]
+2021-07-16 01:16:16.247 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-15T21:20:50]
+2021-07-16 01:16:16.249 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T21:20:50]
+2021-07-16 01:16:16.249 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [1]
+2021-07-16 01:16:16.250 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [e]
+2021-07-16 01:16:16.251 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [a]
+2021-07-16 01:16:16.252 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [p]
+2021-07-16 01:16:16.253 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [u]
+2021-07-16 01:16:16.254 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [15]
+2021-07-16 01:16:16.256 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-15T21:21:53]
+2021-07-16 01:16:16.258 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T21:21:53]
+2021-07-16 01:16:16.259 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [1]
+2021-07-16 01:16:16.260 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [e]
+2021-07-16 01:16:16.261 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [a]
+2021-07-16 01:16:16.262 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [p]
+2021-07-16 01:16:16.263 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [u]
+2021-07-16 01:16:16.264 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [16]
+2021-07-16 01:16:16.266 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-15T21:23:07]
+2021-07-16 01:16:16.267 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T21:23:07]
+2021-07-16 01:16:16.268 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [1]
+2021-07-16 01:16:16.269 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [e]
+2021-07-16 01:16:16.270 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [a]
+2021-07-16 01:16:16.271 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [p]
+2021-07-16 01:16:16.272 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [u]
+2021-07-16 01:16:16.273 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [17]
+2021-07-16 01:16:16.275 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-15T21:24:12]
+2021-07-16 01:16:16.276 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T21:24:12]
+2021-07-16 01:16:16.277 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [1]
+2021-07-16 01:16:16.278 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [e]
+2021-07-16 01:16:16.280 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [a]
+2021-07-16 01:16:16.282 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [p]
+2021-07-16 01:16:16.283 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [u]
+2021-07-16 01:16:16.284 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [18]
+2021-07-16 01:16:16.285 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-15T21:25:26]
+2021-07-16 01:16:16.286 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T21:25:26]
+2021-07-16 01:16:16.288 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [1]
+2021-07-16 01:16:16.289 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [e]
+2021-07-16 01:16:16.290 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [a]
+2021-07-16 01:16:16.291 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [p]
+2021-07-16 01:16:16.292 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [u]
+2021-07-16 01:16:16.293 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [19]
+2021-07-16 01:16:16.294 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:39:26]
+2021-07-16 01:16:16.295 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:16:16.296 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:16.297 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:16.298 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:16.299 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:16.300 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:16.301 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [20]
+2021-07-16 01:16:16.303 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:39:27]
+2021-07-16 01:16:16.304 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T00:00]
+2021-07-16 01:16:16.305 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:16.306 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:16.307 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:16.308 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:16.309 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:16.310 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [21]
+2021-07-16 01:16:16.312 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:44:18]
+2021-07-16 01:16:16.313 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:16:16.314 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:16.315 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:16.317 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:16.318 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:16.319 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:16.320 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [22]
+2021-07-16 01:16:16.321 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:44:19]
+2021-07-16 01:16:16.322 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T00:00]
+2021-07-16 01:16:16.323 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:16.324 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:16.325 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:16.326 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:16.327 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:16.328 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [23]
+2021-07-16 01:16:16.329 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:52:29]
+2021-07-16 01:16:16.330 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:16:16.331 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:16.332 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:16.333 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:16.334 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:16.335 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:16.336 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [24]
+2021-07-16 01:16:16.337 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:52:29]
+2021-07-16 01:16:16.338 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T00:00]
+2021-07-16 01:16:16.339 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:16.340 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:16.341 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:16.342 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:16.343 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:16.344 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [25]
+2021-07-16 01:16:16.345 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:54:41]
+2021-07-16 01:16:16.346 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:16:16.348 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:16.349 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:16.350 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:16.350 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:16.351 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:16.352 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [26]
+2021-07-16 01:16:16.353 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:54:41]
+2021-07-16 01:16:16.354 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T00:00]
+2021-07-16 01:16:16.355 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:16.356 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:16.357 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:16.358 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:16.359 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:16.360 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [27]
+2021-07-16 01:16:16.361 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:55:27]
+2021-07-16 01:16:16.362 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:16:16.363 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:16.363 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:16.364 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:16.365 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:16.366 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:16.367 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [28]
+2021-07-16 01:16:16.368 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:55:28]
+2021-07-16 01:16:16.369 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T00:00]
+2021-07-16 01:16:16.370 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:16.371 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:16.372 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:16.373 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:16.373 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:16.374 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [29]
+2021-07-16 01:16:16.375 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:58:29]
+2021-07-16 01:16:16.376 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:16:16.377 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:16.378 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:16.379 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:16.380 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:16.381 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:16.381 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [30]
+2021-07-16 01:16:16.383 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:59:37]
+2021-07-16 01:16:16.384 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T00:00]
+2021-07-16 01:16:16.384 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:16.385 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:16.386 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:16.387 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:16.388 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:16.389 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [31]
+2021-07-16 01:16:16.390 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T01:09:21]
+2021-07-16 01:16:16.391 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:16:16.392 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:16.393 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:16.394 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:16.395 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:16.395 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:16.396 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [32]
+2021-07-16 01:16:16.397 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T01:09:21]
+2021-07-16 01:16:16.398 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T00:00]
+2021-07-16 01:16:16.399 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:16.400 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:16.401 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:16.402 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:16.403 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:16.404 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [33]
+2021-07-16 01:16:16.405 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T01:10:52]
+2021-07-16 01:16:16.406 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T00:00]
+2021-07-16 01:16:16.406 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:16.407 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:16.408 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:16.409 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:16.410 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:16.411 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [34]
+2021-07-16 01:16:16.412 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T01:14:14]
+2021-07-16 01:16:16.413 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:16:16.413 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:16.414 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:16.415 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:16.416 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:16.417 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:16.418 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [35]
+2021-07-16 01:16:16.419 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T01:16:16]
+2021-07-16 01:16:16.420 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T00:00]
+2021-07-16 01:16:16.421 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:16.422 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:16.423 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:16.424 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:16.425 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+>>>>>>>>> createdDate=2021-07-15T19:24:37Hibernate: 
+    /* select
+        generatedAlias0 
+    from
+        User as generatedAlias0 */ select
+            user0_.user_num as user_num1_2_,
+            user0_.created_date as created_2_2_,
+            user0_.authenticated_date as authenti3_2_,
+            user0_.coin as coin4_2_,
+            user0_.email as email5_2_,
+            user0_.nickname as nickname6_2_,
+            user0_.profile_url as profile_7_2_,
+            user0_.university as universi8_2_ 
+        from
+            user user0_
+2021-07-16 01:16:24.756 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [12]
+2021-07-16 01:16:24.757 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-15T19:24:37]
+2021-07-16 01:16:24.758 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:16:24.759 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:24.760 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:24.761 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:24.761 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:24.762 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:24.763 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [13]
+2021-07-16 01:16:24.764 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-15T21:20:15]
+2021-07-16 01:16:24.765 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T21:20:15]
+2021-07-16 01:16:24.766 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [1]
+2021-07-16 01:16:24.767 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [e]
+2021-07-16 01:16:24.768 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [a]
+2021-07-16 01:16:24.769 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [p]
+2021-07-16 01:16:24.770 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [u]
+2021-07-16 01:16:24.771 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [14]
+2021-07-16 01:16:24.772 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-15T21:20:50]
+2021-07-16 01:16:24.773 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T21:20:50]
+2021-07-16 01:16:24.774 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [1]
+2021-07-16 01:16:24.775 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [e]
+2021-07-16 01:16:24.775 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [a]
+2021-07-16 01:16:24.776 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [p]
+2021-07-16 01:16:24.777 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [u]
+2021-07-16 01:16:24.778 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [15]
+2021-07-16 01:16:24.779 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-15T21:21:53]
+2021-07-16 01:16:24.780 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T21:21:53]
+2021-07-16 01:16:24.781 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [1]
+2021-07-16 01:16:24.782 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [e]
+2021-07-16 01:16:24.783 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [a]
+2021-07-16 01:16:24.784 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [p]
+2021-07-16 01:16:24.785 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [u]
+2021-07-16 01:16:24.785 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [16]
+2021-07-16 01:16:24.786 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-15T21:23:07]
+2021-07-16 01:16:24.787 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T21:23:07]
+2021-07-16 01:16:24.788 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [1]
+2021-07-16 01:16:24.789 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [e]
+2021-07-16 01:16:24.790 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [a]
+2021-07-16 01:16:24.791 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [p]
+2021-07-16 01:16:24.792 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [u]
+2021-07-16 01:16:24.793 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [17]
+2021-07-16 01:16:24.794 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-15T21:24:12]
+2021-07-16 01:16:24.795 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T21:24:12]
+2021-07-16 01:16:24.796 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [1]
+2021-07-16 01:16:24.797 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [e]
+2021-07-16 01:16:24.798 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [a]
+2021-07-16 01:16:24.799 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [p]
+2021-07-16 01:16:24.800 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [u]
+2021-07-16 01:16:24.801 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [18]
+2021-07-16 01:16:24.802 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-15T21:25:26]
+2021-07-16 01:16:24.803 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T21:25:26]
+2021-07-16 01:16:24.804 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [1]
+2021-07-16 01:16:24.805 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [e]
+2021-07-16 01:16:24.806 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [a]
+2021-07-16 01:16:24.807 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [p]
+2021-07-16 01:16:24.807 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [u]
+2021-07-16 01:16:24.808 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [19]
+2021-07-16 01:16:24.809 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:39:26]
+2021-07-16 01:16:24.810 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:16:24.811 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:24.812 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:24.813 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:24.814 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:24.815 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:24.815 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [20]
+2021-07-16 01:16:24.816 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:39:27]
+2021-07-16 01:16:24.817 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T00:00]
+2021-07-16 01:16:24.818 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:24.819 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:24.820 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:24.821 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:24.822 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:24.823 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [21]
+2021-07-16 01:16:24.824 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:44:18]
+2021-07-16 01:16:24.825 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:16:24.826 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:24.827 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:24.828 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:24.828 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:24.829 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:24.830 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [22]
+2021-07-16 01:16:24.831 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:44:19]
+2021-07-16 01:16:24.832 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T00:00]
+2021-07-16 01:16:24.833 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:24.834 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:24.835 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:24.836 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:24.837 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:24.838 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [23]
+2021-07-16 01:16:24.839 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:52:29]
+2021-07-16 01:16:24.840 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:16:24.841 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:24.842 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:24.842 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:24.843 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:24.844 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:24.845 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [24]
+2021-07-16 01:16:24.846 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:52:29]
+2021-07-16 01:16:24.847 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T00:00]
+2021-07-16 01:16:24.848 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:24.849 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:24.851 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:24.852 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:24.853 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:24.854 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [25]
+2021-07-16 01:16:24.856 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:54:41]
+2021-07-16 01:16:24.857 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:16:24.858 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:24.859 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:24.860 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:24.861 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:24.862 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:24.863 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [26]
+2021-07-16 01:16:24.865 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:54:41]
+2021-07-16 01:16:24.866 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T00:00]
+2021-07-16 01:16:24.867 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:24.868 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:24.869 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:24.870 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:24.871 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:24.872 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [27]
+2021-07-16 01:16:24.873 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:55:27]
+2021-07-16 01:16:24.874 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:16:24.875 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:24.876 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:24.877 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:24.877 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:24.878 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:24.879 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [28]
+2021-07-16 01:16:24.880 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:55:28]
+2021-07-16 01:16:24.881 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T00:00]
+2021-07-16 01:16:24.882 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:24.883 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:24.884 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:24.885 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:24.886 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:24.887 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [29]
+2021-07-16 01:16:24.888 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:58:29]
+2021-07-16 01:16:24.889 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:16:24.890 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:24.890 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:24.891 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:24.892 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:24.893 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:24.894 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [30]
+2021-07-16 01:16:24.896 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T00:59:37]
+2021-07-16 01:16:24.897 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T00:00]
+2021-07-16 01:16:24.898 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:24.899 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:24.899 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:24.900 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:24.901 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:24.902 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [31]
+2021-07-16 01:16:24.903 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T01:09:21]
+2021-07-16 01:16:24.904 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:16:24.905 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:24.906 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:24.907 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:24.907 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:24.908 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:24.909 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [32]
+2021-07-16 01:16:24.911 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T01:09:21]
+2021-07-16 01:16:24.912 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T00:00]
+2021-07-16 01:16:24.913 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:24.913 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:24.914 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:24.915 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:24.916 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:24.917 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [33]
+2021-07-16 01:16:24.918 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T01:10:52]
+2021-07-16 01:16:24.919 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T00:00]
+2021-07-16 01:16:24.920 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:24.921 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:24.922 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:24.922 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:24.923 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:24.924 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [34]
+2021-07-16 01:16:24.926 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T01:14:14]
+2021-07-16 01:16:24.926 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [null]
+2021-07-16 01:16:24.927 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:24.928 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:24.929 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:24.930 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:24.931 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:24.932 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([user_num1_2_] : [BIGINT]) - [35]
+2021-07-16 01:16:24.933 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([created_2_2_] : [TIMESTAMP]) - [2021-07-16T01:16:16]
+2021-07-16 01:16:24.934 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([authenti3_2_] : [TIMESTAMP]) - [2021-07-15T00:00]
+2021-07-16 01:16:24.935 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([coin4_2_] : [INTEGER]) - [0]
+2021-07-16 01:16:24.936 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([email5_2_] : [VARCHAR]) - [testemail]
+2021-07-16 01:16:24.937 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([nickname6_2_] : [VARCHAR]) - [testname]
+2021-07-16 01:16:24.938 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([profile_7_2_] : [VARCHAR]) - [null]
+2021-07-16 01:16:24.939 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([universi8_2_] : [VARCHAR]) - [null]
+Hibernate: 
+    /* delete com.matzipuniv.sinchon.domain.User */ delete 
+        from
+            user 
+        where
+            user_num=?
+2021-07-16 01:16:24.951 TRACE 21400 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [12]
+2021-07-16 01:16:24.958  WARN 21400 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1451, SQLState: 23000
+2021-07-16 01:16:24.958 ERROR 21400 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : Cannot delete or update a parent row: a foreign key constraint fails (`matzipuniv`.`folder`, CONSTRAINT `FK_restaurant_list_user_num_user_user_num` FOREIGN KEY (`user`) REFERENCES `user` (`user_num`) ON DELETE RESTRICT ON UPDATE RESTRICT)
+2021-07-16 01:16:24.960  INFO 21400 --- [    Test worker] o.h.e.j.b.internal.AbstractBatchImpl     : HHH000010: On release of batch it still contained JDBC statements
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
