@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class FolderService {
     private final FolderRepository folderRepository;
 
-    @Transactional
+    @Transactional(readOnly = true)
     public FolderResponseDto findById(Long num){
         Folder entity = folderRepository.findById(num)
                 .orElseThrow(() -> new IllegalArgumentException("해당 폴더가 없습니다. num = "+num));
