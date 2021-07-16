@@ -34,13 +34,17 @@ public class User extends BaseTimeEntity{
     @Column
     private LocalDateTime authenticatedDate;
 
+    @Column
+    private Boolean deleteFlag;
+
     @Builder
-    public User(String nickname, String profileUrl, int coin, String university, String email, LocalDateTime authenticatedDate){
+    public User(String nickname, String profileUrl, Integer coin, String university, String email, LocalDateTime authenticatedDate, Boolean deleteFlag){
         this.nickname = nickname;
         this.profileUrl = profileUrl;
         this.coin = coin;
         this.university = university;
         this.email = email;
         this.authenticatedDate = authenticatedDate;
+        this.deleteFlag = deleteFlag;
     }
 }

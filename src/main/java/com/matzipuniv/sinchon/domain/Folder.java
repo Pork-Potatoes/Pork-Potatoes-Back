@@ -28,11 +28,15 @@ public class Folder extends BaseTimeEntity{
     @JoinColumn(name = "user")
     private User user;
 
+    @Column
+    private Boolean deleteFlag;
+
     @Builder
-    public Folder(String title, String description, Integer pinnedCnt, User user){
+    public Folder(String title, String description, Integer pinnedCnt, User user, Boolean deleteFlag){
         this.title = title;
         this.description = description;
         this.pinnedCnt = pinnedCnt;
         this.user = user;
+        this.deleteFlag = deleteFlag;
     }
 }

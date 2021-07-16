@@ -15,6 +15,7 @@ public class FolderResponseDto {
     private Integer pinnedCnt;
     private User user;
     private LocalDateTime createdDate;
+    private Boolean deleteFlag;
 
     public FolderResponseDto(Folder entity){
         this.folderNum = entity.getFolderNum();
@@ -23,5 +24,6 @@ public class FolderResponseDto {
         this.pinnedCnt = entity.getPinnedCnt();
         this.user = entity.getUser();
         this.createdDate = entity.getCreatedDate();
+        this.deleteFlag = entity.getDeleteFlag();
     }
 }
