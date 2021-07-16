@@ -2,6 +2,8 @@ package com.matzipuniv.sinchon.service;
 
 import com.matzipuniv.sinchon.domain.Folder;
 import com.matzipuniv.sinchon.domain.FolderRepository;
+import com.matzipuniv.sinchon.domain.User;
+import com.matzipuniv.sinchon.domain.UserRepository;
 import com.matzipuniv.sinchon.web.dto.FolderResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,7 @@ import java.util.stream.Collectors;
 @Service
 public class FolderService {
     private final FolderRepository folderRepository;
+    private final UserRepository userRepository;
 
     @Transactional(readOnly = true)
     public FolderResponseDto findById(Long num){
@@ -33,6 +36,16 @@ public class FolderService {
     @Transactional(readOnly = true)
     public List<FolderResponseDto> findByOrderByPinnedCnt(){
         return folderRepository.findByOrderByPinnedCntDesc().stream()
+                .map(FolderResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public List<FolderResponseDto> findByUser(Long userNum){
+        User entity = userRepository.findById(userNum)
+                .orElseThrow(() -> new IllegalArgumentException("없는 유저입니다. user_num = "+userNum));
+
+        return folderRepository.findByUser(entity).stream()
                 .map(FolderResponseDto::new)
                 .collect(Collectors.toList());
     }
