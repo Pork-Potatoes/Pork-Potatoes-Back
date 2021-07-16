@@ -1,6 +1,7 @@
 package com.matzipuniv.sinchon.web.dto;
 
 import com.matzipuniv.sinchon.domain.Menu;
+import com.matzipuniv.sinchon.domain.Restaurant;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -10,7 +11,7 @@ import lombok.ToString;
 @ToString
 public class MenuDto {
     private Long menuNum;
-    private Long restaurant;
+    private Restaurant restaurant;
     private String menuName;
 
     public MenuDto(Menu menu){

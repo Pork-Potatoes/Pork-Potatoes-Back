@@ -2,7 +2,11 @@ package com.matzipuniv.sinchon.service;
 
 import com.matzipuniv.sinchon.domain.Menu;
 import com.matzipuniv.sinchon.domain.MenuRepository;
+import com.matzipuniv.sinchon.domain.Restaurant;
+import com.matzipuniv.sinchon.web.dto.MenuDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -15,8 +19,11 @@ public class MenuService {
         this.menuRepository = menuRepository;
     }
 
-    public List<Menu> getAllMenuByRestaruant(Long restaurant){
-        return menuRepository.findAllByRestaurant(restaurant);
+    @Transactional(readOnly = true)
+    public List<Menu> getAllMenuByRestaruant(Restaurant restaurant){
+        List<Menu> menu = menuRepository.findAllByRestaurant(restaurant);
+
+        return menu;
     }
 
 }

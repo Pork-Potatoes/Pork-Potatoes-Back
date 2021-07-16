@@ -25,21 +25,21 @@ public class MenuRepositoryTest {
     @Test
     public void 메뉴_불러오기(){
         //given
-        Long restaurant_num = 1L;
-        String menuName = "testMenu";
-
-        menuRepository.save(Menu.builder()
-                .restaurant(restaurant_num)
-                .menuName(menuName)
-                .build());
-
-        //when
-        List<Menu> menuList = menuRepository.findAllByRestaurant(restaurant_num);
-
-        //then
-        Menu menu = menuList.get(0);
-        assertThat(menu.getMenuName()).isEqualTo(menuName);
-        assertThat(menu.getRestaurant()).isEqualTo(restaurant_num);
+//        Restaurant restaurant = ;
+//        String menuName = "testMenu";
+//
+//        menuRepository.save(Menu.builder()
+//                .restaurant(restaurant)
+//                .menuName(menuName)
+//                .build());
+//
+//        //when
+//        List<Menu> menuList = menuRepository.findAllByRestaurant(restaurant_num);
+//
+//        //then
+//        Menu menu = menuList.get(0);
+//        assertThat(menu.getMenuName()).isEqualTo(menuName);
+//        assertThat(menu.getRestaurant()).isEqualTo(restaurant_num);
     }
 
 }

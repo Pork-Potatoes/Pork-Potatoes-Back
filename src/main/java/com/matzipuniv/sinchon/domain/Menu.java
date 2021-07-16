@@ -19,14 +19,15 @@ public class Menu {
     @Column(name = "menu_num", nullable = false)
     private Long menuNum;
 
-    @Column(name = "restaurant_num", nullable = false)
-    private Long restaurant;
+    @ManyToOne(targetEntity = Restaurant.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "restaurant")
+    private Restaurant restaurant;
 
     @Column(name = "menu_name", nullable = false)
     private String menuName;
 
     @Builder
-    public Menu(Long restaurant, String menuName){
+    public Menu(Restaurant restaurant, String menuName){
         this.restaurant = restaurant;
         this.menuName = menuName;
     }

@@ -1,4 +1,2 @@
 com/matzipuniv/sinchon/domain/MenuRepositoryTest.java
  com.matzipuniv.sinchon.domain.MenuRepositoryTest
-com/matzipuniv/sinchon/domain/RestaurantRepositoryTest.java
- com.matzipuniv.sinchon.domain.RestaurantRepositoryTest
