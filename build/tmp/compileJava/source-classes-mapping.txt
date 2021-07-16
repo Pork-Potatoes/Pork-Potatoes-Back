@@ -29,11 +29,11 @@ com/matzipuniv/sinchon/web/FolderApiController.java
  com.matzipuniv.sinchon.web.FolderApiController
 com/matzipuniv/sinchon/web/dto/FolderResponseDto.java
  com.matzipuniv.sinchon.web.dto.FolderResponseDto
-com/matzipuniv/sinchon/web/dto/UserResponseDto.java
- com.matzipuniv.sinchon.web.dto.UserResponseDto
 com/matzipuniv/sinchon/service/FolderService.java
  com.matzipuniv.sinchon.service.FolderService
-com/matzipuniv/sinchon/service/UserService.java
- com.matzipuniv.sinchon.service.UserService
 com/matzipuniv/sinchon/web/UserApiController.java
  com.matzipuniv.sinchon.web.UserApiController
+com/matzipuniv/sinchon/service/UserService.java
+ com.matzipuniv.sinchon.service.UserService
+com/matzipuniv/sinchon/web/dto/UserResponseDto.java
+ com.matzipuniv.sinchon.web.dto.UserResponseDto

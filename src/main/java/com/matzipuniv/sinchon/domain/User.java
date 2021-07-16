@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 public class User extends BaseTimeEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
     private Long userNum;
 
     @Column

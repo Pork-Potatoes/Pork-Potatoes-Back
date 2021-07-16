@@ -1,9 +1,11 @@
 package com.matzipuniv.sinchon.web.dto;
 
 import com.matzipuniv.sinchon.domain.User;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 
+@Getter
 public class UserResponseDto {
     private Long userNum;
     private String nickname;
