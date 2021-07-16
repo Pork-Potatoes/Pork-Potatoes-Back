@@ -29,4 +29,11 @@ public class FolderService {
                 .map(FolderResponseDto::new)
                 .collect(Collectors.toList());
     }
+
+    @Transactional(readOnly = true)
+    public List<FolderResponseDto> findByOrderByPinnedCnt(){
+        return folderRepository.findByOrderByPinnedCntDesc().stream()
+                .map(FolderResponseDto::new)
+                .collect(Collectors.toList());
+    }
 }
