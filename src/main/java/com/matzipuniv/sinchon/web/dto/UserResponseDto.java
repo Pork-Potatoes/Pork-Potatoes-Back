@@ -14,6 +14,7 @@ public class UserResponseDto {
     private String university;
     private String email;
     private LocalDateTime authenticatedDate;
+    private Boolean deleteFlag;
 
     public UserResponseDto(User entity) {
         this.userNum = entity.getUserNum();
@@ -23,5 +24,6 @@ public class UserResponseDto {
         this.university = entity.getUniversity();
         this.email = entity.getEmail();
         this.authenticatedDate = entity.getAuthenticatedDate();
+        this.deleteFlag = entity.getDeleteFlag();
     }
 }
