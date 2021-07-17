@@ -32,7 +32,7 @@ public class ReviewResponseDto {
         this.likedCnt = review.getLikedCnt();
         this.report = review.getReport();
         this.deleteFlag = review.getDeleteFlag();
-        this.tagCousine = review.getTagCousine();
+        this.tagCousine = review.getTagFood();
         this.tagMood = review.getTagMood();
     }
 
