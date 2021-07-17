@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @RequiredArgsConstructor
 @Service
@@ -48,5 +52,25 @@ public class UserService {
             return "error occurred during upload : either file type is not proper, or file is corrupted. Only upload png or jpeg.";
         }
         return "modified";
+    }
+
+    @Transactional
+    public String deleteProfileUrl(Long userNum) {
+        String absoluteUrl = new File("").getAbsolutePath()+"/src/main/resources/static";
+        User user = userRepository.findById(userNum)
+                .orElseThrow(() -> new IllegalArgumentException("없는 유저입니다. user_num = "+userNum));
+
+        String currUrl = user.getProfileUrl();
+        if(!currUrl.equals("/uploads/defaultProfile.png")) {
+            try {
+                String profileUrl = absoluteUrl + user.getProfileUrl();
+                Path file = Paths.get(profileUrl);
+                Files.delete(file);
+            } catch(Exception e) {
+                System.out.println("delete file error" + e.getMessage());
+            }
+        }
+        user.updateProfileUrl("/uploads/defaultProfile.png");
+        return "deleted";
     }
 }

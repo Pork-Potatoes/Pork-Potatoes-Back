@@ -29,4 +29,9 @@ public class UserApiController {
         return userService.updateProfileUrl(userNum, uploadFile);
     }
 
+    @DeleteMapping("/{userNum}/image")
+    public String deleteProfile(@PathVariable Long userNum) {
+        return userService.deleteProfileUrl(userNum);
+    }
+
 }
