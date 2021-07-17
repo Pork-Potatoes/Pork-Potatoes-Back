@@ -43,7 +43,7 @@ public class Review extends BaseTimeEntity{
     private Boolean deleteFlag;
 
     @Column
-    private String tagCousine;
+    private String tagFood;
 
     @Column
     private String tagMood;
