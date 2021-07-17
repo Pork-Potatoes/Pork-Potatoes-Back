@@ -16,8 +16,8 @@ public class ImageService {
     private final ImageRepository imageRepository;
 
     @Transactional
-    public List<ImageResponseDto> findAllDtoByReview(Long review){
-        List<Image> imageList = imageRepository.findAllByReview(review);
+    public List<ImageResponseDto> findAllDtoByReview(Long reviewNum){
+        List<Image> imageList = imageRepository.findAllByReviewReviewNum(reviewNum);
 
         return imageList.stream()
                 .map(ImageResponseDto::new)

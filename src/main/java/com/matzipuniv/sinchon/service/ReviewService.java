@@ -19,9 +19,9 @@ public class ReviewService {
     private final FileHandler fileHandler;
 
     @Transactional
-    public ReviewResponseDto searchByNum(Long num, List<Long> imageNum){
+    public ReviewResponseDto searchByNum(Long num, List<String> filePath){
         Review entity = reviewRepository.findById(num).orElseThrow(() -> new IllegalArgumentException("해당 리뷰가 없습니다. num = " + num));
 
-        return new ReviewResponseDto(entity, imageNum);
+        return new ReviewResponseDto(entity, filePath);
     }
 }

@@ -14,12 +14,12 @@ com/matzipuniv/sinchon/service/RestaurantService.java
  com.matzipuniv.sinchon.service.RestaurantService
 com/matzipuniv/sinchon/web/dto/UserResponseDto.java
  com.matzipuniv.sinchon.web.dto.UserResponseDto
-com/matzipuniv/sinchon/web/TempMenuController.java
- com.matzipuniv.sinchon.web.TempMenuController
+com/matzipuniv/sinchon/domain/ReviewRepository.java
+ com.matzipuniv.sinchon.domain.ReviewRepository
 com/matzipuniv/sinchon/domain/BaseTimeEntity.java
  com.matzipuniv.sinchon.domain.BaseTimeEntity
-com/matzipuniv/sinchon/service/ReviewService.java
- com.matzipuniv.sinchon.service.ReviewService
+com/matzipuniv/sinchon/web/dto/ReviewListResponseDto.java
+ com.matzipuniv.sinchon.web.dto.ReviewListResponseDto
 com/matzipuniv/sinchon/domain/Restaurant.java
  com.matzipuniv.sinchon.domain.Restaurant
  com.matzipuniv.sinchon.domain.Restaurant$RestaurantBuilder
@@ -31,8 +31,8 @@ com/matzipuniv/sinchon/service/MenuService.java
  com.matzipuniv.sinchon.service.MenuService
 com/matzipuniv/sinchon/web/dto/FolderResponseDto.java
  com.matzipuniv.sinchon.web.dto.FolderResponseDto
-com/matzipuniv/sinchon/domain/ImageRepository.java
- com.matzipuniv.sinchon.domain.ImageRepository
+com/matzipuniv/sinchon/web/TempMenuController.java
+ com.matzipuniv.sinchon.web.TempMenuController
 com/matzipuniv/sinchon/config/JpaConfig.java
  com.matzipuniv.sinchon.config.JpaConfig
 com/matzipuniv/sinchon/domain/Menu.java
@@ -65,23 +65,23 @@ com/matzipuniv/sinchon/web/dto/MenuDto.java
  com.matzipuniv.sinchon.web.dto.MenuDto
 com/matzipuniv/sinchon/domain/RestaurantRepository.java
  com.matzipuniv.sinchon.domain.RestaurantRepository
-com/matzipuniv/sinchon/domain/ReviewRepository.java
- com.matzipuniv.sinchon.domain.ReviewRepository
-com/matzipuniv/sinchon/web/ReviewApiController.java
- com.matzipuniv.sinchon.web.ReviewApiController
 com/matzipuniv/sinchon/web/ImageApiController.java
  com.matzipuniv.sinchon.web.ImageApiController
-com/matzipuniv/sinchon/service/ImageService.java
- com.matzipuniv.sinchon.service.ImageService
-com/matzipuniv/sinchon/web/dto/ReviewResponseDto.java
- com.matzipuniv.sinchon.web.dto.ReviewResponseDto
-com/matzipuniv/sinchon/domain/Image.java
- com.matzipuniv.sinchon.domain.Image
- com.matzipuniv.sinchon.domain.Image$ImageBuilder
+com/matzipuniv/sinchon/domain/ImageRepository.java
+ com.matzipuniv.sinchon.domain.ImageRepository
 com/matzipuniv/sinchon/service/FileHandler.java
  com.matzipuniv.sinchon.service.FileHandler
 com/matzipuniv/sinchon/web/dto/ImageResponseDto.java
  com.matzipuniv.sinchon.web.dto.ImageResponseDto
  com.matzipuniv.sinchon.web.dto.ImageResponseDto$ImageResponseDtoBuilder
-com/matzipuniv/sinchon/web/dto/ReviewListResponseDto.java
- com.matzipuniv.sinchon.web.dto.ReviewListResponseDto
+com/matzipuniv/sinchon/service/ImageService.java
+ com.matzipuniv.sinchon.service.ImageService
+com/matzipuniv/sinchon/domain/Image.java
+ com.matzipuniv.sinchon.domain.Image
+ com.matzipuniv.sinchon.domain.Image$ImageBuilder
+com/matzipuniv/sinchon/web/dto/ReviewResponseDto.java
+ com.matzipuniv.sinchon.web.dto.ReviewResponseDto
+com/matzipuniv/sinchon/service/ReviewService.java
+ com.matzipuniv.sinchon.service.ReviewService
+com/matzipuniv/sinchon/web/ReviewApiController.java
+ com.matzipuniv.sinchon.web.ReviewApiController

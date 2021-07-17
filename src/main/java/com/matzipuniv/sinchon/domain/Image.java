@@ -10,14 +10,14 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Image extends BaseTimeEntity {
+public class Image {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long imageNum;
 
     @ManyToOne
-    @JoinColumn(name = "review", nullable = false)
+    @JoinColumn(name = "review_num", nullable = false)
     private Review review;
 
     @Column(nullable = false)

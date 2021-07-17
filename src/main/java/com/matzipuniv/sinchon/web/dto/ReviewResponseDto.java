@@ -5,10 +5,14 @@ import com.matzipuniv.sinchon.domain.Restaurant;
 import com.matzipuniv.sinchon.domain.Review;
 import com.matzipuniv.sinchon.domain.User;
 import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.util.List;
 
 @Getter
+@Setter
+@ToString
 public class ReviewResponseDto {
     private Long reviewNum;
     private Restaurant restaurant;
@@ -20,11 +24,11 @@ public class ReviewResponseDto {
     private Integer likedCnt;
     private Integer report;
     private Boolean deleteFlag;
-    private String tagCousine;
+    private String tagFood;
     private String tagMood;
-    private List<Long> imageNum;
+    private List<String> filePath;
 
-    public ReviewResponseDto(Review entity, List<Long> imageNum){
+    public ReviewResponseDto(Review entity, List<String> filePath){
         this.reviewNum = entity.getReviewNum();
         this.restaurant = entity.getRestaurant();
         this.user = entity.getUser();
@@ -35,11 +39,10 @@ public class ReviewResponseDto {
         this.likedCnt = entity.getLikedCnt();
         this.report = entity.getReport();
         this.deleteFlag = entity.getDeleteFlag();
-        this.tagCousine = entity.getTagFood();
+        this.tagFood = entity.getTagFood();
         this.tagMood = entity.getTagMood();
-        this.imageNum = imageNum;
+        this.filePath = filePath;
     }
-
-
+    
 
 }
