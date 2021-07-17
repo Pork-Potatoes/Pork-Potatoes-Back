@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -47,6 +49,13 @@ public class Review extends BaseTimeEntity{
 
     @Column
     private String tagMood;
+
+    @OneToMany(
+            mappedBy = "review",
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+            orphanRemoval = true
+    )
+    private List<Image> image = new ArrayList<>();
 
 
 

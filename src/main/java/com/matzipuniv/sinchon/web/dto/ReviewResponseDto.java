@@ -1,10 +1,12 @@
 package com.matzipuniv.sinchon.web.dto;
 
+import com.matzipuniv.sinchon.domain.Image;
 import com.matzipuniv.sinchon.domain.Restaurant;
 import com.matzipuniv.sinchon.domain.Review;
 import com.matzipuniv.sinchon.domain.User;
 import lombok.Getter;
 
+import java.util.List;
 
 @Getter
 public class ReviewResponseDto {
@@ -20,20 +22,22 @@ public class ReviewResponseDto {
     private Boolean deleteFlag;
     private String tagCousine;
     private String tagMood;
+    private List<Long> imageNum;
 
-    public ReviewResponseDto(Review review){
-        this.reviewNum = review.getReviewNum();
-        this.restaurant = review.getRestaurant();
-        this.user = review.getUser();
-        this.content = review.getContent();
-        this.score = review.getScore();
-        this.anonymousFlag = review.getAnonymousFlag();
-        this.menuName = review.getMenuName();
-        this.likedCnt = review.getLikedCnt();
-        this.report = review.getReport();
-        this.deleteFlag = review.getDeleteFlag();
-        this.tagCousine = review.getTagFood();
-        this.tagMood = review.getTagMood();
+    public ReviewResponseDto(Review entity, List<Long> imageNum){
+        this.reviewNum = entity.getReviewNum();
+        this.restaurant = entity.getRestaurant();
+        this.user = entity.getUser();
+        this.content = entity.getContent();
+        this.score = entity.getScore();
+        this.anonymousFlag = entity.getAnonymousFlag();
+        this.menuName = entity.getMenuName();
+        this.likedCnt = entity.getLikedCnt();
+        this.report = entity.getReport();
+        this.deleteFlag = entity.getDeleteFlag();
+        this.tagCousine = entity.getTagFood();
+        this.tagMood = entity.getTagMood();
+        this.imageNum = imageNum;
     }
 
 
