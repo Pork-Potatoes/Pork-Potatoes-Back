@@ -47,4 +47,16 @@ public class User extends BaseTimeEntity{
         this.authenticatedDate = authenticatedDate;
         this.deleteFlag = deleteFlag;
     }
+
+    public void updateNickname(String nickname) {
+        if(!nickname.equals("null")) {
+            this.nickname = nickname;
+        }
+    }
+
+    public void updateProfileUrl(String profileUrl) {
+        if(!profileUrl.equals("null")) {
+            this.profileUrl = profileUrl;
+        }
+    }
 }

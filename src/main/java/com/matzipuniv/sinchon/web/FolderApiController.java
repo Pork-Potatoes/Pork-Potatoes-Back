@@ -9,19 +9,23 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/folders")
 public class FolderApiController {
     private final FolderService folderService;
 
-    @GetMapping("/{folderNum}")
+    @GetMapping("/api/folders/{folderNum}")
     public FolderResponseDto findByNum(@PathVariable Long folderNum){
         return folderService.findById(folderNum);
     }
 
-    @GetMapping("")
+    @GetMapping("/api/folders")
     public List<FolderResponseDto> findByOrderByPinnedCnt(@RequestParam(value="sort", required = false, defaultValue = "id") String value){
         if(value.equals("-pinnedCnt"))
             return folderService.findByOrderByPinnedCnt();
         return folderService.findAll();
+    }
+
+    @GetMapping("/api/users/{userNum}/folders")
+    public List<FolderResponseDto> findByUser(@PathVariable Long userNum){
+        return folderService.findByUser(userNum);
     }
 }
