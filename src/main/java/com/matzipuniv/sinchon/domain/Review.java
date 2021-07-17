@@ -8,17 +8,17 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Review extends  BaseTimeEntity{
+public class Review extends BaseTimeEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long reviewNum;
 
     @ManyToOne
-    @JoinColumn(name = "restaurant-num")
+    @JoinColumn(name = "restaurant")
     private Restaurant restaurant;
 
     @ManyToOne
-    @JoinColumn(name = "user-num")
+    @JoinColumn(name = "user")
     private User user;
 
     @Column
