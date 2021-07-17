@@ -62,11 +62,11 @@ com/matzipuniv/sinchon/web/dto/MenuDto.java
  com.matzipuniv.sinchon.web.dto.MenuDto
 com/matzipuniv/sinchon/domain/RestaurantRepository.java
  com.matzipuniv.sinchon.domain.RestaurantRepository
-com/matzipuniv/sinchon/service/UserService.java
- com.matzipuniv.sinchon.service.UserService
+com/matzipuniv/sinchon/web/ReportController.java
+ com.matzipuniv.sinchon.web.ReportController
 com/matzipuniv/sinchon/web/TempMenuController.java
  com.matzipuniv.sinchon.web.TempMenuController
 com/matzipuniv/sinchon/service/ReportService.java
  com.matzipuniv.sinchon.service.ReportService
-com/matzipuniv/sinchon/web/ReportController.java
- com.matzipuniv.sinchon.web.ReportController
+com/matzipuniv/sinchon/service/UserService.java
+ com.matzipuniv.sinchon.service.UserService

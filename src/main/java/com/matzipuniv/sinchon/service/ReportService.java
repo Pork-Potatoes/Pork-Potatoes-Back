@@ -15,10 +15,7 @@ public class ReportService {
     }
 
     public void registerReport(ReportDto reportDto){
-        Report report = new Report();
-        report.setReview(reportDto.getReview());
-        report.setDescription(reportDto.getDescription());
-        report.setUser(reportDto.getUser());
+        Report report = new Report(reportDto.getReview(), reportDto.getDescription(), reportDto.getUser());
 
         reportRepository.save(report);
     }
