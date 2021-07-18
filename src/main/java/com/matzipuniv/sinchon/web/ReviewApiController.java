@@ -1,12 +1,15 @@
 package com.matzipuniv.sinchon.web;
 
+import com.matzipuniv.sinchon.domain.Review;
 import com.matzipuniv.sinchon.service.ImageService;
 import com.matzipuniv.sinchon.service.ReviewService;
 import com.matzipuniv.sinchon.web.dto.ImageResponseDto;
 import com.matzipuniv.sinchon.web.dto.ReviewResponseDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -31,6 +34,9 @@ public class ReviewApiController {
 
     }
 
-
+    @GetMapping("api/reviews")
+    public List<ReviewResponseDto> findAllReviewsSortByDate(@RequestParam String query, String sort){
+        return reviewService.findAllReviewsSort(query, sort);
+    }
 
 }

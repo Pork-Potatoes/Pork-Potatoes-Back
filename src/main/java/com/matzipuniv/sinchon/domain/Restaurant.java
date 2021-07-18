@@ -15,7 +15,7 @@ public class Restaurant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long restaurantNum;
 
-    @Column
+    @Column(name = "restaurant_name")
     private String restaurantName;
 
     @Column

@@ -1,7 +1,9 @@
 package com.matzipuniv.sinchon.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -10,6 +12,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @Entity
+@Table(name = "review")
 public class Review extends BaseTimeEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +26,7 @@ public class Review extends BaseTimeEntity{
     @JoinColumn(name = "user")
     private User user;
 
-    @Column
+    @Column(name = "content")
     private String content;
 
     @Column
@@ -32,7 +35,7 @@ public class Review extends BaseTimeEntity{
     @Column
     private Boolean anonymousFlag;
 
-    @Column
+    @Column(name = "menu_name")
     private String menuName;
 
     @Column
@@ -50,12 +53,29 @@ public class Review extends BaseTimeEntity{
     @Column
     private String tagMood;
 
+
     @OneToMany(
             mappedBy = "review",
             cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
             orphanRemoval = true
     )
     private List<Image> image = new ArrayList<>();
+  
+  @Builder
+    public Review(Restaurant restaurant, User user, String content, Double score, Boolean anonymousFlag, String menuName, Integer likedCnt, Integer report,
+                  Boolean deleteFlag, String tagFood, String tagMood){
+        this.restaurant = restaurant;
+        this.user = user;
+        this.content = content;
+        this.score = score;
+        this.anonymousFlag = anonymousFlag;
+        this.menuName = menuName;
+        this.likedCnt = likedCnt;
+        this.report = report;
+        this.deleteFlag = deleteFlag;
+        this.tagFood = tagFood;
+        this.tagMood = tagMood;
+    }
 
 
 
