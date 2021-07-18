@@ -53,21 +53,21 @@ com/matzipuniv/sinchon/service/ReviewService.java
  com.matzipuniv.sinchon.service.ReviewService
 com/matzipuniv/sinchon/domain/Review.java
  com.matzipuniv.sinchon.domain.Review
-com/matzipuniv/sinchon/web/dto/ReviewResponseDto.java
- com.matzipuniv.sinchon.web.dto.ReviewResponseDto
-com/matzipuniv/sinchon/web/ReviewApiController.java
- com.matzipuniv.sinchon.web.ReviewApiController
-com/matzipuniv/sinchon/web/dto/FolderResponseDto.java
- com.matzipuniv.sinchon.web.dto.FolderResponseDto
-com/matzipuniv/sinchon/web/dto/UserResponseDto.java
- com.matzipuniv.sinchon.web.dto.UserResponseDto
 com/matzipuniv/sinchon/web/FolderApiController.java
  com.matzipuniv.sinchon.web.FolderApiController
-com/matzipuniv/sinchon/domain/FolderRepository.java
- com.matzipuniv.sinchon.domain.FolderRepository
-com/matzipuniv/sinchon/service/FolderService.java
- com.matzipuniv.sinchon.service.FolderService
 com/matzipuniv/sinchon/web/UserApiController.java
  com.matzipuniv.sinchon.web.UserApiController
+com/matzipuniv/sinchon/service/FolderService.java
+ com.matzipuniv.sinchon.service.FolderService
+com/matzipuniv/sinchon/web/dto/UserResponseDto.java
+ com.matzipuniv.sinchon.web.dto.UserResponseDto
+com/matzipuniv/sinchon/web/dto/ReviewResponseDto.java
+ com.matzipuniv.sinchon.web.dto.ReviewResponseDto
+com/matzipuniv/sinchon/domain/FolderRepository.java
+ com.matzipuniv.sinchon.domain.FolderRepository
+com/matzipuniv/sinchon/web/dto/FolderResponseDto.java
+ com.matzipuniv.sinchon.web.dto.FolderResponseDto
+com/matzipuniv/sinchon/web/ReviewApiController.java
+ com.matzipuniv.sinchon.web.ReviewApiController
 com/matzipuniv/sinchon/service/UserService.java
  com.matzipuniv.sinchon.service.UserService
