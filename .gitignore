@@ -1,6 +1,6 @@
 # Project exclude paths
 /.gradle/
 /.idea/
-/build
+build/
 .DS_Store
 src/main/resources/application-datasource.properties
