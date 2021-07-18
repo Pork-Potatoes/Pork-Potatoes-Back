@@ -12,12 +12,24 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
 public class UserService {
     private final UserRepository userRepository;
     private final FileHandler fileHandler;
+
+    @Transactional
+    public List<UserResponseDto> findAll() {
+        List<User> entities = userRepository.findAll();
+        List<UserResponseDto> responseDtoList = new ArrayList<>();
+        for(User entity : entities){
+            responseDtoList.add(new UserResponseDto(entity));
+        }
+        return responseDtoList;
+    }
 
     @Transactional
     public UserResponseDto findByNum(Long num){
