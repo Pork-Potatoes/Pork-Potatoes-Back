@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -26,7 +27,9 @@ public class ReviewResponseDto {
     private Boolean deleteFlag;
     private String tagFood;
     private String tagMood;
+    private LocalDateTime createdDate;
     private List<String> filePath;
+
 
     public ReviewResponseDto(Review entity, List<String> filePath){
         this.reviewNum = entity.getReviewNum();
@@ -41,6 +44,7 @@ public class ReviewResponseDto {
         this.deleteFlag = entity.getDeleteFlag();
         this.tagFood = entity.getTagFood();
         this.tagMood = entity.getTagMood();
+        this.createdDate = entity.getCreatedDate();
         this.filePath = filePath;
     }
     

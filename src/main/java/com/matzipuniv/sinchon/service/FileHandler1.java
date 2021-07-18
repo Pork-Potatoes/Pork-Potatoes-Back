@@ -14,10 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class FileHandler {
+public class FileHandler1 {
     private final ImageService imageService;
 
-    public FileHandler(ImageService imageService) {
+    public FileHandler1(ImageService imageService) {
         this.imageService = imageService;
     }
 

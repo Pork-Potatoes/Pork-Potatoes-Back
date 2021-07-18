@@ -16,7 +16,7 @@ import java.util.List;
 public class ReviewService {
     private final ReviewRepository reviewRepository;
     private final ImageRepository imageRepository;
-    private final FileHandler fileHandler;
+    private final FileHandler1 fileHandler1;
 
     @Transactional
     public ReviewResponseDto searchByNum(Long num, List<String> filePath){
