@@ -25,6 +25,11 @@ public class UserApiController {
         return userService.findByNum(userNum);
     }
 
+    @DeleteMapping("/{userNum}")
+    public String deleteUser(@PathVariable Long userNum) {
+        return userService.deleteUser(userNum);
+    }
+
     @PatchMapping("/{userNum}/nickname")
     public String updateNickname(@PathVariable Long userNum, @RequestBody String nickname) {
         return userService.updateNickname(userNum, nickname);

@@ -59,4 +59,8 @@ public class User extends BaseTimeEntity{
             this.profileUrl = profileUrl;
         }
     }
+
+    public void updateDeleteFlag() {
+        this.deleteFlag = true;
+    }
 }

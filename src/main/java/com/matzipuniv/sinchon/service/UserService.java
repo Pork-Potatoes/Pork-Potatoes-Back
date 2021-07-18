@@ -40,6 +40,19 @@ public class UserService {
     }
 
     @Transactional
+    public String deleteUser(Long num) {
+        User entity = userRepository.findById(num)
+                .orElseThrow(() -> new IllegalArgumentException("없는 유저입니다. user_num = "+num));
+        try {
+            entity.updateDeleteFlag();
+            return "user"+num+" deleted";
+        }
+        catch(Exception e) {
+            return "error occured";
+        }
+    }
+
+    @Transactional
     public String updateNickname(Long userNum, String nickname) {
         User user = userRepository.findById(userNum)
                 .orElseThrow(() -> new IllegalArgumentException("없는 유저입니다. user_num = "+userNum));
