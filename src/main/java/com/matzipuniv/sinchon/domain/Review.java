@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -51,7 +53,15 @@ public class Review extends BaseTimeEntity{
     @Column
     private String tagMood;
 
-    @Builder
+
+    @OneToMany(
+            mappedBy = "review",
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+            orphanRemoval = true
+    )
+    private List<Image> image = new ArrayList<>();
+  
+  @Builder
     public Review(Restaurant restaurant, User user, String content, Double score, Boolean anonymousFlag, String menuName, Integer likedCnt, Integer report,
                   Boolean deleteFlag, String tagFood, String tagMood){
         this.restaurant = restaurant;
@@ -66,6 +76,7 @@ public class Review extends BaseTimeEntity{
         this.tagFood = tagFood;
         this.tagMood = tagMood;
     }
+
 
 
 }

@@ -3,6 +3,7 @@ package com.matzipuniv.sinchon.service;
 
 import com.matzipuniv.sinchon.domain.Restaurant;
 import com.matzipuniv.sinchon.domain.RestaurantRepository;
+import com.matzipuniv.sinchon.domain.ImageRepository;
 import com.matzipuniv.sinchon.domain.Review;
 import com.matzipuniv.sinchon.domain.ReviewRepository;
 import com.matzipuniv.sinchon.web.dto.ReviewResponseDto;
@@ -14,8 +15,8 @@ import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 import java.util.stream.Collectors;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -24,13 +25,14 @@ public class ReviewService {
     private final RestaurantRepository restaurantRepository;
 
     private final RestaurantService restaurantService;
+    private final ImageRepository imageRepository;
+    private final FileHandler1 fileHandler1;
 
     @Transactional
-    public ReviewResponseDto findByNum(Long num){
-        Review review = reviewRepository.findById(num)
-                .orElseThrow(() -> new IllegalArgumentException("해당 리뷰가 없습니다. num = " + num));
+    public ReviewResponseDto searchByNum(Long num, List<String> filePath){
+        Review entity = reviewRepository.findById(num).orElseThrow(() -> new IllegalArgumentException("해당 리뷰가 없습니다. num = " + num));
 
-        return new ReviewResponseDto(review);
+        return new ReviewResponseDto(entity, filePath);
     }
 
     @Transactional
