@@ -19,4 +19,13 @@ public class RestaurantService {
 
         return new RestaurantResponseDto(entity);
     }
+
+    @Transactional
+    public RestaurantResponseDto findByName(String name){
+        Restaurant entity = restaurantRepository.findOneByRestaurantName(name);
+        Long num = entity.getRestaurantNum();
+        Restaurant returnEntity = restaurantRepository.findById(num)
+                .orElseThrow(() -> new IllegalArgumentException("해당 가게가 없습니다."));
+        return new RestaurantResponseDto(returnEntity);
+    }
 }

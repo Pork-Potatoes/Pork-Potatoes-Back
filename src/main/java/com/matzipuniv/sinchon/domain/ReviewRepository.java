@@ -1,5 +1,6 @@
 package com.matzipuniv.sinchon.domain;
 
+import com.matzipuniv.sinchon.web.dto.RestaurantResponseDto;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
