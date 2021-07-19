@@ -14,4 +14,5 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
             "or r.restaurant.restaurantName like %:restaurantName%)")
     List<Review> findAllByContentORMenuNameORRestaurant(@Param("content")String content, @Param("menuName") String menuName,
                                                         @Param("restaurantName") String restaurantName);
+
 }
