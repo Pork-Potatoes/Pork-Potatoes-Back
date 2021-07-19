@@ -54,11 +54,11 @@ public class UserService {
 
     @Transactional
     public String updateNickname(Long userNum, String nickname) {
-        User user = userRepository.findById(userNum)
+        User entity = userRepository.findById(userNum)
                 .orElseThrow(() -> new IllegalArgumentException("없는 유저입니다. user_num = "+userNum));
 
-        if(!nickname.equals("null")){
-            user.updateNickname(nickname);
+        if(!nickname.equals("null") || !(nickname == null)){
+            entity.updateNickname(nickname);
         }
         return "modified";
     }
@@ -66,11 +66,11 @@ public class UserService {
     @Transactional
     public String updateProfileUrl(Long userNum, MultipartFile uploadFile) {
         String profileUrl;
-        User user = userRepository.findById(userNum)
+        User entity = userRepository.findById(userNum)
                 .orElseThrow(() -> new IllegalArgumentException("없는 유저입니다. user_num = "+userNum));
         try{
             profileUrl = fileHandler.parseFileInfo(uploadFile);
-            user.updateProfileUrl(profileUrl);
+            entity.updateProfileUrl(profileUrl);
 
         } catch (Exception e) {
             System.out.println("File exception");
@@ -82,20 +82,43 @@ public class UserService {
     @Transactional
     public String deleteProfileUrl(Long userNum) {
         String absoluteUrl = new File("").getAbsolutePath()+"/src/main/resources/static";
-        User user = userRepository.findById(userNum)
+        User entity = userRepository.findById(userNum)
                 .orElseThrow(() -> new IllegalArgumentException("없는 유저입니다. user_num = "+userNum));
 
-        String currUrl = user.getProfileUrl();
+        String currUrl = entity.getProfileUrl();
         if(!currUrl.equals("/uploads/defaultProfile.png")) {
             try {
-                String profileUrl = absoluteUrl + user.getProfileUrl();
+                String profileUrl = absoluteUrl + entity.getProfileUrl();
                 Path file = Paths.get(profileUrl);
                 Files.delete(file);
             } catch(Exception e) {
                 System.out.println("delete file error" + e.getMessage());
             }
         }
-        user.updateProfileUrl("/uploads/defaultProfile.png");
+        entity.updateProfileUrl("/uploads/defaultProfile.png");
         return "deleted";
+    }
+
+    @Transactional
+    public String findUnivByNum(Long num) {
+        User entity = userRepository.findById(num)
+                .orElseThrow(() -> new IllegalArgumentException("없는 유저입니다. user_num = "+num));
+        String authenticate = entity.getUniversity();
+        if(authenticate==null) {
+            return "not authenciated";
+        } else {
+            return authenticate;
+        }
+    }
+
+    @Transactional
+    public String setUnivByNum(Long num, String univ) {
+        User entity = userRepository.findById(num)
+                .orElseThrow(() -> new IllegalArgumentException("없는 유저입니다. user_num = "+num));
+
+        if(!(univ==null) || !univ.equals("null")){
+            entity.updateUniv(univ);
+        }
+        return "success";
     }
 }
