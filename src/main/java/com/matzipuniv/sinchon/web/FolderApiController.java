@@ -1,6 +1,7 @@
 package com.matzipuniv.sinchon.web;
 
 import com.matzipuniv.sinchon.service.FolderService;
+import com.matzipuniv.sinchon.web.dto.AdditionResponseDto;
 import com.matzipuniv.sinchon.web.dto.FolderResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,11 @@ public class FolderApiController {
     @GetMapping("/api/folders/{folderNum}")
     public FolderResponseDto findByNum(@PathVariable Long folderNum){
         return folderService.findById(folderNum);
+    }
+
+    @GetMapping("/api/folders/{folderNum}/restaurants")
+    public AdditionResponseDto getRestaurants(@PathVariable Long folderNum){
+        return folderService.getRestaurants(folderNum);
     }
 
     @GetMapping("/api/folders")
