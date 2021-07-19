@@ -45,4 +45,14 @@ public class UserApiController {
         return userService.deleteProfileUrl(userNum);
     }
 
+    @GetMapping("/{userNum}/authenticate")
+    public String findUnivByNum(@PathVariable Long userNum) {
+        return userService.findUnivByNum(userNum);
+    }
+
+    @PostMapping("/{userNum}/authenticate")
+    public String setUniv(@PathVariable Long userNum, @RequestBody String univ) {
+        return userService.setUnivByNum(userNum, univ);
+    }
+
 }
