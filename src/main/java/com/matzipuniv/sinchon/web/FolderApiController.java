@@ -34,4 +34,9 @@ public class FolderApiController {
     public List<FolderResponseDto> findByUser(@PathVariable Long userNum){
         return folderService.findByUser(userNum);
     }
+
+    @DeleteMapping("/api/users/{userNum}/folders/{folderNum}")
+    public String deleteFolder(@PathVariable Long userNum, @PathVariable Long folderNum){
+        return folderService.deleteFolder(userNum, folderNum);
+    }
 }
