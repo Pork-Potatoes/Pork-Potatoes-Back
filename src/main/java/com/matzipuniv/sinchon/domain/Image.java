@@ -11,7 +11,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 public class Image {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long imageNum;
@@ -36,11 +35,11 @@ public class Image {
         this.fileSize = fileSize;
     }
 
-//    public void setReview(Review review){
-//        this.review = review;
-//
-//        if(!review.getImage().contains(this))
-//            review.getImage().add(this);
-//    }
+    public void setReview(Review review){
+        this.review = review;
+
+        if(!review.getImage().contains(this))
+            review.getImage().add(this);
+    }
 
 }

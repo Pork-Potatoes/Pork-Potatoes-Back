@@ -3,11 +3,12 @@ package com.matzipuniv.sinchon.web;
 import com.matzipuniv.sinchon.service.ImageService;
 import com.matzipuniv.sinchon.service.ReviewService;
 import com.matzipuniv.sinchon.web.dto.ImageResponseDto;
+import com.matzipuniv.sinchon.web.dto.ReviewRequestDto;
 import com.matzipuniv.sinchon.web.dto.ReviewResponseDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,18 @@ public class ReviewApiController {
         return reviewService.searchByNum(reviewNum, filePath); //게시글 num과 첨부파일 num 목록(imageNum) 전달받아 결과 반환
 
     }
+
+    @PostMapping("/api/reviews")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Long createReview(
+            @RequestPart(value = "image", required = false) List<MultipartFile> files,
+            @RequestPart(value = "requestDto") ReviewRequestDto requestDto
+    ) throws Exception{
+        return reviewService.createReview(requestDto, files);
+    }
+
+
+
 
 
 
