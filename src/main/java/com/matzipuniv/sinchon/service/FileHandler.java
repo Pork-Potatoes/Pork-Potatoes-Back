@@ -33,10 +33,8 @@ public class FileHandler{
             return null;
         }else{
             if(contentType.contains("image/jpeg")){
-                originalFileExtension = "_jpg";
             }
             else if(contentType.contains("image/png")){
-                originalFileExtension = "_png";
             }
             else{
                 return null;
