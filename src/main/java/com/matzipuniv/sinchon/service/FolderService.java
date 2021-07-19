@@ -1,14 +1,14 @@
 package com.matzipuniv.sinchon.service;
 
-import com.matzipuniv.sinchon.domain.Folder;
-import com.matzipuniv.sinchon.domain.FolderRepository;
-import com.matzipuniv.sinchon.domain.User;
-import com.matzipuniv.sinchon.domain.UserRepository;
+import com.matzipuniv.sinchon.domain.*;
+import com.matzipuniv.sinchon.web.dto.AdditionResponseDto;
 import com.matzipuniv.sinchon.web.dto.FolderResponseDto;
+import com.matzipuniv.sinchon.web.dto.RestaurantListResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 public class FolderService {
     private final FolderRepository folderRepository;
     private final UserRepository userRepository;
+    private final AdditionRepository additionRepository;
 
     @Transactional(readOnly = true)
     public FolderResponseDto findById(Long num){
@@ -48,5 +49,17 @@ public class FolderService {
         return folderRepository.findByUser(entity).stream()
                 .map(FolderResponseDto::new)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public AdditionResponseDto getRestaurants(Long folderNum){
+        List<RestaurantListResponseDto> restaurants = additionRepository.findByFolderNum(folderNum).stream()
+                .map(RestaurantListResponseDto::new)
+                .collect(Collectors.toList());
+
+        return AdditionResponseDto.builder()
+                .folderNum(folderNum)
+                .restaurants(restaurants)
+                .build();
     }
 }

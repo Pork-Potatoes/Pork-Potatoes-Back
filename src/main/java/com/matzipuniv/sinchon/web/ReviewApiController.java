@@ -34,9 +34,9 @@ public class ReviewApiController {
 
     }
 
-    @GetMapping("api/reviews")
-    public List<ReviewResponseDto> findAllReviewsSortByDate(@RequestParam String query, String sort){
-        return reviewService.findAllReviewsSort(query, sort);
-    }
+//    @GetMapping("api/reviews")
+//    public List<ReviewResponseDto> findAllReviewsSortByDate(@RequestParam String query, String sort){
+//        return reviewService.findAllReviewsSort(query, sort);
+//    }
 
 }
