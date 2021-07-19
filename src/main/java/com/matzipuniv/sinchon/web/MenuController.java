@@ -5,6 +5,7 @@ import com.matzipuniv.sinchon.domain.MenuRepository;
 import com.matzipuniv.sinchon.domain.Restaurant;
 import com.matzipuniv.sinchon.domain.RestaurantRepository;
 import com.matzipuniv.sinchon.service.MenuService;
+import com.matzipuniv.sinchon.web.dto.MenuDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -31,8 +32,8 @@ public class MenuController {
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/api/restaurants/{restaurant_num}/menus")
-    public List<Menu> getAllMenuByRestaurant(@PathVariable Long restaurant_num){
+    public List<MenuDto> getAllMenuByRestaurant(@PathVariable Long restaurant_num){
         Restaurant restaurant = restaurantRepository.findById(restaurant_num).get();
-        return menuRepository.findAllByRestaurant(restaurant);
+        return menuService.getAllMenuByRestaruant(restaurant);
     }
 }
