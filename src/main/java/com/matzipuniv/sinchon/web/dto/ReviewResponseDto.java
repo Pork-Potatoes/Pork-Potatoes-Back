@@ -47,6 +47,7 @@ public class ReviewResponseDto {
         this.createdDate = entity.getCreatedDate();
         this.filePath = filePath;
     }
-    
+
+
 
 }
