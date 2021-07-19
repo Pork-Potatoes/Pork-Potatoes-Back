@@ -48,19 +48,23 @@ public class User extends BaseTimeEntity{
         this.deleteFlag = deleteFlag;
     }
 
+    @Builder
     public void updateNickname(String nickname) {
-        if(!nickname.equals("null")) {
-            this.nickname = nickname;
-        }
+        this.nickname = nickname;
     }
 
+    @Builder
     public void updateProfileUrl(String profileUrl) {
-        if(!profileUrl.equals("null")) {
-            this.profileUrl = profileUrl;
-        }
+        this.profileUrl = profileUrl;
     }
 
+    @Builder
     public void updateDeleteFlag() {
         this.deleteFlag = true;
+    }
+
+    @Builder
+    public void updateUniv(String univ) {
+        this.university = univ;
     }
 }
