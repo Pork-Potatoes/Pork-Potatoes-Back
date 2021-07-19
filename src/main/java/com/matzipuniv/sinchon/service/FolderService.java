@@ -21,12 +21,12 @@ public class FolderService {
 
     @Transactional(readOnly = true)
     public FolderResponseDto findById(Long num){
-        Folder entity = folderRepository.findById(num)
+        Folder folder = folderRepository.findById(num)
                 .orElseThrow(() -> new IllegalArgumentException("해당 폴더가 없습니다. num = "+num));
-       if(entity.getDeleteFlag())
+       if(folder.getDeleteFlag())
            throw new IllegalArgumentException("해당 폴더가 없습니다. num = "+num);
 
-        return new FolderResponseDto(entity);
+        return new FolderResponseDto(folder);
     }
 
     @Transactional(readOnly = true)
@@ -57,15 +57,13 @@ public class FolderService {
 
     @Transactional(readOnly = true)
     public List<FolderResponseDto> findByUser(Long userNum){
-        //추후에 userService의 findById에 deleteFlag 필터링이 추가되면 그걸 사용할 예정입니다
-        User entity = userRepository.findById(userNum)
-                .orElseThrow(() -> new IllegalArgumentException("없는 유저입니다. user_num = "+userNum));
-        if(entity.getDeleteFlag())
+        User user = userRepository.findByUserNumAndDeleteFlagFalse(userNum);
+        if(user == null)
             throw new IllegalArgumentException("없는 유저입니다. user_num = "+userNum);
 
         List<FolderResponseDto> folderResponse = new ArrayList<>();
 
-        for(Folder folder: folderRepository.findByUser(entity)){
+        for(Folder folder: folderRepository.findByUser(user)){
             if(folder.getDeleteFlag())
                 continue;
             folderResponse.add(new FolderResponseDto(folder));
@@ -75,19 +73,17 @@ public class FolderService {
 
     @Transactional
     public String deleteFolder(Long userNum, Long folderNum){
-        //추후에 userService의 findById에 deleteFlag 필터링이 추가되면 그걸 사용할 예정입니다
-        User user = userRepository.findById(userNum)
-                .orElseThrow(() -> new IllegalArgumentException("없는 유저입니다. user_num = "+userNum));
-        if(user.getDeleteFlag())
+        User user = userRepository.findByUserNumAndDeleteFlagFalse(userNum);
+        if(user == null)
             throw new IllegalArgumentException("없는 유저입니다. user_num = "+userNum);
 
-        Folder entity = folderRepository.findById(folderNum)
+        Folder folder = folderRepository.findById(folderNum)
                 .orElseThrow(() -> new IllegalArgumentException("해당 폴더가 없습니다. num = "+folderNum));
-        if(entity.getDeleteFlag())
+        if(folder.getDeleteFlag())
             throw new IllegalArgumentException("해당 폴더가 없습니다. num = "+folderNum);
 
-        if(entity.getUser().equals(user)){
-            entity.updateDeleteFlag(true);
+        if(folder.getUser().equals(user)){
+            folder.updateDeleteFlag(true);
             return "Success";
         }
         else{
@@ -97,7 +93,8 @@ public class FolderService {
 
     @Transactional(readOnly = true)
     public AdditionResponseDto getRestaurants(Long folderNum){
-        List<RestaurantListResponseDto> restaurants = additionRepository.findByFolderNum(folderNum).stream()
+        List<RestaurantListResponseDto> restaurants = additionRepository.findByFolderNumAndDeleteFlagFalse(folderNum)
+                .stream()
                 .map(RestaurantListResponseDto::new)
                 .collect(Collectors.toList());
 
