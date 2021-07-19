@@ -23,22 +23,36 @@ public class FolderService {
     public FolderResponseDto findById(Long num){
         Folder entity = folderRepository.findById(num)
                 .orElseThrow(() -> new IllegalArgumentException("해당 폴더가 없습니다. num = "+num));
+       if(entity.getDeleteFlag())
+           throw new IllegalArgumentException("해당 폴더가 없습니다. num = "+num);
 
         return new FolderResponseDto(entity);
     }
 
     @Transactional(readOnly = true)
     public List<FolderResponseDto> findAll(){
-        return folderRepository.findAll().stream()
-                .map(FolderResponseDto::new)
-                .collect(Collectors.toList());
+        List<FolderResponseDto> folderResponse = new ArrayList<>();
+
+        for(Folder folder: folderRepository.findAll()){
+            if(folder.getDeleteFlag())
+                continue;
+            folderResponse.add(new FolderResponseDto(folder));
+        }
+
+        return folderResponse;
     }
 
     @Transactional(readOnly = true)
     public List<FolderResponseDto> findByOrderByPinnedCnt(){
-        return folderRepository.findByOrderByPinnedCntDesc().stream()
-                .map(FolderResponseDto::new)
-                .collect(Collectors.toList());
+        List<FolderResponseDto> folderResponse = new ArrayList<>();
+
+        for(Folder folder: folderRepository.findByOrderByPinnedCntDesc()){
+            if(folder.getDeleteFlag())
+                continue;
+            folderResponse.add(new FolderResponseDto(folder));
+        }
+
+        return folderResponse;
     }
 
     @Transactional(readOnly = true)
