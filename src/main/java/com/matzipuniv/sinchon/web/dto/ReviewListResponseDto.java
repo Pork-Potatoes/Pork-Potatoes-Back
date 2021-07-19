@@ -5,6 +5,8 @@ import com.matzipuniv.sinchon.domain.Review;
 import com.matzipuniv.sinchon.domain.User;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
+
 @Getter
 public class ReviewListResponseDto {
     private Long reviewNum;

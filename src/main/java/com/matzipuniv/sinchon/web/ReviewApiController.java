@@ -4,6 +4,7 @@ import com.matzipuniv.sinchon.domain.Review;
 import com.matzipuniv.sinchon.service.ImageService;
 import com.matzipuniv.sinchon.service.ReviewService;
 import com.matzipuniv.sinchon.web.dto.ImageResponseDto;
+import com.matzipuniv.sinchon.web.dto.ReviewListResponseDto;
 import com.matzipuniv.sinchon.web.dto.ReviewResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
@@ -34,9 +35,9 @@ public class ReviewApiController {
 
     }
 
-//    @GetMapping("api/reviews")
-//    public List<ReviewResponseDto> findAllReviewsSortByDate(@RequestParam String query, String sort){
-//        return reviewService.findAllReviewsSort(query, sort);
-//    }
+    @GetMapping("api/reviews")
+    public List<ReviewListResponseDto> findAllReviewsSortByDate(@RequestParam String query, String sort){
+        return reviewService.findAllReviewsSort(query, sort);
+    }
 
 }
