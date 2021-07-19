@@ -39,4 +39,8 @@ public class Folder extends BaseTimeEntity{
         this.user = user;
         this.deleteFlag = deleteFlag;
     }
+
+    public void updateDeleteFlag(Boolean flag){
+        this.deleteFlag = flag;
+    }
 }

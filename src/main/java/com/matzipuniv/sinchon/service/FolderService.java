@@ -73,6 +73,28 @@ public class FolderService {
         return folderResponse;
     }
 
+    @Transactional
+    public String deleteFolder(Long userNum, Long folderNum){
+        //추후에 userService의 findById에 deleteFlag 필터링이 추가되면 그걸 사용할 예정입니다
+        User user = userRepository.findById(userNum)
+                .orElseThrow(() -> new IllegalArgumentException("없는 유저입니다. user_num = "+userNum));
+        if(user.getDeleteFlag())
+            throw new IllegalArgumentException("없는 유저입니다. user_num = "+userNum);
+
+        Folder entity = folderRepository.findById(folderNum)
+                .orElseThrow(() -> new IllegalArgumentException("해당 폴더가 없습니다. num = "+folderNum));
+        if(entity.getDeleteFlag())
+            throw new IllegalArgumentException("해당 폴더가 없습니다. num = "+folderNum);
+
+        if(entity.getUser().equals(user)){
+            entity.updateDeleteFlag(true);
+            return "Success";
+        }
+        else{
+            return "No permission";
+        }
+    }
+
     @Transactional(readOnly = true)
     public AdditionResponseDto getRestaurants(Long folderNum){
         List<RestaurantListResponseDto> restaurants = additionRepository.findByFolderNum(folderNum).stream()
