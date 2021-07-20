@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -22,6 +23,13 @@ public class RestaurantService {
                 .orElseThrow(() -> new IllegalArgumentException("해당 가게가 없습니다. num = "+num));
 
         return new RestaurantResponseDto(entity);
+    }
+
+    @Transactional(readOnly = true)
+    public List<RestaurantListResponseDto> searchByRestaurantName(String restaurantName){
+        return restaurantRepository.findByRestaurantNameContaining(restaurantName).stream()
+                .map(RestaurantListResponseDto::new)
+                .collect(Collectors.toList());
     }
 
 }
