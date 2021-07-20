@@ -4,10 +4,7 @@ package com.matzipuniv.sinchon.web;
 import com.matzipuniv.sinchon.service.PinService;
 import com.matzipuniv.sinchon.web.dto.PinResponseDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +21,19 @@ public class PinApiController {
             return pinService.findByUserByCreatedDate(userNum);
         }
         return pinResponseDtos;
+    }
+
+    @PostMapping("/api/users/{userNum}/pins/{folderNum}")
+    public String addPin(@PathVariable Long userNum, @PathVariable Long folderNum){
+        pinService.addPin(userNum, folderNum);
+
+        return "Success";
+    }
+
+    @DeleteMapping("/api/users/{userNum}/pins/{folderNum}")
+    public String deletePin(@PathVariable Long userNum, @PathVariable Long folderNum){
+        pinService.deletePin(userNum, folderNum);
+
+        return "Success";
     }
 }

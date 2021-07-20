@@ -43,4 +43,8 @@ public class Folder extends BaseTimeEntity{
     public void updateDeleteFlag(Boolean flag){
         this.deleteFlag = flag;
     }
+
+    public void changePinnedCnt(Integer pinnedCnt){
+        this.pinnedCnt = pinnedCnt;
+    }
 }
