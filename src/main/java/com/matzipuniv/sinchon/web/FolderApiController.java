@@ -39,4 +39,9 @@ public class FolderApiController {
     public String deleteFolder(@PathVariable Long userNum, @PathVariable Long folderNum){
         return folderService.deleteFolder(userNum, folderNum);
     }
+
+    @DeleteMapping("/api/users/{userNum}/folders/{folderNum}/restaurants/{restaurantNum}")
+    public String deleteRestaurant(@PathVariable Long userNum, @PathVariable Long folderNum, @PathVariable Long restaurantNum){
+        return folderService.deleteRestaurant(userNum,folderNum,restaurantNum);
+    }
 }
