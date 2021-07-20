@@ -58,10 +58,10 @@ public class Review extends BaseTimeEntity{
     )
     private List<Image> image = new ArrayList<>();
 
-    @Builder
+
     public Review(Restaurant restaurant, User user, String content, Double score, Boolean anonymousFlag,
                   String menuName, Integer likedCnt, Integer report, Boolean deleteFlag,
-                  String tagFood, String tagMood, LocalDateTime createdDate) {
+                  String tagFood, String tagMood) {
         this.restaurant = restaurant;
         this.user = user;
         this.content = content;
@@ -73,7 +73,7 @@ public class Review extends BaseTimeEntity{
         this.deleteFlag = deleteFlag;
         this.tagFood = tagFood;
         this.tagMood = tagMood;
-        this.createdDate = createdDate;
+        //this.createdDate = createdDate;
     }
 
     public void addImage(Image image){

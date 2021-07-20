@@ -47,8 +47,7 @@ public class ReviewService {
                 0,
                 false,
                 requestDto.getTagFood(),
-                requestDto.getTagMood(),
-                LocalDateTime.now()
+                requestDto.getTagMood()
         );
 
         List<Image> imageList = fileHandler1.parseFileInfo(files);

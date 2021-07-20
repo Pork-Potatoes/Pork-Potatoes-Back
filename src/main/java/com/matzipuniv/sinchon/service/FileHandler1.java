@@ -29,7 +29,7 @@ public class FileHandler1 {
             DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd");
             String currentDate = now.format(dateTimeFormatter);
 
-            String absolutePath = new File("").getAbsolutePath() + File.separator + File.separator;
+            String absolutePath = new File("C:\\Users\\Sierra\\Desktop\\upload").getAbsolutePath()+ File.separator + File.separator;
 
             String path = "images" + File.separator + currentDate;
             File file = new File(path);
@@ -79,10 +79,10 @@ public class FileHandler1 {
             }
 
 
-            }
+        }
             return imageList;
 
-        }
-
-
     }
+
+
+}
