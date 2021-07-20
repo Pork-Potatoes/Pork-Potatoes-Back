@@ -1,11 +1,16 @@
 package com.matzipuniv.sinchon.web.dto;
 
+
+import com.matzipuniv.sinchon.domain.Image;
 import com.matzipuniv.sinchon.domain.Restaurant;
 import com.matzipuniv.sinchon.domain.Review;
 import com.matzipuniv.sinchon.domain.User;
 import lombok.Getter;
+import org.springframework.data.jpa.repository.Query;
 
-import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 @Getter
 public class ReviewListResponseDto {
@@ -17,6 +22,7 @@ public class ReviewListResponseDto {
     private Double score;
     private Integer likedCnt;
     private Long thumbnailNum;
+    private List<String> filePath;
 
     public ReviewListResponseDto(Review entity){
         this.reviewNum = entity.getReviewNum();
@@ -26,13 +32,13 @@ public class ReviewListResponseDto {
         this.content = entity.getContent();
         this.score = entity.getScore();
         this.likedCnt = entity.getLikedCnt();
-
         if(!entity.getImage().isEmpty()) {
             this.thumbnailNum = entity.getImage().get(0).getImageNum();
         }
         else {
             this.thumbnailNum = 0L;
         }
+
     }
 
 }
