@@ -9,4 +9,5 @@ import java.util.List;
 public interface FolderRepository extends JpaRepository<Folder, Long> {
     List<Folder> findByOrderByPinnedCntDesc();
     List<Folder> findByUser(User user);
+    Folder findByFolderNumAndDeleteFlagFalse(Long folderNum);
 }

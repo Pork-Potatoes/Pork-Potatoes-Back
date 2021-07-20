@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.websocket.server.PathParam;
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -14,9 +15,19 @@ import javax.websocket.server.PathParam;
 public class UserApiController {
     private final UserService userService;
 
+    @GetMapping("")
+    public List<UserResponseDto> findAll() {
+        return userService.findAll();
+    }
+
     @GetMapping("/{userNum}")
     public UserResponseDto findByNum(@PathVariable Long userNum){
         return userService.findByNum(userNum);
+    }
+
+    @DeleteMapping("/{userNum}")
+    public String deleteUser(@PathVariable Long userNum) {
+        return userService.deleteUser(userNum);
     }
 
     @PatchMapping("/{userNum}/nickname")
@@ -32,6 +43,16 @@ public class UserApiController {
     @DeleteMapping("/{userNum}/image")
     public String deleteProfile(@PathVariable Long userNum) {
         return userService.deleteProfileUrl(userNum);
+    }
+
+    @GetMapping("/{userNum}/authenticate")
+    public String findUnivByNum(@PathVariable Long userNum) {
+        return userService.findUnivByNum(userNum);
+    }
+
+    @PostMapping("/{userNum}/authenticate")
+    public String setUniv(@PathVariable Long userNum, @RequestBody String univ) {
+        return userService.setUnivByNum(userNum, univ);
     }
 
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
-    List<Restaurant> findByRestaurantNameContaining(String restaurantName);
+public interface AdditionRepository extends JpaRepository<Addition, Long> {
+    List<Restaurant> findByFolderNumAndDeleteFlagFalse(Long folderNum);
+    Addition findByFolderNumAndRestaurant(Long folderNum, Restaurant restaurant);
 }

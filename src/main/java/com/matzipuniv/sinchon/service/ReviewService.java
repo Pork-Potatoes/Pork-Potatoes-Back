@@ -6,19 +6,24 @@ import com.matzipuniv.sinchon.domain.ImageRepository;
 import com.matzipuniv.sinchon.domain.Review;
 import com.matzipuniv.sinchon.domain.ReviewRepository;
 import com.matzipuniv.sinchon.web.dto.ReviewRequestDto;
+import com.matzipuniv.sinchon.web.dto.ReviewListResponseDto;
 import com.matzipuniv.sinchon.web.dto.ReviewResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.stream.Collectors;
 import java.util.List;
 
 @RequiredArgsConstructor
 @Service
 public class ReviewService {
     private final ReviewRepository reviewRepository;
+
     private final ImageRepository imageRepository;
     private final FileHandler1 fileHandler1;
 
@@ -59,4 +64,50 @@ public class ReviewService {
         }
         return reviewRepository.save(review).getReviewNum();
     }
+
+    public List<ReviewListResponseDto> findAllReviewsSort(String search, String sort){
+        List<Review> reviews = reviewRepository.findAllByContentORMenuNameORRestaurant(search, search, search);
+        List<Review> reviewsResponse = new ArrayList<>();
+
+        //삭제 확인
+        for(Review review: reviews){
+            if(review.getDeleteFlag())
+                continue;
+            reviewsResponse.add(review);
+        }
+
+        //sort 종류에 따라 정렬
+        if(sort.equals("-created-date")) {
+            Collections.sort(reviewsResponse, new Comparator<Review>() {
+                @Override
+                public int compare(Review o1, Review o2) {
+                    return o1.getCreatedDate().compareTo(o2.getCreatedDate());
+                }
+            });
+            Collections.reverse(reviewsResponse);
+        }else if(sort.equals("-score")){
+            Collections.sort(reviewsResponse, new Comparator<Review>() {
+                @Override
+                public int compare(Review o1, Review o2) {
+                    return o1.getScore().compareTo(o2.getScore());
+                }
+            });
+            Collections.reverse(reviewsResponse);
+        }else if(sort.equals("-liked-cnt")){
+            Collections.sort(reviewsResponse, new Comparator<Review>() {
+                @Override
+                public int compare(Review o1, Review o2) {
+                    return o1.getLikedCnt().compareTo(o2.getLikedCnt());
+                }
+            });
+            Collections.reverse(reviewsResponse);
+        }
+
+        return reviewsResponse.stream()
+                .map(ReviewListResponseDto::new)
+                .collect(Collectors.toList());
+
+    }
+
+
 }
