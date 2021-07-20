@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface AdditionRepository extends JpaRepository<Addition, Long> {
     List<Restaurant> findByFolderNumAndDeleteFlagFalse(Long folderNum);
+    Addition findByFolderNumAndRestaurant(Long folderNum, Restaurant restaurant);
 }

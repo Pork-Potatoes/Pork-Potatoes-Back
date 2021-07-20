@@ -31,4 +31,8 @@ public class Addition {
         this.restaurant = restaurant;
         this.deleteFlag = deleteFlag;
     }
+
+    public void updateDeleteFlag(Boolean flag){
+        this.deleteFlag = flag;
+    }
 }
