@@ -19,6 +19,16 @@ public class FolderApiController {
         return folderService.findById(folderNum);
     }
 
+    @PatchMapping("/api/folders/{folderNum}/title")
+    public String updateTitle(@PathVariable Long folderNum, @RequestBody String title){
+        return folderService.updateTitle(folderNum, title);
+    }
+
+    @PatchMapping("/api/folders/{folderNum}/description")
+    public String updateDescription(@PathVariable Long folderNum, @RequestBody String description){
+        return folderService.updateDescription(folderNum, description);
+    }
+
     @GetMapping("/api/folders")
     public List<FolderResponseDto> findByOrderByPinnedCnt(@RequestParam(value="sort", required = false, defaultValue = "id") String value){
         if(value.equals("-pinnedCnt"))
