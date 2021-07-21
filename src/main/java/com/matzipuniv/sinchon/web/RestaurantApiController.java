@@ -25,4 +25,9 @@ public class RestaurantApiController {
     public List<RestaurantListResponseDto> searchByRestaurantName(@RequestParam(value="q", required = false, defaultValue = "") String restaurantName){
         return restaurantService.searchByRestaurantName(restaurantName);
     }
+
+    @GetMapping("/api/search")
+    public List<RestaurantListResponseDto> searchRestaurants(@RequestParam(value="q", required = false, defaultValue = "") String query){
+        return restaurantService.searchRestaurants(query);
+    }
 }
