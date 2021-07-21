@@ -1,10 +1,13 @@
 package com.matzipuniv.sinchon.domain;
 
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -15,4 +18,5 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
     List<Review> findAllByContentORMenuNameORRestaurant(@Param("content")String content, @Param("menuName") String menuName,
                                                         @Param("restaurantName") String restaurantName);
 
+    List<Review> findByDeleteFlagOrderByLikedCntDesc(Boolean deleteFlag);
 }
