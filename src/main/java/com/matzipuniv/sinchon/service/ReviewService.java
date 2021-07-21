@@ -36,27 +36,6 @@ public class ReviewService {
         this.fileHandler1 = new FileHandler1(imageRepository);
     }
 
-//    @Transactional
-//    public Review addReview(
-//            Review review,
-//            List<MultipartFile> files
-//    )throws Exception{
-//        List<Image> list = fileHandler1.parseFileInfo(files);
-//
-//        if(list.isEmpty()){
-//            // 파일 없을 때 처리
-//        }
-//        else{
-//            List<Image> imageList = new ArrayList<>();
-//            for(Image image: list){
-//                imageList.add(imageRepository.save(image));
-//            }
-//            review.setImage(imageList);
-//        }
-//
-//        return reviewRepository.save(review);
-//    }
-
     @Transactional
     public ReviewResponseDto searchByNum(Long num, List<String> filePath){
         Review entity = reviewRepository.findById(num).orElseThrow(() -> new IllegalArgumentException("해당 리뷰가 없습니다. num = " + num));
@@ -67,7 +46,7 @@ public class ReviewService {
     }
 
     @Transactional
-    public Long createReview(
+    public void createReview(
             ReviewRequestDto requestDto,
             List<MultipartFile> files
     ) throws Exception{
@@ -86,23 +65,8 @@ public class ReviewService {
         );
 
         List<Image> imageList = fileHandler1.parseFileInfo(files, review);
-//        if(!imageList.isEmpty()){
-//            for(Image image : imageList){
-//                ImageResponseDto imageResponseDto = new ImageResponseDto(image);
-//            }
-//        }
-//        if(!imageList.isEmpty()){
-//            for (Image image : imageList){
-//                review.addImage(imageRepository.save(image));
-//            }
-//        }
-//        if(!imageList.isEmpty()){
-//            for(Image image : imageList){
-//                imageRepository.save(image);
-//            }
-//        }
-//
-        Long num = reviewRepository.save(review).getReviewNum();
+
+        reviewRepository.save(review);
 
         if(!imageList.isEmpty()){
             for(Image image : imageList){
@@ -110,7 +74,6 @@ public class ReviewService {
             }
         }
 
-        return num;
     }
 
     public List<ReviewListResponseDto> findAllReviewsSort(String search, String sort){

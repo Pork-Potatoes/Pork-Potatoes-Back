@@ -84,11 +84,9 @@ public class FileHandler1 {
                 file = new File(absolutePath + path + "/" + new_file_name);
                 multipartFile.transferTo(file);
 
-                //imageRepository.save(image);
             }
         }
 
-        //imageRepository.saveAll(fileList);
         return fileList;
     }
 }

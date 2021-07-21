@@ -64,7 +64,7 @@ public class ReviewApiController {
             @RequestParam(value = "requestDto") String requestDtoString
     ) throws Exception{
         ReviewRequestDto requestDto = new ObjectMapper().readValue(requestDtoString, ReviewRequestDto.class);
-        Long reviewNum = reviewService.createReview(requestDto, files);
+        reviewService.createReview(requestDto, files);
 //        List<ImageResponseDto> imageResponseDtoList = imageService.findAllDtoByReview(reviewNum);
 //
 //        for(ImageResponseDto imageResponseDto : imageResponseDtoList){
@@ -73,27 +73,7 @@ public class ReviewApiController {
         return "Success";
     }
 
-//    @PostMapping("api/reviews")
-//    public String createReview(
-//            @RequestParam("requestDto") String dtoJson,
-//            @RequestParam("image") List<MultipartFile> files
-//    )throws Exception{
-//        ReviewRequestDto requestDto = new ObjectMapper().readValue(dtoJson, ReviewRequestDto.class);
-//        Review review = reviewService.addReview(Review.builder()
-//                .restaurant(requestDto.getRestaurant())
-//                .user(requestDto.getUser())
-//                .content(requestDto.getContent())
-//                .score(requestDto.getScore())
-//                .anonymousFlag(requestDto.getAnonymousFlag())
-//                .menuName(requestDto.getMenuName())
-//                .tagFood(requestDto.getTagFood())
-//                .tagMood(requestDto.getTagMood())
-//                .build(), files);
-//
-//        URI uriLocation = new URI("/reviews/" + review.getReviewNum());
-//        ResponseEntity.created(uriLocation).body("{}");
-//        return "Success";
-//    }
+
 
     @GetMapping("api/reviews")
     public List<ReviewListResponseDto> findAllReviewsSortByDate(@RequestParam String query, String sort){
