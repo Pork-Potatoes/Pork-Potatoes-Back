@@ -3,6 +3,7 @@ package com.matzipuniv.sinchon.service;
 import com.matzipuniv.sinchon.domain.*;
 import com.matzipuniv.sinchon.web.dto.AdditionResponseDto;
 import com.matzipuniv.sinchon.web.dto.FolderResponseDto;
+import com.matzipuniv.sinchon.web.dto.FolderSaveRequestDto;
 import com.matzipuniv.sinchon.web.dto.RestaurantListResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,11 @@ public class FolderService {
     private final UserRepository userRepository;
     private final AdditionRepository additionRepository;
     private final RestaurantRepository restaurantRepository;
+
+    @Transactional
+    public Long saveFolder(FolderSaveRequestDto requestDto){
+        return folderRepository.save(requestDto.toEntity()).getFolderNum();
+    }
 
     @Transactional(readOnly = true)
     public FolderResponseDto findById(Long num){
@@ -94,6 +100,29 @@ public class FolderService {
         else{
             return "No permission";
         }
+    }
+
+    @Transactional
+    public String saveRestaurant(Long restaurantNum, Long folderNum){
+        Restaurant restaurant = restaurantRepository.findById(restaurantNum)
+                .orElseThrow(()-> new IllegalArgumentException("해당 가게가 없습니다."));
+
+        Addition addition = additionRepository.findByFolderNumAndRestaurant(folderNum,restaurant);
+
+        if(addition==null){
+            additionRepository.save(Addition.builder()
+                    .restaurant(restaurant)
+                    .folderNum(folderNum)
+                    .deleteFlag(false)
+                    .build());
+        }
+        else if(addition.getDeleteFlag()){
+            addition.updateDeleteFlag(false);
+        }
+        else{
+            return "Fail";
+        }
+        return "Success";
     }
 
     @Transactional(readOnly = true)

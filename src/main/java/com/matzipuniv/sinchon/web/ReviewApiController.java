@@ -1,5 +1,6 @@
 package com.matzipuniv.sinchon.web;
 
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -21,9 +22,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import com.matzipuniv.sinchon.web.dto.ReviewListResponseDto;
-import com.matzipuniv.sinchon.web.dto.ReviewResponseDto;
-import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,6 +31,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 import java.net.URI;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,9 +73,31 @@ public class ReviewApiController {
     }
 
 
-
     @GetMapping("api/reviews")
     public List<ReviewListResponseDto> findAllReviewsSortByDate(@RequestParam String query, String sort){
         return reviewService.findAllReviewsSort(query, sort);
     }
+
+    @GetMapping("api/reviews/today")
+    public List<ReviewListResponseDto> todaysLikedReviews(){
+        return reviewService.todaysLikedReviews();
+    }
+
+    @GetMapping("api/reviews/recent")
+    public List<ReviewListResponseDto> recentReviews(){
+        return reviewService.recentReviews();
+    }
+
+    @GetMapping("api/restaurants/{restaurantNum}/reviews")
+    public List<ReviewListResponseDto> restaurantReviews(@PathVariable Long restaurantNum, @RequestParam String sort){
+        return reviewService.restaurantReviews(restaurantNum, sort);
+    }
+
+    @GetMapping("api/users/{userNum}/reviews")
+    public List<ReviewListResponseDto> myReviews(@PathVariable Long userNum, @RequestParam String sort){
+        return reviewService.myReviews(userNum, sort);
+    }
+
+   
+
 }

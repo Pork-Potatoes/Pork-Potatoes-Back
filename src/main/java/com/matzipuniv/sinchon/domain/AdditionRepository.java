@@ -8,6 +8,7 @@ import java.util.List;
 
 @Repository
 public interface AdditionRepository extends JpaRepository<Addition, Long> {
+    @Query("select a.restaurant from Addition a where a.folderNum=?1 and a.deleteFlag=false")
     List<Restaurant> findByFolderNumAndDeleteFlagFalse(Long folderNum);
     Addition findByFolderNumAndRestaurant(Long folderNum, Restaurant restaurant);
 }

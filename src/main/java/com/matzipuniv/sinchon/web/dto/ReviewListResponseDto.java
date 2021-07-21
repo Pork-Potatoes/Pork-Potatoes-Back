@@ -2,10 +2,14 @@ package com.matzipuniv.sinchon.web.dto;
 
 import com.matzipuniv.sinchon.domain.*;
 import com.matzipuniv.sinchon.service.ImageService;
+
 import lombok.Getter;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Getter
 public class ReviewListResponseDto {
@@ -36,6 +40,7 @@ public class ReviewListResponseDto {
         else {
             this.filePath = null;
         }
+
     }
 
 }

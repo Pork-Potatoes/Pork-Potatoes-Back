@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import javax.transaction.Transactional;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -120,5 +120,50 @@ public class ReviewService {
 
     }
 
+    public List<ReviewListResponseDto> todaysLikedReviews(){
+        LocalDate todaysDate = LocalDate.now();
 
+        List<Review> reviews = reviewRepository.findByDeleteFlagOrderByLikedCntDesc(false);
+        List<Review> responseReviews = new ArrayList<>();
+        for (Review review : reviews){
+            if (review.getCreatedDate().toLocalDate().equals(todaysDate)){
+               responseReviews.add(review);
+            }
+        }
+        return responseReviews.stream()
+                .map(ReviewListResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    public List<ReviewListResponseDto> recentReviews() {
+        List<Review> reviews = reviewRepository.findByDeleteFlagOrderByCreatedDateDesc(false);
+
+        return reviews.stream()
+                .map(ReviewListResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    public List<ReviewListResponseDto> restaurantReviews(Long restaurantNum, String sort) {
+        List<Review> reviews = new ArrayList<>();
+
+        if(sort.equals("-created-date")){
+            reviews = reviewRepository.findByDeleteFlagAndRestaurantRestaurantNumOrderByCreatedDateDesc(false, restaurantNum);
+        }
+
+        return reviews.stream()
+                .map(ReviewListResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    public List<ReviewListResponseDto> myReviews(Long userNum, String sort) {
+        List<Review> reviews = new ArrayList<>();
+
+        if(sort.equals("-created-date")){
+            reviews = reviewRepository.findByDeleteFlagAndUserUserNumOrderByCreatedDateDesc(false, userNum);
+        }
+
+        return  reviews.stream()
+                .map(ReviewListResponseDto::new)
+                .collect(Collectors.toList());
+    }
 }
