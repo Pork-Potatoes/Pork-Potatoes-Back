@@ -143,4 +143,16 @@ public class ReviewService {
                 .map(ReviewListResponseDto::new)
                 .collect(Collectors.toList());
     }
+
+    public List<ReviewListResponseDto> myReviews(Long userNum, String sort) {
+        List<Review> reviews = new ArrayList<>();
+
+        if(sort.equals("-created-date")){
+            reviews = reviewRepository.findByDeleteFlagAndUserUserNumOrderByCreatedDateDesc(false, userNum);
+        }
+
+        return  reviews.stream()
+                .map(ReviewListResponseDto::new)
+                .collect(Collectors.toList());
+    }
 }

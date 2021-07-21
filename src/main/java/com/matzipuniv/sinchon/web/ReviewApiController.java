@@ -67,6 +67,11 @@ public class ReviewApiController {
         return reviewService.restaurantReviews(restaurantNum, sort);
     }
 
+    @GetMapping("api/users/{userNum}/reviews")
+    public List<ReviewListResponseDto> myReviews(@PathVariable Long userNum, @RequestParam String sort){
+        return reviewService.myReviews(userNum, sort);
+    }
+
    
 
 }

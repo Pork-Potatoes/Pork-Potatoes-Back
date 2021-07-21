@@ -23,4 +23,6 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
     List<Review> findByDeleteFlagOrderByCreatedDateDesc(Boolean deleteFlag);
 
     List<Review> findByDeleteFlagAndRestaurantRestaurantNumOrderByCreatedDateDesc(Boolean deleteFlag, Long restaurantNum);
+
+    List<Review> findByDeleteFlagAndUserUserNumOrderByCreatedDateDesc(Boolean deleteFlag, Long userNum);
 }
