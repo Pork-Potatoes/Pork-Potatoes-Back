@@ -1,5 +1,6 @@
 package com.matzipuniv.sinchon.config;
 
+import com.matzipuniv.sinchon.domain.Addition;
 import com.matzipuniv.sinchon.domain.User;
 import com.matzipuniv.sinchon.domain.UserRepository;
 import lombok.Builder;
@@ -76,8 +77,13 @@ public class OAuthAttributes {
 
 
     public User toEntity(){//처음 가입할 때 User entity 생성
-        LocalDateTime now = LocalDateTime.now();
-        User newUser = new User(name, picture, 0, email, now);
+        User newUser = User.builder()
+                        .nickname(name)
+                        .profileUrl(picture)
+                        .coin(0)
+                        .email(email)
+                        .deleteFlag(false)
+                        .build();
         return newUser;
     }
 }
