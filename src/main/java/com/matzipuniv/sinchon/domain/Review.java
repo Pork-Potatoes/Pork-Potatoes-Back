@@ -79,8 +79,9 @@ public class Review extends BaseTimeEntity{
         this.tagMood = tagMood;
     }
 
-
-
+    public void setDeleteFlag(Boolean deleteFlag) {
+        this.deleteFlag = deleteFlag;
+    }
 //
 //    public void addImage(Image image){
 //        this.image.add(image);
@@ -93,5 +94,7 @@ public class Review extends BaseTimeEntity{
 //    public void setImage(List<Image> image){
 //        this.image = image;
 //    }
+
+
 }
 

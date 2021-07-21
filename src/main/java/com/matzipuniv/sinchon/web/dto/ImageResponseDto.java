@@ -12,6 +12,9 @@ import lombok.ToString;
 @ToString
 public class ImageResponseDto {
     private String filePath;
+    private String originalFileName;
+    private Review review;
+    private Long fileSize;
 
 
     public ImageResponseDto(Image image) {

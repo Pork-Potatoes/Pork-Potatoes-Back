@@ -171,4 +171,12 @@ public class ReviewService {
                 .map(ReviewListResponseDto::new)
                 .collect(Collectors.toList());
     }
+
+    public String delete(Long num) {
+        Review entity = reviewRepository.findById(num)
+                .orElseThrow(()->new IllegalArgumentException("해당 리뷰가 존재하지 않습니다. num = " + num));
+        entity.setDeleteFlag(true);
+        reviewRepository.save(entity);
+        return "Success";
+    }
 }
