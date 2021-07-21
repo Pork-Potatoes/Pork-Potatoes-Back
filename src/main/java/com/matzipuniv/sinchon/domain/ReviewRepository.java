@@ -19,4 +19,6 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
                                                         @Param("restaurantName") String restaurantName);
 
     List<Review> findByDeleteFlagOrderByLikedCntDesc(Boolean deleteFlag);
+
+    List<Review> findByDeleteFlagOrderByCreatedDateDesc(Boolean deleteFlag);
 }
