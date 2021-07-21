@@ -50,9 +50,9 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         if(user!=null){
             user.updateNickname(attributes.getName());
             user.updateProfileUrl(attributes.getPicture());
+            return userRepository.save(user);
         } else{
-            attributes.toEntity();
+            return userRepository.save(attributes.toEntity());
         }
-        return userRepository.save(user);
     }
 }
