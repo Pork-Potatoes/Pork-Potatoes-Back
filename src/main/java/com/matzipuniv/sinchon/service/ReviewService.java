@@ -5,10 +5,12 @@ import com.matzipuniv.sinchon.domain.Image;
 import com.matzipuniv.sinchon.domain.ImageRepository;
 import com.matzipuniv.sinchon.domain.Review;
 import com.matzipuniv.sinchon.domain.ReviewRepository;
+import com.matzipuniv.sinchon.web.dto.ImageResponseDto;
 import com.matzipuniv.sinchon.web.dto.ReviewRequestDto;
 import com.matzipuniv.sinchon.web.dto.ReviewListResponseDto;
 import com.matzipuniv.sinchon.web.dto.ReviewResponseDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import javax.transaction.Transactional;
@@ -27,6 +29,13 @@ public class ReviewService {
     private final ImageRepository imageRepository;
     private final FileHandler1 fileHandler1;
 
+    @Autowired
+    public ReviewService(ReviewRepository reviewRepository, ImageRepository imageRepository){
+        this.reviewRepository = reviewRepository;
+        this.imageRepository = imageRepository;
+        this.fileHandler1 = new FileHandler1(imageRepository);
+    }
+
     @Transactional
     public ReviewResponseDto searchByNum(Long num, List<String> filePath){
         Review entity = reviewRepository.findById(num).orElseThrow(() -> new IllegalArgumentException("해당 리뷰가 없습니다. num = " + num));
@@ -37,7 +46,7 @@ public class ReviewService {
     }
 
     @Transactional
-    public Long createReview(
+    public void createReview(
             ReviewRequestDto requestDto,
             List<MultipartFile> files
     ) throws Exception{
@@ -55,14 +64,16 @@ public class ReviewService {
                 requestDto.getTagMood()
         );
 
-        List<Image> imageList = fileHandler1.parseFileInfo(files);
+        List<Image> imageList = fileHandler1.parseFileInfo(files, review);
+
+        reviewRepository.save(review);
 
         if(!imageList.isEmpty()){
-            for (Image image : imageList){
-                review.addImage(imageRepository.save(image));
+            for(Image image : imageList){
+                imageRepository.save(image);
             }
         }
-        return reviewRepository.save(review).getReviewNum();
+
     }
 
     public List<ReviewListResponseDto> findAllReviewsSort(String search, String sort){

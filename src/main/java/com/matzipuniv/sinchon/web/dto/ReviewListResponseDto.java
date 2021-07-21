@@ -1,16 +1,15 @@
 package com.matzipuniv.sinchon.web.dto;
 
+import com.matzipuniv.sinchon.domain.*;
+import com.matzipuniv.sinchon.service.ImageService;
 
-import com.matzipuniv.sinchon.domain.Image;
-import com.matzipuniv.sinchon.domain.Restaurant;
-import com.matzipuniv.sinchon.domain.Review;
-import com.matzipuniv.sinchon.domain.User;
 import lombok.Getter;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+import java.time.LocalDateTime;
 
 @Getter
 public class ReviewListResponseDto {
@@ -23,6 +22,9 @@ public class ReviewListResponseDto {
     private Integer likedCnt;
     private String filePath;
 
+    ImageService imageService;
+    List<ImageResponseDto> imageResponseDto = imageService.findAllDtoByReview(reviewNum);
+
     public ReviewListResponseDto(Review entity){
         this.reviewNum = entity.getReviewNum();
         this.restaurant = entity.getRestaurant();
@@ -31,8 +33,9 @@ public class ReviewListResponseDto {
         this.content = entity.getContent();
         this.score = entity.getScore();
         this.likedCnt = entity.getLikedCnt();
-        if(!entity.getImage().isEmpty()) {
-            this.filePath = entity.getImage().get(0).getFilePath();
+
+        if(!imageResponseDto.isEmpty()) {
+            this.filePath = imageResponseDto.get(0).getFilePath();
         }
         else {
             this.filePath = null;

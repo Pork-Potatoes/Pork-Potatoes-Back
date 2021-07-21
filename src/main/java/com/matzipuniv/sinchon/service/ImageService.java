@@ -2,7 +2,9 @@ package com.matzipuniv.sinchon.service;
 
 import com.matzipuniv.sinchon.domain.Image;
 import com.matzipuniv.sinchon.domain.ImageRepository;
+import com.matzipuniv.sinchon.domain.Report;
 import com.matzipuniv.sinchon.web.dto.ImageResponseDto;
+import com.matzipuniv.sinchon.web.dto.ReportDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,4 +25,14 @@ public class ImageService {
                 .map(ImageResponseDto::new)
                 .collect(Collectors.toList());
     }
+
+    @Transactional
+    public void registerImage(ImageResponseDto imageResponseDto){
+        Image image = new Image(imageResponseDto.getOriginalFileName(), imageResponseDto.getReview(),
+                imageResponseDto.getFilePath(), imageResponseDto.getFileSize());
+
+        imageRepository.save(image);
+    }
+
+
 }
