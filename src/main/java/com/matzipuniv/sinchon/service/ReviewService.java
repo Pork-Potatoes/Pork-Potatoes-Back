@@ -38,7 +38,8 @@ public class ReviewService {
 
     @Transactional
     public ReviewResponseDto searchByNum(Long num, List<String> filePath){
-        Review entity = reviewRepository.findById(num).orElseThrow(() -> new IllegalArgumentException("해당 리뷰가 없습니다. num = " + num));
+        Review entity = reviewRepository.findById(num).
+                orElseThrow(() -> new IllegalArgumentException("해당 리뷰가 없습니다. num = " + num));
         if (entity.getDeleteFlag()==true){
             throw new IllegalArgumentException("해당 리뷰가 삭제되었습니다. num = " + num);
         }
@@ -76,6 +77,7 @@ public class ReviewService {
 
     }
 
+    @Transactional
     public List<ReviewListResponseDto> findAllReviewsSort(String search, String sort){
         List<Review> reviews = reviewRepository.findAllByContentORMenuNameORRestaurant(search, search, search);
         List<Review> reviewsResponse = new ArrayList<>();
@@ -120,6 +122,7 @@ public class ReviewService {
 
     }
 
+    @Transactional
     public List<ReviewListResponseDto> todaysLikedReviews(){
         LocalDate todaysDate = LocalDate.now();
 
@@ -135,6 +138,7 @@ public class ReviewService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional
     public List<ReviewListResponseDto> recentReviews() {
         List<Review> reviews = reviewRepository.findByDeleteFlagOrderByCreatedDateDesc(false);
 
@@ -143,6 +147,7 @@ public class ReviewService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional
     public List<ReviewListResponseDto> restaurantReviews(Long restaurantNum, String sort) {
         List<Review> reviews = new ArrayList<>();
 
