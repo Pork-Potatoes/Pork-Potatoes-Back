@@ -3,6 +3,7 @@ package com.matzipuniv.sinchon.web;
 import com.matzipuniv.sinchon.service.FolderService;
 import com.matzipuniv.sinchon.web.dto.AdditionResponseDto;
 import com.matzipuniv.sinchon.web.dto.FolderResponseDto;
+import com.matzipuniv.sinchon.web.dto.FolderSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,8 +37,13 @@ public class FolderApiController {
     }
 
     @PostMapping("/api/restaurants/{restaurantNum}/folders/{folderNum}")
-    public String saveRestaurant(@PathVariable Long restaurantNum, @PathVariable Long folderNum){
+    public String saveRestaurantToFolder(@PathVariable Long restaurantNum, @PathVariable Long folderNum){
         return folderService.saveRestaurant(restaurantNum,folderNum);
+    }
+
+    @PostMapping("/api/restaurants/{restaurantNum}/folders")
+    public String saveRestaurantToNewFolder(@PathVariable Long restaurantNum, @RequestBody FolderSaveRequestDto requestDto){
+        return folderService.saveRestaurant(restaurantNum, folderService.saveFolder(requestDto));
     }
 
     @GetMapping("/api/folders/{folderNum}/restaurants")

@@ -3,6 +3,7 @@ package com.matzipuniv.sinchon.service;
 import com.matzipuniv.sinchon.domain.*;
 import com.matzipuniv.sinchon.web.dto.AdditionResponseDto;
 import com.matzipuniv.sinchon.web.dto.FolderResponseDto;
+import com.matzipuniv.sinchon.web.dto.FolderSaveRequestDto;
 import com.matzipuniv.sinchon.web.dto.RestaurantListResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,11 @@ public class FolderService {
     private final UserRepository userRepository;
     private final AdditionRepository additionRepository;
     private final RestaurantRepository restaurantRepository;
+
+    @Transactional
+    public Long saveFolder(FolderSaveRequestDto requestDto){
+        return folderRepository.save(requestDto.toEntity()).getFolderNum();
+    }
 
     @Transactional(readOnly = true)
     public FolderResponseDto findById(Long num){
