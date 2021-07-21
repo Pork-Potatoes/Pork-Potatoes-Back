@@ -16,7 +16,7 @@ public class ReviewListResponseDto {
     private String content;
     private Double score;
     private Integer likedCnt;
-    private Long thumbnailNum;
+    private String filePath;
 
     ImageService imageService;
     List<ImageResponseDto> imageResponseDto = imageService.findAllDtoByReview(reviewNum);
@@ -31,10 +31,10 @@ public class ReviewListResponseDto {
         this.likedCnt = entity.getLikedCnt();
 
         if(!imageResponseDto.isEmpty()) {
-            this.thumbnailNum = imageResponseDto.get(0).getImageNum();
+            this.filePath = imageResponseDto.get(0).getFilePath();
         }
         else {
-            this.thumbnailNum = 0L;
+            this.filePath = null;
         }
     }
 

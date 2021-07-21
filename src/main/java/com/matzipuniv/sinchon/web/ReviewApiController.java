@@ -54,16 +54,14 @@ public class ReviewApiController {
         //게시글 첨부파일 num 담을 List 객체 생성
         for(ImageResponseDto imageResponseDto : imageResponseDtoList)
             filePath.add(imageResponseDto.getFilePath()); // 각 첨부파일 num을 imageNum에 추가
-
         return reviewService.searchByNum(reviewNum, filePath); //게시글 num과 첨부파일 num 목록(imageNum) 전달받아 결과 반환
-
     }
 
     @PostMapping("/api/reviews")
     @ResponseStatus(HttpStatus.CREATED)
     public String createReview(
-            @RequestParam("image") List<MultipartFile> files,
-            @RequestParam("requestDto") String requestDtoString
+            @RequestParam(value = "image", required = false) List<MultipartFile> files,
+            @RequestParam(value = "requestDto") String requestDtoString
     ) throws Exception{
         ReviewRequestDto requestDto = new ObjectMapper().readValue(requestDtoString, ReviewRequestDto.class);
         Long reviewNum = reviewService.createReview(requestDto, files);
