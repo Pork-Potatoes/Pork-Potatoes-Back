@@ -46,4 +46,9 @@ public class Restaurant {
         this.notice = notice;
         this.avgScore = avgScore;
     }
+
+    public void setAvgScore(Double avgScore) {
+        this.avgScore = avgScore;
+    }
+
 }

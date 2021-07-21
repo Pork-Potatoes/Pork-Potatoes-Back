@@ -1,10 +1,7 @@
 package com.matzipuniv.sinchon.service;
 
 
-import com.matzipuniv.sinchon.domain.Image;
-import com.matzipuniv.sinchon.domain.ImageRepository;
-import com.matzipuniv.sinchon.domain.Review;
-import com.matzipuniv.sinchon.domain.ReviewRepository;
+import com.matzipuniv.sinchon.domain.*;
 import com.matzipuniv.sinchon.web.dto.ImageResponseDto;
 import com.matzipuniv.sinchon.web.dto.ReviewRequestDto;
 import com.matzipuniv.sinchon.web.dto.ReviewListResponseDto;
@@ -24,13 +21,16 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 public class ReviewService {
+    private final UserRepository userRepository;
+    private final RestaurantRepository restaurantRepository;
     private final ReviewRepository reviewRepository;
-
     private final ImageRepository imageRepository;
     private final FileHandler1 fileHandler1;
 
     @Autowired
-    public ReviewService(ReviewRepository reviewRepository, ImageRepository imageRepository){
+    public ReviewService(UserRepository userRepository, RestaurantRepository restaurantRepository, ReviewRepository reviewRepository, ImageRepository imageRepository){
+        this.userRepository = userRepository;
+        this.restaurantRepository = restaurantRepository;
         this.reviewRepository = reviewRepository;
         this.imageRepository = imageRepository;
         this.fileHandler1 = new FileHandler1(imageRepository);
@@ -67,6 +67,19 @@ public class ReviewService {
 
         List<Image> imageList = fileHandler1.parseFileInfo(files, review);
 
+        User user = userRepository.findById(review.getUser().getUserNum())
+                .orElseThrow(()->new IllegalArgumentException("해당 user를 찾을 수 없습니다. "));
+        int currentCoin = user.getCoin();
+        user.setCoin( currentCoin + 100 );
+        userRepository.save(user);
+
+        Restaurant restaurant = restaurantRepository.findById(review.getRestaurant().getRestaurantNum())
+                .orElseThrow(()->new IllegalArgumentException("해당 restaurant를 찾을 수 없습니다."));
+        Double currentAvgScore = restaurant.getAvgScore();
+        Integer currentRestaurantCount = reviewRepository.countByRestaurant(restaurant);
+        System.out.println(currentRestaurantCount);
+        Double changedAvgScore = (currentAvgScore*currentRestaurantCount + review.getScore()) /(currentRestaurantCount + 1);
+        restaurant.setAvgScore(changedAvgScore);
         reviewRepository.save(review);
 
         if(!imageList.isEmpty()){
@@ -74,7 +87,6 @@ public class ReviewService {
                 imageRepository.save(image);
             }
         }
-
     }
 
     @Transactional
@@ -88,7 +100,6 @@ public class ReviewService {
                 continue;
             reviewsResponse.add(review);
         }
-
         //sort 종류에 따라 정렬
         if(sort.equals("-created-date")) {
             Collections.sort(reviewsResponse, new Comparator<Review>() {
@@ -115,7 +126,6 @@ public class ReviewService {
             });
             Collections.reverse(reviewsResponse);
         }
-
         return reviewsResponse.stream()
                 .map(ReviewListResponseDto::new)
                 .collect(Collectors.toList());
