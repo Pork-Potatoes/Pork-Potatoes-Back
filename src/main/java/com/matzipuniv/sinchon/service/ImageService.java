@@ -23,4 +23,11 @@ public class ImageService {
                 .map(ImageResponseDto::new)
                 .collect(Collectors.toList());
     }
+
+    @Transactional
+    public ImageResponseDto searchByNum(Long num) {
+        Image entity = imageRepository.findById(num)
+                .orElseThrow(()-> new IllegalArgumentException("해당 이미지가 없습니다. num = " + num));
+        return new ImageResponseDto(entity);
+    }
 }
