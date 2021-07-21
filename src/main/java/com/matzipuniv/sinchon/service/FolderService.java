@@ -36,6 +36,30 @@ public class FolderService {
         return new FolderResponseDto(folder);
     }
 
+    @Transactional
+    public String updateTitle(Long num, String title){
+        Folder folder = folderRepository.findByFolderNumAndDeleteFlagFalse(num);
+        if(folder == null){
+            throw new IllegalArgumentException("없는 폴더입니다. folder_num = "+num);
+        } else if (title == null || title == "null"){
+            return "Fail";
+        } else{
+            folder.updateTitle(title);
+            return "Success";
+        }
+    }
+
+    @Transactional
+    public String updateDescription(Long num, String description){
+        Folder folder = folderRepository.findByFolderNumAndDeleteFlagFalse(num);
+        if(folder == null){
+            throw new IllegalArgumentException("없는 폴더입니다. folder_num = "+num);
+        } else{
+            folder.updateDescription(description);
+            return "Success";
+        }
+    }
+
     @Transactional(readOnly = true)
     public List<FolderResponseDto> findAll(){
         List<FolderResponseDto> folderResponse = new ArrayList<>();
