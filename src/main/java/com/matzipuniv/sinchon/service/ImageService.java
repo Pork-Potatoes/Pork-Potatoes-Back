@@ -33,11 +33,11 @@ public class ImageService {
         return new ImageResponseDto(entity);
     }
 
-//    public void registerImage(ImageResponseDto imageResponseDto){
-//        Image image = new Image(imageResponseDto.getOriginalFileName(), imageResponseDto.getReview(),
-//                imageResponseDto.getFilePath(), imageResponseDto.getFileSize());
-//
-//        imageRepository.save(image);
-//    }
+    public void registerImage(ImageResponseDto imageResponseDto){
+        Image image = new Image(imageResponseDto.getOriginalFileName(), imageResponseDto.getReview(),
+                imageResponseDto.getFilePath(), imageResponseDto.getFileSize());
+
+        imageRepository.save(image);
+    }
   
 }

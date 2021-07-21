@@ -73,29 +73,34 @@ public class ReviewApiController {
     }
 
 
-    @GetMapping("api/reviews")
+    @GetMapping("/api/reviews")
     public List<ReviewListResponseDto> findAllReviewsSortByDate(@RequestParam String query, String sort){
         return reviewService.findAllReviewsSort(query, sort);
     }
 
-    @GetMapping("api/reviews/today")
+    @GetMapping("/api/reviews/today")
     public List<ReviewListResponseDto> todaysLikedReviews(){
         return reviewService.todaysLikedReviews();
     }
 
-    @GetMapping("api/reviews/recent")
+    @GetMapping("/api/reviews/recent")
     public List<ReviewListResponseDto> recentReviews(){
         return reviewService.recentReviews();
     }
 
-    @GetMapping("api/restaurants/{restaurantNum}/reviews")
+    @GetMapping("/api/restaurants/{restaurantNum}/reviews")
     public List<ReviewListResponseDto> restaurantReviews(@PathVariable Long restaurantNum, @RequestParam String sort){
         return reviewService.restaurantReviews(restaurantNum, sort);
     }
 
-    @GetMapping("api/users/{userNum}/reviews")
+    @GetMapping("/api/users/{userNum}/reviews")
     public List<ReviewListResponseDto> myReviews(@PathVariable Long userNum, @RequestParam String sort){
         return reviewService.myReviews(userNum, sort);
+    }
+
+    @DeleteMapping("/api/reviews/{reviewNum}")
+    public String delete(@PathVariable Long reviewNum){
+        return reviewService.delete(reviewNum);
     }
 
    
