@@ -1,5 +1,6 @@
 package com.matzipuniv.sinchon.web;
 
+import com.matzipuniv.sinchon.config.CustomOAuth2UserService;
 import com.matzipuniv.sinchon.service.UserService;
 import com.matzipuniv.sinchon.web.dto.UserResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,7 @@ import java.util.List;
 @RequestMapping("/api/users")
 public class UserApiController {
     private final UserService userService;
+    private final CustomOAuth2UserService customOAuth2UserService;
 
     @GetMapping("")
     public List<UserResponseDto> findAll() {
@@ -23,6 +25,11 @@ public class UserApiController {
     @GetMapping("/{userNum}")
     public UserResponseDto findByNum(@PathVariable Long userNum){
         return userService.findByNum(userNum);
+    }
+
+    @GetMapping("/oauth2/authorization/kakao")
+    public String loginByKakao() {
+        return customOAuth2UserService.loadUser();
     }
 
     @DeleteMapping("/{userNum}")
