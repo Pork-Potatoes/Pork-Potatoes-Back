@@ -1,11 +1,11 @@
 package com.matzipuniv.sinchon.web.dto;
 
-import com.matzipuniv.sinchon.domain.Restaurant;
-import com.matzipuniv.sinchon.domain.Review;
-import com.matzipuniv.sinchon.domain.User;
+import com.matzipuniv.sinchon.domain.*;
+import com.matzipuniv.sinchon.service.ImageService;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 public class ReviewListResponseDto {
@@ -18,6 +18,9 @@ public class ReviewListResponseDto {
     private Integer likedCnt;
     private Long thumbnailNum;
 
+    ImageService imageService;
+    List<ImageResponseDto> imageResponseDto = imageService.findAllDtoByReview(reviewNum);
+
     public ReviewListResponseDto(Review entity){
         this.reviewNum = entity.getReviewNum();
         this.restaurant = entity.getRestaurant();
@@ -27,8 +30,8 @@ public class ReviewListResponseDto {
         this.score = entity.getScore();
         this.likedCnt = entity.getLikedCnt();
 
-        if(!entity.getImage().isEmpty()) {
-            this.thumbnailNum = entity.getImage().get(0).getImageNum();
+        if(!imageResponseDto.isEmpty()) {
+            this.thumbnailNum = imageResponseDto.get(0).getImageNum();
         }
         else {
             this.thumbnailNum = 0L;

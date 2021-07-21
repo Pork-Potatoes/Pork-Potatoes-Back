@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.matzipuniv.sinchon.domain.Image;
 import com.matzipuniv.sinchon.domain.Review;
 import com.matzipuniv.sinchon.domain.ReviewRepository;
+import com.matzipuniv.sinchon.service.FileHandler1;
 import com.matzipuniv.sinchon.service.ImageService;
 import com.matzipuniv.sinchon.service.ReviewService;
 import com.matzipuniv.sinchon.web.dto.ImageResponseDto;
@@ -41,6 +43,8 @@ import java.util.List;
 public class ReviewApiController {
     private final ReviewService reviewService;
     private final ImageService imageService;
+    private final ReviewRepository reviewRepository;
+    private final FileHandler1 fileHandler1;
 
     @GetMapping("/api/reviews/{reviewNum}")
     public ReviewResponseDto searchByNum(@PathVariable Long reviewNum){
@@ -62,7 +66,12 @@ public class ReviewApiController {
             @RequestParam("requestDto") String requestDtoString
     ) throws Exception{
         ReviewRequestDto requestDto = new ObjectMapper().readValue(requestDtoString, ReviewRequestDto.class);
-        reviewService.createReview(requestDto, files);
+        Long reviewNum = reviewService.createReview(requestDto, files);
+//        List<ImageResponseDto> imageResponseDtoList = imageService.findAllDtoByReview(reviewNum);
+//
+//        for(ImageResponseDto imageResponseDto : imageResponseDtoList){
+//            imageService.registerImage(imageResponseDto);
+//        }
         return "Success";
     }
 

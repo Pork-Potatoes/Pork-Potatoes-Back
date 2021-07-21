@@ -5,6 +5,7 @@ import com.matzipuniv.sinchon.domain.Image;
 import com.matzipuniv.sinchon.domain.ImageRepository;
 import com.matzipuniv.sinchon.domain.Review;
 import com.matzipuniv.sinchon.domain.ReviewRepository;
+import com.matzipuniv.sinchon.web.dto.ImageResponseDto;
 import com.matzipuniv.sinchon.web.dto.ReviewRequestDto;
 import com.matzipuniv.sinchon.web.dto.ReviewListResponseDto;
 import com.matzipuniv.sinchon.web.dto.ReviewResponseDto;
@@ -32,29 +33,29 @@ public class ReviewService {
     public ReviewService(ReviewRepository reviewRepository, ImageRepository imageRepository){
         this.reviewRepository = reviewRepository;
         this.imageRepository = imageRepository;
-        this.fileHandler1 = new FileHandler1();
+        this.fileHandler1 = new FileHandler1(imageRepository);
     }
 
-    @Transactional
-    public Review addReview(
-            Review review,
-            List<MultipartFile> files
-    )throws Exception{
-        List<Image> list = fileHandler1.parseFileInfo(files);
-
-        if(list.isEmpty()){
-            // 파일 없을 때 처리
-        }
-        else{
-            List<Image> imageList = new ArrayList<>();
-            for(Image image: list){
-                imageList.add(imageRepository.save(image));
-            }
-            review.setImage(imageList);
-        }
-
-        return reviewRepository.save(review);
-    }
+//    @Transactional
+//    public Review addReview(
+//            Review review,
+//            List<MultipartFile> files
+//    )throws Exception{
+//        List<Image> list = fileHandler1.parseFileInfo(files);
+//
+//        if(list.isEmpty()){
+//            // 파일 없을 때 처리
+//        }
+//        else{
+//            List<Image> imageList = new ArrayList<>();
+//            for(Image image: list){
+//                imageList.add(imageRepository.save(image));
+//            }
+//            review.setImage(imageList);
+//        }
+//
+//        return reviewRepository.save(review);
+//    }
 
     @Transactional
     public ReviewResponseDto searchByNum(Long num, List<String> filePath){
@@ -66,7 +67,7 @@ public class ReviewService {
     }
 
     @Transactional
-    public void createReview(
+    public Long createReview(
             ReviewRequestDto requestDto,
             List<MultipartFile> files
     ) throws Exception{
@@ -84,14 +85,32 @@ public class ReviewService {
                 requestDto.getTagMood()
         );
 
-        List<Image> imageList = fileHandler1.parseFileInfo(files);
+        List<Image> imageList = fileHandler1.parseFileInfo(files, review);
+//        if(!imageList.isEmpty()){
+//            for(Image image : imageList){
+//                ImageResponseDto imageResponseDto = new ImageResponseDto(image);
+//            }
+//        }
+//        if(!imageList.isEmpty()){
+//            for (Image image : imageList){
+//                review.addImage(imageRepository.save(image));
+//            }
+//        }
+//        if(!imageList.isEmpty()){
+//            for(Image image : imageList){
+//                imageRepository.save(image);
+//            }
+//        }
+//
+        Long num = reviewRepository.save(review).getReviewNum();
 
         if(!imageList.isEmpty()){
-            for (Image image : imageList){
-                review.addImage(imageRepository.save(image));
+            for(Image image : imageList){
+                imageRepository.save(image);
             }
         }
-        reviewRepository.save(review);
+
+        return num;
     }
 
     public List<ReviewListResponseDto> findAllReviewsSort(String search, String sort){

@@ -55,14 +55,14 @@ public class Review extends BaseTimeEntity{
     @Column
     private String tagMood;
 
-
-    @OneToMany(
-            mappedBy = "review",
-            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
-            orphanRemoval = true
-    )
-    private List<Image> image = new ArrayList<>();
-  
+//
+//    @OneToMany(
+//            mappedBy = "review",
+//            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+//            orphanRemoval = true
+//    )
+//    private List<Image> image = new ArrayList<>();
+//
   @Builder
     public Review(Restaurant restaurant, User user, String content, Double score, Boolean anonymousFlag, String menuName, Integer likedCnt, Integer report,
                   Boolean deleteFlag, String tagFood, String tagMood){
@@ -81,17 +81,17 @@ public class Review extends BaseTimeEntity{
 
 
 
-
-    public void addImage(Image image){
-        this.image.add(image);
-
-        if(image.getReview() != this){
-            image.setReview(this);
-        }
-    }
-
-    public void setImage(List<Image> image){
-        this.image = image;
-    }
+//
+//    public void addImage(Image image){
+//        this.image.add(image);
+//
+//        if(image.getReview() != this){
+//            image.setReview(this);
+//        }
+//    }
+//
+//    public void setImage(List<Image> image){
+//        this.image = image;
+//    }
 }
 

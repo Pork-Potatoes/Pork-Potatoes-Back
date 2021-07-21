@@ -1,8 +1,12 @@
 package com.matzipuniv.sinchon.service;
 
 import com.matzipuniv.sinchon.domain.Image;
+import com.matzipuniv.sinchon.domain.ImageRepository;
+import com.matzipuniv.sinchon.domain.Review;
 import com.matzipuniv.sinchon.web.dto.ImageResponseDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,9 +19,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Component
+@RequiredArgsConstructor
+@Service
 public class FileHandler1 {
-    public List<Image> parseFileInfo(List<MultipartFile> multipartFiles) throws Exception {
+    private final ImageRepository imageRepository;
+
+    public List<Image> parseFileInfo(List<MultipartFile> multipartFiles, Review review) throws Exception {
 
         // 반환을 할 파일 리스트
         List<Image> fileList = new ArrayList<>();
@@ -31,12 +38,11 @@ public class FileHandler1 {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
         String current_date = simpleDateFormat.format(new Date());
 
-
         // 프로젝트 폴더에 저장하기 위해 절대경로를 설정 (Window 의 Tomcat 은 Temp 파일을 이용한다)
-        String absolutePath = new File("C:\\Users\\Sierra\\Desktop\\upload").getAbsolutePath() + "\\";
+        String absolutePath = new File("").getAbsolutePath() + "/src/main/resources/static";
 
         // 경로를 지정하고 그곳에다가 저장
-        String path = "images/" + current_date;
+        String path = "/images/" + current_date;
         File file = new File(absolutePath + path);
         // 저장할 위치의 디렉토리가 존지하지 않을 경우
         if (!file.exists()) {
@@ -70,19 +76,19 @@ public class FileHandler1 {
                 // 각 이름은 겹치면 안되므로 나노 초까지 동원하여 지정
                 String new_file_name = Long.toString(System.nanoTime()) + originalFileExtension;
                 // 생성 후 리스트에 추가
-                Image image = Image.builder()
-                        .originalFileName(multipartFile.getOriginalFilename())
-                        .filePath(path + "//" + new_file_name)
-                        .fileSize(multipartFile.getSize())
-                        .build();
+                Image image = new Image(multipartFile.getOriginalFilename(), review, path +"/"+new_file_name, multipartFile.getSize());
+
                 fileList.add(image);
 
                 // 저장된 파일로 변경하여 이를 보여주기 위함
-                file = new File(path + "//" + new_file_name);
+                file = new File(absolutePath + path + "/" + new_file_name);
                 multipartFile.transferTo(file);
+
+                //imageRepository.save(image);
             }
         }
 
+        //imageRepository.saveAll(fileList);
         return fileList;
     }
 }

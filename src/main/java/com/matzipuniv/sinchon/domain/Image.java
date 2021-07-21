@@ -29,17 +29,18 @@ public class Image {
     private Long fileSize;
 
     @Builder
-    public Image(String originalFileName, String filePath, Long fileSize){
+    public Image(String originalFileName, Review review, String filePath, Long fileSize){
         this.originalFileName = originalFileName;
+        this.review = review;
         this.filePath = filePath;
         this.fileSize = fileSize;
     }
 
-    public void setReview(Review review){
-        this.review = review;
-
-        if(!review.getImage().contains(this))
-            review.getImage().add(this);
-    }
+//    public void setReview(Review review){
+//        this.review = review;
+//
+//        if(!review.getImage().contains(this))
+//            review.getImage().add(this);
+//    }
 
 }
