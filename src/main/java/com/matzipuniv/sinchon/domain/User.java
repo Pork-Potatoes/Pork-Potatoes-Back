@@ -49,6 +49,15 @@ public class User extends BaseTimeEntity{
     }
 
     @Builder
+    public User(String nickname, String profileUrl, Integer coin, String email, LocalDateTime authenticatedDate) {
+        this.nickname = nickname;
+        this.profileUrl = profileUrl;
+        this.coin = coin;
+        this.email = email;
+        this.authenticatedDate = authenticatedDate;
+    }
+
+    @Builder
     public void updateNickname(String nickname) {
         this.nickname = nickname;
     }
