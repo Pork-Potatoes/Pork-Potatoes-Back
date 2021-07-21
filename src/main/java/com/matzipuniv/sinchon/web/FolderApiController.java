@@ -18,11 +18,6 @@ public class FolderApiController {
         return folderService.findById(folderNum);
     }
 
-    @GetMapping("/api/folders/{folderNum}/restaurants")
-    public AdditionResponseDto getRestaurants(@PathVariable Long folderNum){
-        return folderService.getRestaurants(folderNum);
-    }
-
     @GetMapping("/api/folders")
     public List<FolderResponseDto> findByOrderByPinnedCnt(@RequestParam(value="sort", required = false, defaultValue = "id") String value){
         if(value.equals("-pinnedCnt"))
@@ -38,6 +33,16 @@ public class FolderApiController {
     @DeleteMapping("/api/users/{userNum}/folders/{folderNum}")
     public String deleteFolder(@PathVariable Long userNum, @PathVariable Long folderNum){
         return folderService.deleteFolder(userNum, folderNum);
+    }
+
+    @PostMapping("/api/restaurants/{restaurantNum}/folders/{folderNum}")
+    public String saveRestaurant(@PathVariable Long restaurantNum, @PathVariable Long folderNum){
+        return folderService.saveRestaurant(restaurantNum,folderNum);
+    }
+
+    @GetMapping("/api/folders/{folderNum}/restaurants")
+    public AdditionResponseDto getRestaurants(@PathVariable Long folderNum){
+        return folderService.getRestaurants(folderNum);
     }
 
     @DeleteMapping("/api/users/{userNum}/folders/{folderNum}/restaurants/{restaurantNum}")

@@ -96,6 +96,29 @@ public class FolderService {
         }
     }
 
+    @Transactional
+    public String saveRestaurant(Long restaurantNum, Long folderNum){
+        Restaurant restaurant = restaurantRepository.findById(restaurantNum)
+                .orElseThrow(()-> new IllegalArgumentException("해당 가게가 없습니다."));
+
+        Addition addition = additionRepository.findByFolderNumAndRestaurant(folderNum,restaurant);
+
+        if(addition==null){
+            additionRepository.save(Addition.builder()
+                    .restaurant(restaurant)
+                    .folderNum(folderNum)
+                    .deleteFlag(false)
+                    .build());
+        }
+        else if(addition.getDeleteFlag()){
+            addition.updateDeleteFlag(false);
+        }
+        else{
+            return "Fail";
+        }
+        return "Success";
+    }
+
     @Transactional(readOnly = true)
     public AdditionResponseDto getRestaurants(Long folderNum){
         List<RestaurantListResponseDto> restaurants = additionRepository.findByFolderNumAndDeleteFlagFalse(folderNum)
