@@ -27,11 +27,6 @@ public class UserApiController {
         return userService.findByNum(userNum);
     }
 
-    @GetMapping("/oauth2/authorization/kakao")
-    public String loginByKakao() {
-        return customOAuth2UserService.loadUser();
-    }
-
     @DeleteMapping("/{userNum}")
     public String deleteUser(@PathVariable Long userNum) {
         return userService.deleteUser(userNum);

@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @RequiredArgsConstructor
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    private final UserService userService;
+    private final CustomOAuth2UserService customOAuth2UserService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
@@ -27,6 +27,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .oauth2Login() //OAuth2 로그인 기능 설정
                 .userInfoEndpoint() //로그인 성공 이후 사용자 정보 가져올 때의 설정 담당
-                .userService(userService); //UserService 인터페이스의 구현체
+                .userService(customOAuth2UserService); //UserService 인터페이스의 구현체
     }
 }
