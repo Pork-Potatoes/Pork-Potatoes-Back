@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,4 +80,14 @@ public class Review extends BaseTimeEntity{
 
 
 
+
+    public void addImage(Image image){
+        this.image.add(image);
+
+        if(image.getReview() != this){
+            image.setReview(this);
+        }
+    }
+
 }
+
