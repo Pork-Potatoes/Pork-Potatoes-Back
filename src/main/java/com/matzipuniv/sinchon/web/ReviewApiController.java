@@ -62,6 +62,11 @@ public class ReviewApiController {
         return reviewService.recentReviews();
     }
 
+    @GetMapping("api/restaurants/{restaurantNum}/reviews")
+    public List<ReviewListResponseDto> restaurantReviews(@PathVariable Long restaurantNum, @RequestParam String sort){
+        return reviewService.restaurantReviews(restaurantNum, sort);
+    }
+
    
 
 }

@@ -109,7 +109,6 @@ public class ReviewService {
 
     }
 
-
     public List<ReviewListResponseDto> todaysLikedReviews(){
         LocalDate todaysDate = LocalDate.now();
 
@@ -127,6 +126,18 @@ public class ReviewService {
 
     public List<ReviewListResponseDto> recentReviews() {
         List<Review> reviews = reviewRepository.findByDeleteFlagOrderByCreatedDateDesc(false);
+
+        return reviews.stream()
+                .map(ReviewListResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    public List<ReviewListResponseDto> restaurantReviews(Long restaurantNum, String sort) {
+        List<Review> reviews = new ArrayList<>();
+
+        if(sort.equals("-created-date")){
+            reviews = reviewRepository.findByDeleteFlagAndRestaurantRestaurantNumOrderByCreatedDateDesc(false, restaurantNum);
+        }
 
         return reviews.stream()
                 .map(ReviewListResponseDto::new)
