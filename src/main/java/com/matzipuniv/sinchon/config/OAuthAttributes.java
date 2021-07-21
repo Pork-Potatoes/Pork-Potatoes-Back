@@ -1,16 +1,12 @@
-package com.matzipuniv.sinchon.web.dto;
+package com.matzipuniv.sinchon.config;
 
 import com.matzipuniv.sinchon.domain.User;
 import com.matzipuniv.sinchon.domain.UserRepository;
-import com.nimbusds.oauth2.sdk.Role;
-import com.nimbusds.oauth2.sdk.util.date.SimpleDate;
 import lombok.Builder;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Map;
 
 @Getter

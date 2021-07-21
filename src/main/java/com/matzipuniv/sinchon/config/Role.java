@@ -1,4 +1,4 @@
-package com.matzipuniv.sinchon.domain;
+package com.matzipuniv.sinchon.config;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

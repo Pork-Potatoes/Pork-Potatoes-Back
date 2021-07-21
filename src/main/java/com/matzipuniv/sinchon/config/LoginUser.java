@@ -1,4 +1,4 @@
-package com.matzipuniv.sinchon.domain;
+package com.matzipuniv.sinchon.config;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

@@ -1,7 +1,7 @@
-package com.matzipuniv.sinchon.web;
+package com.matzipuniv.sinchon.config;
 
-import com.matzipuniv.sinchon.domain.LoginUser;
-import com.matzipuniv.sinchon.web.dto.SessionUser;
+import com.matzipuniv.sinchon.config.LoginUser;
+import com.matzipuniv.sinchon.config.SessionUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;

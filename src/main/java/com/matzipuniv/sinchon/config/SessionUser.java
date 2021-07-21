@@ -1,4 +1,4 @@
-package com.matzipuniv.sinchon.web.dto;
+package com.matzipuniv.sinchon.config;
 
 import com.matzipuniv.sinchon.domain.User;
 import lombok.Getter;
