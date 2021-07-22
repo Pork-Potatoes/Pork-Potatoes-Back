@@ -79,6 +79,7 @@ public class User extends BaseTimeEntity{
 
     public void updateAuthenticatedDate(LocalDateTime now) {
         this.authenticatedDate = now;
+    }
   
     public void updateCoin(Integer coin){
         this.coin += 100;
