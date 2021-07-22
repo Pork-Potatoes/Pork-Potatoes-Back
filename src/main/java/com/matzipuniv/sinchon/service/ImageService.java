@@ -27,12 +27,17 @@ public class ImageService {
     }
 
     @Transactional
+    public ImageResponseDto searchByNum(Long num) {
+        Image entity = imageRepository.findById(num)
+                .orElseThrow(()-> new IllegalArgumentException("해당 이미지가 없습니다. num = " + num));
+        return new ImageResponseDto(entity);
+    }
+
     public void registerImage(ImageResponseDto imageResponseDto){
         Image image = new Image(imageResponseDto.getOriginalFileName(), imageResponseDto.getReview(),
                 imageResponseDto.getFilePath(), imageResponseDto.getFileSize());
 
         imageRepository.save(image);
     }
-
-
+  
 }
