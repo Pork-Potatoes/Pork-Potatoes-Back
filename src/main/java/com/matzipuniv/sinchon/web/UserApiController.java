@@ -1,5 +1,6 @@
 package com.matzipuniv.sinchon.web;
 
+import com.matzipuniv.sinchon.config.CustomOAuth2UserService;
 import com.matzipuniv.sinchon.service.UserService;
 import com.matzipuniv.sinchon.web.dto.UserResponseDto;
 import lombok.RequiredArgsConstructor;

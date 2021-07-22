@@ -35,40 +35,53 @@ public class User extends BaseTimeEntity{
     private LocalDateTime authenticatedDate;
 
     @Column
+    private String socialLogin;
+
+    @Column
     private Boolean deleteFlag;
 
     @Builder
-    public User(String nickname, String profileUrl, Integer coin, String university, String email, LocalDateTime authenticatedDate, Boolean deleteFlag){
+    public User(String nickname, String profileUrl, Integer coin, String university, String email, LocalDateTime authenticatedDate, String socialLogin, Boolean deleteFlag){
         this.nickname = nickname;
         this.profileUrl = profileUrl;
         this.coin = coin;
         this.university = university;
         this.email = email;
         this.authenticatedDate = authenticatedDate;
+        this.socialLogin = socialLogin;
         this.deleteFlag = deleteFlag;
     }
 
     @Builder
+    public User(String nickname, String profileUrl, Integer coin, String email, String socialLogin) {
+        this.nickname = nickname;
+        this.profileUrl = profileUrl;
+        this.coin = coin;
+        this.email = email;
+        this.socialLogin = socialLogin;
+    }
+
     public void updateNickname(String nickname) {
         this.nickname = nickname;
     }
 
-    @Builder
     public void updateProfileUrl(String profileUrl) {
         this.profileUrl = profileUrl;
     }
 
-    @Builder
     public void updateDeleteFlag() {
         this.deleteFlag = true;
     }
 
-    @Builder
     public void updateUniv(String univ) {
         this.university = univ;
     }
 
+    public void updateAuthenticatedDate(LocalDateTime now) {
+        this.authenticatedDate = now;
+  
     public void updateCoin(Integer coin){
         this.coin += 100;
+
     }
 }
