@@ -1,10 +1,7 @@
 package com.matzipuniv.sinchon.service;
 
 
-import com.matzipuniv.sinchon.domain.Image;
-import com.matzipuniv.sinchon.domain.ImageRepository;
-import com.matzipuniv.sinchon.domain.Review;
-import com.matzipuniv.sinchon.domain.ReviewRepository;
+import com.matzipuniv.sinchon.domain.*;
 import com.matzipuniv.sinchon.web.dto.ImageResponseDto;
 import com.matzipuniv.sinchon.web.dto.ReviewRequestDto;
 import com.matzipuniv.sinchon.web.dto.ReviewListResponseDto;
@@ -24,17 +21,11 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 public class ReviewService {
+    private final UserRepository userRepository;
+    private final RestaurantRepository restaurantRepository;
     private final ReviewRepository reviewRepository;
-
     private final ImageRepository imageRepository;
     private final FileHandler1 fileHandler1;
-
-    @Autowired
-    public ReviewService(ReviewRepository reviewRepository, ImageRepository imageRepository){
-        this.reviewRepository = reviewRepository;
-        this.imageRepository = imageRepository;
-        this.fileHandler1 = new FileHandler1(imageRepository);
-    }
 
     @Transactional
     public ReviewResponseDto searchByNum(Long num, List<String> filePath){
@@ -65,15 +56,30 @@ public class ReviewService {
                 requestDto.getTagMood()
         );
 
+        if (review.getUser().getUniversity().isEmpty()){
+            throw new Exception("학교 인증이 되지 않은 사용자는 리뷰 등록을 할 수 없습니다.");
+        }
+
         List<Image> imageList = fileHandler1.parseFileInfo(files, review);
-
-        reviewRepository.save(review);
-
         if(!imageList.isEmpty()){
             for(Image image : imageList){
                 imageRepository.save(image);
             }
         }
+
+        User user = userRepository.findById(review.getUser().getUserNum())
+                .orElseThrow(()->new IllegalArgumentException("해당 user를 찾을 수 없습니다. "));
+        Integer currentCoin = user.getCoin();
+        user.updateCoin(currentCoin);
+        userRepository.save(user);
+
+        Restaurant restaurant = restaurantRepository.findById(review.getRestaurant().getRestaurantNum())
+                .orElseThrow(()->new IllegalArgumentException("해당 restaurant를 찾을 수 없습니다."));
+        Integer currentReviewCount = reviewRepository.countByRestaurant(restaurant);
+        restaurant.updateAvgScore(currentReviewCount, review.getScore());
+        restaurantRepository.save(restaurant);
+        reviewRepository.save(review);
+
 
     }
 
@@ -88,7 +94,6 @@ public class ReviewService {
                 continue;
             reviewsResponse.add(review);
         }
-
         //sort 종류에 따라 정렬
         if(sort.equals("-created-date")) {
             Collections.sort(reviewsResponse, new Comparator<Review>() {
@@ -115,7 +120,6 @@ public class ReviewService {
             });
             Collections.reverse(reviewsResponse);
         }
-
         return reviewsResponse.stream()
                 .map(ReviewListResponseDto::new)
                 .collect(Collectors.toList());

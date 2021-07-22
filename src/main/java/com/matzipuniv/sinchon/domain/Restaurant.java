@@ -46,4 +46,12 @@ public class Restaurant {
         this.notice = notice;
         this.avgScore = avgScore;
     }
+
+    public void updateAvgScore(Integer currentReviewCount, Double currentScore){
+        Double currentAvgScore = this.avgScore;
+        Double changedAvgScore = (currentAvgScore * currentReviewCount + currentScore)/ (currentReviewCount + 1);
+        this.avgScore = changedAvgScore;
+    }
+
+
 }
