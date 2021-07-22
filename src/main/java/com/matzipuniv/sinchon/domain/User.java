@@ -76,4 +76,8 @@ public class User extends BaseTimeEntity{
     public void updateUniv(String univ) {
         this.university = univ;
     }
+
+    public void updateAuthenticatedDate(LocalDateTime now) {
+        this.authenticatedDate = now;
+    }
 }

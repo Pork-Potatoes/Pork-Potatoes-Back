@@ -11,6 +11,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -141,12 +142,14 @@ public class UserService {
 
     @Transactional
     public String setUnivByNum(Long num, String univ) {
+        LocalDateTime now = LocalDateTime.now();
         User entity = userRepository.findByUserNumAndDeleteFlagFalse(num);
         if(entity==null) {
             return "없는 유저입니다. user_num = "+num;
         }else {
             if(!(univ==null) || !univ.equals("null")){
                 entity.updateUniv(univ);
+                entity.updateAuthenticatedDate(now);
                 return "success";
             }else {
                 return "univ is null";
