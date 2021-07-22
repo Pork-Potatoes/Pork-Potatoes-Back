@@ -1,9 +1,6 @@
 package com.matzipuniv.sinchon.service;
 
-import com.matzipuniv.sinchon.domain.Pin;
-import com.matzipuniv.sinchon.domain.PinRepository;
-import com.matzipuniv.sinchon.domain.User;
-import com.matzipuniv.sinchon.domain.UserRepository;
+import com.matzipuniv.sinchon.domain.*;
 import com.matzipuniv.sinchon.web.dto.UserResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
