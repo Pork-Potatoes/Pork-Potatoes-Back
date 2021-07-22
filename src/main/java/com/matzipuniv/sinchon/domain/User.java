@@ -48,10 +48,6 @@ public class User extends BaseTimeEntity{
         this.deleteFlag = deleteFlag;
     }
 
-    public void setCoin(Integer coin) {
-        this.coin = coin;
-    }
-
     @Builder
     public void updateNickname(String nickname) {
         this.nickname = nickname;
@@ -70,5 +66,9 @@ public class User extends BaseTimeEntity{
     @Builder
     public void updateUniv(String univ) {
         this.university = univ;
+    }
+
+    public void updateCoin(Integer coin){
+        this.coin += 100;
     }
 }

@@ -27,15 +27,6 @@ public class ReviewService {
     private final ImageRepository imageRepository;
     private final FileHandler1 fileHandler1;
 
-    @Autowired
-    public ReviewService(UserRepository userRepository, RestaurantRepository restaurantRepository, ReviewRepository reviewRepository, ImageRepository imageRepository){
-        this.userRepository = userRepository;
-        this.restaurantRepository = restaurantRepository;
-        this.reviewRepository = reviewRepository;
-        this.imageRepository = imageRepository;
-        this.fileHandler1 = new FileHandler1(imageRepository);
-    }
-
     @Transactional
     public ReviewResponseDto searchByNum(Long num, List<String> filePath){
         Review entity = reviewRepository.findById(num).
@@ -65,28 +56,31 @@ public class ReviewService {
                 requestDto.getTagMood()
         );
 
+        if (review.getUser().getUniversity().isEmpty()){
+            throw new Exception("학교 인증이 되지 않은 사용자는 리뷰 등록을 할 수 없습니다.");
+        }
+
         List<Image> imageList = fileHandler1.parseFileInfo(files, review);
-
-        User user = userRepository.findById(review.getUser().getUserNum())
-                .orElseThrow(()->new IllegalArgumentException("해당 user를 찾을 수 없습니다. "));
-        int currentCoin = user.getCoin();
-        user.setCoin( currentCoin + 100 );
-        userRepository.save(user);
-
-        Restaurant restaurant = restaurantRepository.findById(review.getRestaurant().getRestaurantNum())
-                .orElseThrow(()->new IllegalArgumentException("해당 restaurant를 찾을 수 없습니다."));
-        Double currentAvgScore = restaurant.getAvgScore();
-        Integer currentRestaurantCount = reviewRepository.countByRestaurant(restaurant);
-        System.out.println(currentRestaurantCount);
-        Double changedAvgScore = (currentAvgScore*currentRestaurantCount + review.getScore()) /(currentRestaurantCount + 1);
-        restaurant.setAvgScore(changedAvgScore);
-        reviewRepository.save(review);
-
         if(!imageList.isEmpty()){
             for(Image image : imageList){
                 imageRepository.save(image);
             }
         }
+
+        User user = userRepository.findById(review.getUser().getUserNum())
+                .orElseThrow(()->new IllegalArgumentException("해당 user를 찾을 수 없습니다. "));
+        Integer currentCoin = user.getCoin();
+        user.updateCoin(currentCoin);
+        userRepository.save(user);
+
+        Restaurant restaurant = restaurantRepository.findById(review.getRestaurant().getRestaurantNum())
+                .orElseThrow(()->new IllegalArgumentException("해당 restaurant를 찾을 수 없습니다."));
+        Integer currentReviewCount = reviewRepository.countByRestaurant(restaurant);
+        restaurant.updateAvgScore(currentReviewCount, review.getScore());
+        restaurantRepository.save(restaurant);
+        reviewRepository.save(review);
+
+
     }
 
     @Transactional
