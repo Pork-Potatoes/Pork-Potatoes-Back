@@ -17,10 +17,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .headers().frameOptions().disable()
-                .and()
-                .authorizeRequests() //url별 권한 관리 설정
-                .antMatchers("/","/css/**","/images/**","/js/**","/profile").permitAll() // 로그인 안 한 사람은 홈만 열람 가능
-                .anyRequest().authenticated() // 나머지들은, 로그인한 사람들만
+//                .and()
+//                .authorizeRequests() //url별 권한 관리 설정
+//                .antMatchers("/","/css/**","/images/**","/js/**","/profile").permitAll() // 로그인 안 한 사람은 홈만 열람 가능
+//                .anyRequest().authenticated() // 나머지들은, 로그인한 사람들만
                 .and()
                 .logout()
                 .logoutSuccessUrl("/main") //로그아웃 성공시 여기로 이동
