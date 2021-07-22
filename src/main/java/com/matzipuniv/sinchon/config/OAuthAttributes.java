@@ -55,7 +55,7 @@ public class OAuthAttributes {
     private static OAuthAttributes ofNaver(String userNameAttributeName, Map<String,Object> attributes){
         Map<String, Object> response = (Map<String, Object>) attributes.get("response");
         return OAuthAttributes.builder()
-                .name((String)response.get("name"))
+                .name((String)response.get("nickname"))
                 .email((String)response.get("email"))
                 .picture((String)response.get("profile_image"))
                 .attributes(response)
@@ -76,12 +76,13 @@ public class OAuthAttributes {
     }
 
 
-    public User toEntity(){//처음 가입할 때 User entity 생성
+    public User toEntity(String registrationId){//처음 가입할 때 User entity 생성
         User newUser = User.builder()
                         .nickname(name)
                         .profileUrl(picture)
                         .coin(0)
                         .email(email)
+                        .socialLogin(registrationId)
                         .deleteFlag(false)
                         .build();
         return newUser;

@@ -15,7 +15,6 @@ import java.util.List;
 @RequestMapping("/api/users")
 public class UserApiController {
     private final UserService userService;
-    private final CustomOAuth2UserService customOAuth2UserService;
 
     @GetMapping("")
     public List<UserResponseDto> findAll() {

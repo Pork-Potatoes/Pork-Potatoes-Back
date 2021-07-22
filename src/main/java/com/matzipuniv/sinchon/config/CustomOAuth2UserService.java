@@ -32,7 +32,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         OAuthAttributes attributes = OAuthAttributes.of(registrationId, userNameAttributeName,
                 oAuth2User.getAttributes()); //OAuth2User의 attribute 담을 클래스
 
-        User user = saveOrUpdate(attributes);
+        User user = saveOrUpdate(registrationId, attributes);
 
         httpSession.setAttribute("user",new SessionUser(user));
         String userRole = Role.MEMBER.getValue();
@@ -45,14 +45,12 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
                 attributes.getAttributes(), attributes.getNameAttributeKey());
     }
 
-    private User saveOrUpdate(OAuthAttributes attributes){
-        User user = userRepository.findByEmail(attributes.getEmail());
+    private User saveOrUpdate(String registrationId, OAuthAttributes attributes){
+        User user = userRepository.findByEmailAndSocialLogin(attributes.getEmail(), registrationId);
         if(user!=null){
-            user.updateNickname(attributes.getName());
-            user.updateProfileUrl(attributes.getPicture());
-            return userRepository.save(user);
+            return user;
         } else{
-            return userRepository.save(attributes.toEntity());
+            return userRepository.save(attributes.toEntity(registrationId));
         }
     }
 }
