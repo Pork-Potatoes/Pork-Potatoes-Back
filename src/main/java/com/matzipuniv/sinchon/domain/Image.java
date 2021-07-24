@@ -15,7 +15,7 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long imageNum;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "review_num", nullable = false)
     private Review review;
 

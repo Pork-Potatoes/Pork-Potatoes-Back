@@ -55,14 +55,13 @@ public class Review extends BaseTimeEntity{
     @Column
     private String tagMood;
 
-//
-//    @OneToMany(
-//            mappedBy = "review",
-//            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
-//            orphanRemoval = true
-//    )
-//    private List<Image> image = new ArrayList<>();
-//
+
+    @OneToMany(
+            mappedBy = "review",
+            cascade = CascadeType.ALL
+    )
+    private List<Image> image = new ArrayList<>();
+
   @Builder
     public Review(Restaurant restaurant, User user, String content, Double score, Boolean anonymousFlag, String menuName, Integer likedCnt, Integer report,
                   Boolean deleteFlag, String tagFood, String tagMood){

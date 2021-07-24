@@ -22,8 +22,8 @@ public class ReviewListResponseDto {
     private Integer likedCnt;
     private String filePath;
 
-    ImageService imageService;
-    List<ImageResponseDto> imageResponseDto = imageService.findAllDtoByReview(reviewNum);
+//    ImageService imageService;
+//    List<ImageResponseDto> imageResponseDto = imageService.findAllDtoByReview(reviewNum);
 
     public ReviewListResponseDto(Review entity){
         this.reviewNum = entity.getReviewNum();
@@ -34,8 +34,8 @@ public class ReviewListResponseDto {
         this.score = entity.getScore();
         this.likedCnt = entity.getLikedCnt();
 
-        if(!imageResponseDto.isEmpty()) {
-            this.filePath = imageResponseDto.get(0).getFilePath();
+        if(!entity.getImage().isEmpty()) {
+            this.filePath = entity.getImage().get(0).getFilePath();
         }
         else {
             this.filePath = null;
