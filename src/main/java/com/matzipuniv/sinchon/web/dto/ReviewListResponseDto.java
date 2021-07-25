@@ -21,6 +21,9 @@ public class ReviewListResponseDto {
     private Double score;
     private Integer likedCnt;
     private String filePath;
+    private String tagFood;
+    private String tagMood;
+
 
 //    ImageService imageService;
 //    List<ImageResponseDto> imageResponseDto = imageService.findAllDtoByReview(reviewNum);
@@ -40,7 +43,8 @@ public class ReviewListResponseDto {
         else {
             this.filePath = null;
         }
-
+        this.tagFood = entity.getTagFood();
+        this.tagMood = entity.getTagMood();
     }
 
 }
