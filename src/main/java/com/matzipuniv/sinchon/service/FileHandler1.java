@@ -23,6 +23,7 @@ import java.util.List;
 @Service
 public class FileHandler1 {
     private final ImageRepository imageRepository;
+    private final S3Uploader1 s3Uploader1;
 
     public List<Image> parseFileInfo(List<MultipartFile> multipartFiles, Review review) throws Exception {
 
@@ -80,9 +81,12 @@ public class FileHandler1 {
 
                 fileList.add(image);
 
+
                 // 저장된 파일로 변경하여 이를 보여주기 위함
                 file = new File(absolutePath + path + "/" + new_file_name);
                 multipartFile.transferTo(file);
+
+                //String s3Url = s3Uploader1.upload(file, "static");
 
             }
         }
