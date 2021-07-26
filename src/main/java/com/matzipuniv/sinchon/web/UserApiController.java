@@ -16,7 +16,6 @@ import java.util.List;
 @RequestMapping("/api/users")
 public class UserApiController {
     private final UserService userService;
-    private final S3Uploader s3Uploader;
 
     @GetMapping("")
     public List<UserResponseDto> findAll() {
