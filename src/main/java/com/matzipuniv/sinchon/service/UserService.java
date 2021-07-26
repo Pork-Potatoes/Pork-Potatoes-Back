@@ -21,7 +21,6 @@ import java.util.List;
 public class UserService {
     private final UserRepository userRepository;
     private final PinRepository pinRepository;
-    private final FileHandler fileHandler;
     private final S3Uploader s3Uploader;
 
     @Transactional
@@ -90,7 +89,7 @@ public class UserService {
         }
         else {
             try{
-                profileUrl = s3Uploader.upload(uploadFile, "static");
+                profileUrl = s3Uploader.upload(uploadFile);
 
                 if(profileUrl!=null) {
                     entity.updateProfileUrl(profileUrl);
