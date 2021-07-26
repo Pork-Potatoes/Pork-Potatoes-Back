@@ -61,7 +61,7 @@ public class ReviewService {
             throw new Exception("학교 인증이 되지 않은 사용자는 리뷰 등록을 할 수 없습니다.");
         }
 
-        List<Image> imageList = s3Uploader1.upload(files, "static", review);
+        List<Image> imageList = s3Uploader1.upload(files, review);
 
         if(!imageList.isEmpty()){
             for(Image image : imageList){
