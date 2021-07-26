@@ -100,7 +100,7 @@ public class UserService {
                 }
             } catch (Exception e) {
                 System.out.println("File exception");
-                return "error occurred during upload";
+                return "error occurred during upload" + e.getMessage();
             }
             return "modified";
         }

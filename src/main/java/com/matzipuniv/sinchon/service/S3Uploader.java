@@ -1,6 +1,10 @@
 package com.matzipuniv.sinchon.service;
 
+import com.amazonaws.AmazonServiceException;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +23,8 @@ import java.util.Optional;
 @Component
 public class S3Uploader {
     private final AmazonS3Client amazonS3Client;
-    private final String localUpload = new File("").getAbsolutePath()+"/src/main/resources/static/upload";
+    AmazonS3 s3 = AmazonS3ClientBuilder.standard().withRegion(Regions.DEFAULT_REGION).build();
+    private final String localUpload = new File("").getAbsolutePath()+"/src/main/resources/static/profile/";
 
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
@@ -39,7 +44,11 @@ public class S3Uploader {
     }
 
     private String putS3(File uploadFile, String fileName) {
-        amazonS3Client.putObject(new PutObjectRequest(bucket, fileName, uploadFile).withCannedAcl(CannedAccessControlList.BucketOwnerFullControl));
+        try {
+            s3.putObject("matzip-univ-img", "fileName", uploadFile);
+        } catch(AmazonServiceException e) {
+            log.debug("error occured" + e.getMessage());
+        }
         return amazonS3Client.getUrl(bucket, fileName).toString();
     }
 
@@ -57,6 +66,9 @@ public class S3Uploader {
             try (FileOutputStream fos = new FileOutputStream(convertFile)) {
                 fos.write(file.getBytes());
             }
+            return Optional.of(convertFile);
+        }
+        else if(convertFile.exists()) {
             return Optional.of(convertFile);
         }
 
