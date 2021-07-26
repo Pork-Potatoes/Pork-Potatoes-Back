@@ -63,60 +63,22 @@ public class S3Uploader1{
             return fileList;
         }
 
-        for(MultipartFile file : multipartFiles){
-            String fileName = file.getOriginalFilename();
+        for (MultipartFile file : multipartFiles) {
+            if(!file.isEmpty()) {
+                String fileName = file.getOriginalFilename();
 
-            amazonS3Client.putObject(new PutObjectRequest(bucket, fileName, file.getInputStream(), null)
-                    .withCannedAcl(CannedAccessControlList.PublicRead));
+                amazonS3Client.putObject(new PutObjectRequest(bucket, fileName, file.getInputStream(), null)
+                        .withCannedAcl(CannedAccessControlList.PublicRead));
 
-            String filePath = amazonS3Client.getUrl(bucket, fileName).toString();
-            Image image = new Image(file.getOriginalFilename(), review, filePath, file.getSize());
+                String filePath = amazonS3Client.getUrl(bucket, fileName).toString();
+                Image image = new Image(file.getOriginalFilename(), review, filePath, file.getSize());
 
-            fileList.add(image);
+                fileList.add(image);
+            }
         }
-        return fileList;
-        //return upload(uploadFile, dirName);
-    }
-//
-//    public String upload(File uploadFile, String dirName) {
-//        String fileName = dirName + "/" + UUID.randomUUID() + uploadFile.getName();
-//        String uploadImageUrl = putS3(uploadFile, fileName);
-//        removeNewFile(uploadFile);
-//        return uploadImageUrl;
-//    }
-//
-//    private String putS3(File uploadFile, String fileName) {
-//        amazonS3Client.putObject(new PutObjectRequest(bucket, fileName, uploadFile).withCannedAcl(CannedAccessControlList.PublicRead));
-//        return amazonS3Client.getUrl(bucket, fileName).toString();
-//    }
-//
-//    private void removeNewFile(File targetFile) {
-//        if (targetFile.delete()) {
-//            log.info("파일이 삭제되었습니다.");
-//        } else {
-//            log.info("파일이 삭제되지 못했습니다.");
-//        }
-//    }
-//
-//    // 로컬에 파일 업로드 하기
-//    private Optional<File> convert(MultipartFile file) throws IOException {
-//        File convertFile = new File(System.getProperty("user.dir") + "/" + file.getOriginalFilename());
-//        if (convertFile.createNewFile()) { // 바로 위에서 지정한 경로에 File이 생성됨 (경로가 잘못되었다면 생성 불가능)
-//            try (FileOutputStream fos = new FileOutputStream(convertFile)) { // FileOutputStream 데이터를 파일에 바이트 스트림으로 저장하기 위함
-//                fos.write(file.getBytes());
-//            }
-//            return Optional.of(convertFile);
-//        }
-//
-//        return Optional.empty();
-//    }
 
-//    public String upload(List<MultipartFile> files) throws IOException {
-//        String fileName = file.getOriginalFilename();
-//
-//        amazonS3Client.putObject(new PutObjectRequest(bucket, fileName, file.getInputStream(), null)
-//                .withCannedAcl(CannedAccessControlList.PublicRead));
-//        return amazonS3Client.getUrl(bucket, fileName).toString();
-//    }
+        return fileList;
+    }
+
 }
 
