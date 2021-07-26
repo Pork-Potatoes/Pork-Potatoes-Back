@@ -1,6 +1,7 @@
 package com.matzipuniv.sinchon.web;
 
 import com.matzipuniv.sinchon.config.CustomOAuth2UserService;
+import com.matzipuniv.sinchon.service.S3Uploader;
 import com.matzipuniv.sinchon.service.UserService;
 import com.matzipuniv.sinchon.web.dto.UserResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,7 @@ import java.util.List;
 @RequestMapping("/api/users")
 public class UserApiController {
     private final UserService userService;
+    private final S3Uploader s3Uploader;
 
     @GetMapping("")
     public List<UserResponseDto> findAll() {

@@ -9,6 +9,7 @@ version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    maven { url 'https://repo.spring.io/libs-milestone'}
     jcenter()
 }
 
@@ -39,6 +40,8 @@ dependencies {
     compile group: 'commons-fileupload', name: 'commons-fileupload', version: '1.3.3'
 
     compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.4")
+
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-aws', version: '2.2.1.RELEASE'
 }
 
 test {

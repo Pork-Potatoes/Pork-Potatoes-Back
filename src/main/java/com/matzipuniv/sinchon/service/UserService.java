@@ -21,6 +21,8 @@ public class UserService {
     private final UserRepository userRepository;
     private final PinRepository pinRepository;
     private final FileHandler fileHandler;
+    private final S3Uploader s3Uploader;
+    private final String localUpload = new File("").getAbsolutePath()+"/src/main/resources/static/upload";
 
     @Transactional
     public List<UserResponseDto> findAll() {
@@ -88,7 +90,8 @@ public class UserService {
         }
         else {
             try{
-                profileUrl = fileHandler.parseFileInfo(uploadFile);
+                profileUrl = s3Uploader.upload(uploadFile, localUpload);
+
                 if(profileUrl!=null) {
                     entity.updateProfileUrl(profileUrl);
                 }
