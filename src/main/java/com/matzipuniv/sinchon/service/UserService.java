@@ -1,6 +1,7 @@
 package com.matzipuniv.sinchon.service;
 
 import com.matzipuniv.sinchon.domain.*;
+import com.matzipuniv.sinchon.domain.User;
 import com.matzipuniv.sinchon.web.dto.UserResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,6 @@ public class UserService {
     private final PinRepository pinRepository;
     private final FileHandler fileHandler;
     private final S3Uploader s3Uploader;
-    private final String localUpload = new File("").getAbsolutePath()+"/src/main/resources/static/upload";
 
     @Transactional
     public List<UserResponseDto> findAll() {
@@ -90,7 +90,7 @@ public class UserService {
         }
         else {
             try{
-                profileUrl = s3Uploader.upload(uploadFile, localUpload);
+                profileUrl = s3Uploader.upload(uploadFile, "static");
 
                 if(profileUrl!=null) {
                     entity.updateProfileUrl(profileUrl);

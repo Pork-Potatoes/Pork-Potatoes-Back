@@ -19,6 +19,7 @@ import java.util.Optional;
 @Component
 public class S3Uploader {
     private final AmazonS3Client amazonS3Client;
+    private final String localUpload = new File("").getAbsolutePath()+"/src/main/resources/static/upload";
 
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
@@ -38,7 +39,7 @@ public class S3Uploader {
     }
 
     private String putS3(File uploadFile, String fileName) {
-        amazonS3Client.putObject(new PutObjectRequest(bucket, fileName, uploadFile).withCannedAcl(CannedAccessControlList.PublicRead));
+        amazonS3Client.putObject(new PutObjectRequest(bucket, fileName, uploadFile).withCannedAcl(CannedAccessControlList.BucketOwnerFullControl));
         return amazonS3Client.getUrl(bucket, fileName).toString();
     }
 
@@ -51,7 +52,7 @@ public class S3Uploader {
     }
 
     private Optional<File> convert(MultipartFile file) throws IOException {
-        File convertFile = new File(file.getOriginalFilename());
+        File convertFile = new File(localUpload + file.getOriginalFilename());
         if(convertFile.createNewFile()) {
             try (FileOutputStream fos = new FileOutputStream(convertFile)) {
                 fos.write(file.getBytes());
