@@ -18,6 +18,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
@@ -65,8 +66,27 @@ public class S3Uploader1{
 
         for (MultipartFile file : multipartFiles) {
             if(!file.isEmpty()) {
-                SimpleDateFormat date = new SimpleDateFormat("yyyymmddHHmmss");
-                String fileName = FilenameUtils.getBaseName(file.getOriginalFilename()) + "-" + date.format(new Date()) + "." + FilenameUtils.getExtension(file.getOriginalFilename());
+                String contentType = file.getContentType();
+                String originalFileExtension;
+
+                //확장자명 없을 경우
+                if(ObjectUtils.isEmpty(contentType)){
+                    break;
+                } else{
+                    if (contentType.contains("image/jpeg")) {
+                        originalFileExtension = ".jpg";
+                    } else if (contentType.contains("image/png")) {
+                        originalFileExtension = ".png";
+                    } else if (contentType.contains("image/gif")) {
+                        originalFileExtension = ".gif";
+                    }
+                    // 다른 파일 명이면 아무 일 하지 않는다
+                    else {
+                        break;
+                    }
+                }
+                //SimpleDateFormat date = new SimpleDateFormat("yyyymmddHHmmss");
+                String fileName = FilenameUtils.getBaseName(file.getOriginalFilename()) + "-" + Long.toString(System.nanoTime()) + "." + FilenameUtils.getExtension(file.getOriginalFilename());
 
                 s3Client.putObject(new PutObjectRequest(bucket, fileName, file.getInputStream(), null)
                         .withCannedAcl(CannedAccessControlList.PublicRead));
