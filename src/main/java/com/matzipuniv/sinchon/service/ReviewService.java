@@ -26,6 +26,7 @@ public class ReviewService {
     private final ReviewRepository reviewRepository;
     private final ImageRepository imageRepository;
     private final FileHandler1 fileHandler1;
+    private final S3Uploader1 s3Uploader1;
 
     @Transactional
     public ReviewResponseDto searchByNum(Long num, List<String> filePath){
@@ -60,7 +61,8 @@ public class ReviewService {
             throw new Exception("학교 인증이 되지 않은 사용자는 리뷰 등록을 할 수 없습니다.");
         }
 
-        List<Image> imageList = fileHandler1.parseFileInfo(files, review);
+        List<Image> imageList = s3Uploader1.upload(files, review);
+
         if(!imageList.isEmpty()){
             for(Image image : imageList){
                 imageRepository.save(image);
