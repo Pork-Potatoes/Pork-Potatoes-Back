@@ -14,6 +14,7 @@ import com.matzipuniv.sinchon.domain.Image;
 import com.matzipuniv.sinchon.domain.Review;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Component;
@@ -23,16 +24,15 @@ import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Slf4j
 @RequiredArgsConstructor
 @Component
 public class S3Uploader1{
-    private AmazonS3Client amazonS3Client;
+    private AmazonS3 s3Client;
+    public static final String CLOUD_FRONT_DOMAIN_NAME = "d18omhl2ssqffk.cloudfront.net";
 
     @Value("${cloud.aws.credentials.accessKey}")
     private String accessKey;
@@ -50,7 +50,7 @@ public class S3Uploader1{
     public void setS3Client() {
         AWSCredentials credentials = new BasicAWSCredentials(this.accessKey, this.secretKey);
 
-        amazonS3Client = (AmazonS3Client) AmazonS3ClientBuilder.standard()
+        s3Client = AmazonS3ClientBuilder.standard()
                 .withCredentials(new AWSStaticCredentialsProvider(credentials))
                 .withRegion(this.region)
                 .build();
@@ -65,19 +65,24 @@ public class S3Uploader1{
 
         for (MultipartFile file : multipartFiles) {
             if(!file.isEmpty()) {
-                String fileName = file.getOriginalFilename();
+                SimpleDateFormat date = new SimpleDateFormat("yyyymmddHHmmss");
+                String fileName = FilenameUtils.getBaseName(file.getOriginalFilename()) + "-" + date.format(new Date()) + "." + FilenameUtils.getExtension(file.getOriginalFilename());
 
-                amazonS3Client.putObject(new PutObjectRequest(bucket, fileName, file.getInputStream(), null)
+                s3Client.putObject(new PutObjectRequest(bucket, fileName, file.getInputStream(), null)
                         .withCannedAcl(CannedAccessControlList.PublicRead));
 
-                String filePath = amazonS3Client.getUrl(bucket, fileName).toString();
+                String filePath = "https://" + CLOUD_FRONT_DOMAIN_NAME + "/" + fileName;
                 Image image = new Image(file.getOriginalFilename(), review, filePath, file.getSize());
-
                 fileList.add(image);
             }
         }
 
         return fileList;
+    }
+
+    public String delete(String currentFilePath){
+        s3Client.deleteObject(bucket, currentFilePath);
+        return "deleted";
     }
 
 }
