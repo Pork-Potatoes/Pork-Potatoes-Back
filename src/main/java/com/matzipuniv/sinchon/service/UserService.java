@@ -106,6 +106,7 @@ public class UserService {
 
     @Transactional
     public String deleteProfileUrl(Long num) {
+        //미완성
         String profileUrl;
         User entity = userRepository.findByUserNumAndDeleteFlagFalse(num);
         if(entity==null) {
