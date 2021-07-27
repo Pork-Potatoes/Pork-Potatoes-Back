@@ -120,7 +120,7 @@ public class UserService {
                     return "delete file error" + e.getMessage();
                 }
             }
-            entity.updateProfileUrl("https://" + s3Uploader.CLOUD_FRONT_DOMAIN_NAME + "/");
+            entity.updateProfileUrl("https://" + s3Uploader.CLOUD_FRONT_DOMAIN_NAME + "/testProfile-20212127152122.png");
             return "deleted";
         }
     }

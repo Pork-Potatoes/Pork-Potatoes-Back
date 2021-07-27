@@ -1,21 +1,11 @@
 <!DOCTYPE html>
-<body>
-<h1>파일 업로드</h1> <hr>
-
-<form th:action="@{/api/users/1}" method="get" enctype="multipart/form-data">
-    제목 : <input type="text" name="title"> <br>
-    파일 : <input type="file" name="file"> <br>
-    <button>등록하기</button>
-</form>
-
-<hr>
-
-<div th:each="gallery : ${galleryList}">
+<body xmlns:th="http://www.w3.org/1999/xhtml">
+<h1>test</h1>
+<div>
     <div style="margin-bottom: 30px">
-        <p th:inline="text">제목 : [[${user.userNum}]]</p>
-        <img th:src="${user.profileUrl}" style="width: 500px; height: 300px;">
+        <p th:inline="text">title : test </p>
+        <img src="https://d18omhl2ssqffk.cloudfront.net/testProfile-20212127152122.png" style="width: 500px; height: 300px;">
     </div>
-    <hr>
 </div>
 
 </body>
