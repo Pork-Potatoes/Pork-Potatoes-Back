@@ -14,6 +14,7 @@ import com.matzipuniv.sinchon.domain.Image;
 import com.matzipuniv.sinchon.domain.Review;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Component;
@@ -31,7 +32,7 @@ import java.util.*;
 @Component
 public class S3Uploader1{
     private AmazonS3 s3Client;
-    public static final String CLOUD_FRONT_DOMAIN_NAME = "dq582wpwqowa9.cloudfront.net";
+    public static final String CLOUD_FRONT_DOMAIN_NAME = "d18omhl2ssqffk.cloudfront.net";
 
     @Value("${cloud.aws.credentials.accessKey}")
     private String accessKey;
@@ -65,7 +66,7 @@ public class S3Uploader1{
         for (MultipartFile file : multipartFiles) {
             if(!file.isEmpty()) {
                 SimpleDateFormat date = new SimpleDateFormat("yyyymmddHHmmss");
-                String fileName = file.getOriginalFilename() + "-" + date.format(new Date());
+                String fileName = FilenameUtils.getBaseName(file.getOriginalFilename()) + "-" + date.format(new Date()) + "." + FilenameUtils.getExtension(file.getOriginalFilename());
 
                 s3Client.putObject(new PutObjectRequest(bucket, fileName, file.getInputStream(), null)
                         .withCannedAcl(CannedAccessControlList.PublicRead));
