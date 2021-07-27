@@ -70,7 +70,13 @@ public class S3Uploader {
     }
 
     public String delete(String currentFilePath) {
-        s3Client.deleteObject(bucket, currentFilePath);
-        return "deleted";
+        try {
+            s3Client.deleteObject(bucket, currentFilePath);
+            return "deleted";
+        }
+        catch(Exception e) {
+            return "error occured" + e.getMessage();
+        }
+
     }
 }
