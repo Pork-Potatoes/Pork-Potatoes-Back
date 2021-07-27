@@ -9,6 +9,7 @@ import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,7 +27,7 @@ import java.util.Optional;
 @Component
 public class S3Uploader {
     private AmazonS3 s3Client;
-    public static final String CLOUD_FRONT_DOMAIN_NAME = "dq582wpwqowa9.cloudfront.net";
+    public static final String CLOUD_FRONT_DOMAIN_NAME = "d18omhl2ssqffk.cloudfront.net";
 
     @Value("${cloud.aws.credentials.accessKey}")
     private String accessKey;
@@ -52,7 +53,7 @@ public class S3Uploader {
 
     public String upload(String currentFilePath, MultipartFile file) throws IOException {
         SimpleDateFormat date = new SimpleDateFormat("yyyymmddHHmmss");
-        String fileName = file.getOriginalFilename() + "-" + date.format(new Date());
+        String fileName = FilenameUtils.getBaseName(file.getOriginalFilename()) + "-" + date.format(new Date()) + "." + FilenameUtils.getExtension(file.getOriginalFilename());;
 
         if ("".equals(currentFilePath) == false && currentFilePath != null) {
             boolean isExistObject = s3Client.doesObjectExist(bucket, currentFilePath);
