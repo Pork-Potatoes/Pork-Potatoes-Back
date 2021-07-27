@@ -91,7 +91,7 @@ public class S3Uploader1{
                 s3Client.putObject(new PutObjectRequest(bucket, fileName, file.getInputStream(), null)
                         .withCannedAcl(CannedAccessControlList.PublicRead));
 
-                String filePath = "https://" + CLOUD_FRONT_DOMAIN_NAME + "/" + fileName;
+                String filePath = "http://" + CLOUD_FRONT_DOMAIN_NAME + "/" + fileName;
                 Image image = new Image(file.getOriginalFilename(), review, filePath, file.getSize());
                 fileList.add(image);
             }

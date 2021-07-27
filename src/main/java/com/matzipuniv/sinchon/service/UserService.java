@@ -91,7 +91,7 @@ public class UserService {
             try{
                 profileUrl = s3Uploader.upload(entity.getProfileUrl(), uploadFile);
                 if(profileUrl!=null) {
-                    entity.updateProfileUrl("https://" + s3Uploader.CLOUD_FRONT_DOMAIN_NAME + "/" + profileUrl);
+                    entity.updateProfileUrl("http://" + s3Uploader.CLOUD_FRONT_DOMAIN_NAME + "/" + profileUrl);
                 }
                 else {
                     return "file type is not proper or is corrupted";
@@ -120,7 +120,7 @@ public class UserService {
                     return "delete file error" + e.getMessage();
                 }
             }
-            entity.updateProfileUrl("https://" + s3Uploader.CLOUD_FRONT_DOMAIN_NAME + "/testProfile-20212127152122.png");
+            entity.updateProfileUrl("http://" + s3Uploader.CLOUD_FRONT_DOMAIN_NAME + "/testProfile-20212127152122.png");
             return "deleted";
         }
     }
