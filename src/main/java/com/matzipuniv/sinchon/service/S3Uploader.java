@@ -17,13 +17,16 @@ import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Optional;
 
 @Slf4j
 @RequiredArgsConstructor
 @Component
 public class S3Uploader {
-    private AmazonS3 amazonS3Client;
+    private AmazonS3 s3Client;
+    public static final String CLOUD_FRONT_DOMAIN_NAME = "dq582wpwqowa9.cloudfront.net";
 
     @Value("${cloud.aws.credentials.accessKey}")
     private String accessKey;
@@ -41,17 +44,32 @@ public class S3Uploader {
     public void setS3Client() {
         AWSCredentials credentials = new BasicAWSCredentials(this.accessKey, this.secretKey);
 
-        amazonS3Client = AmazonS3ClientBuilder.standard()
+        s3Client = AmazonS3ClientBuilder.standard()
                 .withCredentials(new AWSStaticCredentialsProvider(credentials))
                 .withRegion(this.region)
                 .build();
     }
 
-    public String upload(MultipartFile file) throws IOException {
-        String fileName = file.getOriginalFilename();
+    public String upload(String currentFilePath, MultipartFile file) throws IOException {
+        SimpleDateFormat date = new SimpleDateFormat("yyyymmddHHmmss");
+        String fileName = file.getOriginalFilename() + "-" + date.format(new Date());
 
-        amazonS3Client.putObject(new PutObjectRequest(bucket, fileName, file.getInputStream(), null)
+        if ("".equals(currentFilePath) == false && currentFilePath != null) {
+            boolean isExistObject = s3Client.doesObjectExist(bucket, currentFilePath);
+
+            if (isExistObject == true) {
+                s3Client.deleteObject(bucket, currentFilePath);
+            }
+        }
+
+        s3Client.putObject(new PutObjectRequest(bucket, fileName, file.getInputStream(), null)
                 .withCannedAcl(CannedAccessControlList.PublicRead));
-        return amazonS3Client.getUrl(bucket, fileName).toString();
+
+        return fileName;
+    }
+
+    public String delete(String currentFilePath) {
+        s3Client.deleteObject(bucket, currentFilePath);
+        return "deleted";
     }
 }

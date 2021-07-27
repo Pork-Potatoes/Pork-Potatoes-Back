@@ -89,10 +89,9 @@ public class UserService {
         }
         else {
             try{
-                profileUrl = s3Uploader.upload(uploadFile);
-
+                profileUrl = s3Uploader.upload(entity.getProfileUrl(), uploadFile);
                 if(profileUrl!=null) {
-                    entity.updateProfileUrl(profileUrl);
+                    entity.updateProfileUrl("https://" + s3Uploader.CLOUD_FRONT_DOMAIN_NAME + "/" + profileUrl);
                 }
                 else {
                     return "file type is not proper or is corrupted";
@@ -107,7 +106,7 @@ public class UserService {
 
     @Transactional
     public String deleteProfileUrl(Long num) {
-        String absoluteUrl = new File("").getAbsolutePath()+"/src/main/resources/static";
+        String profileUrl;
         User entity = userRepository.findByUserNumAndDeleteFlagFalse(num);
         if(entity==null) {
             return "없는 유저입니다. user_num = "+num;
@@ -115,14 +114,12 @@ public class UserService {
             String currUrl = entity.getProfileUrl();
             if(!currUrl.equals("/uploads/defaultProfile.png")) {
                 try {
-                    String profileUrl = absoluteUrl + entity.getProfileUrl();
-                    Path file = Paths.get(profileUrl);
-                    Files.delete(file);
+                    s3Uploader.delete(currUrl);
                 } catch(Exception e) {
                     return "delete file error" + e.getMessage();
                 }
             }
-            entity.updateProfileUrl("/uploads/defaultProfile.png");
+            entity.updateProfileUrl("https://" + s3Uploader.CLOUD_FRONT_DOMAIN_NAME + "/");
             return "deleted";
         }
     }
