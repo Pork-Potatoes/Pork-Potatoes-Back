@@ -11,12 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import javax.transaction.Transactional;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
 import java.util.stream.Collectors;
-import java.util.List;
+import static java.time.temporal.ChronoUnit.DAYS;
 
 @RequiredArgsConstructor
 @Service
@@ -29,10 +30,10 @@ public class ReviewService {
     private final S3Uploader1 s3Uploader1;
 
     @Transactional
-    public ReviewResponseDto searchByNum(Long num, List<String> filePath){
+    public ReviewResponseDto searchByNum(Long num, List<String> filePath) {
         Review entity = reviewRepository.findById(num).
                 orElseThrow(() -> new IllegalArgumentException("해당 리뷰가 없습니다. num = " + num));
-        if (entity.getDeleteFlag()==true){
+        if (entity.getDeleteFlag() == true) {
             throw new IllegalArgumentException("해당 리뷰가 삭제되었습니다. num = " + num);
         }
         return new ReviewResponseDto(entity, filePath);
@@ -42,7 +43,7 @@ public class ReviewService {
     public void createReview(
             ReviewRequestDto requestDto,
             List<MultipartFile> files
-    ) throws Exception{
+    ) throws Exception {
         Review review = new Review(
                 requestDto.getRestaurant(),
                 requestDto.getUser(),
@@ -57,26 +58,26 @@ public class ReviewService {
                 requestDto.getTagMood()
         );
 
-        if (review.getUser().getUniversity().isEmpty()){
+        if (review.getUser().getUniversity().isEmpty()) {
             throw new Exception("학교 인증이 되지 않은 사용자는 리뷰 등록을 할 수 없습니다.");
         }
 
         List<Image> imageList = s3Uploader1.upload(files, review);
 
-        if(!imageList.isEmpty()){
-            for(Image image : imageList){
+        if (!imageList.isEmpty()) {
+            for (Image image : imageList) {
                 imageRepository.save(image);
             }
         }
 
         User user = userRepository.findById(review.getUser().getUserNum())
-                .orElseThrow(()->new IllegalArgumentException("해당 user를 찾을 수 없습니다. "));
+                .orElseThrow(() -> new IllegalArgumentException("해당 user를 찾을 수 없습니다. "));
         Integer currentCoin = user.getCoin();
         user.updateCoin(currentCoin);
         userRepository.save(user);
 
         Restaurant restaurant = restaurantRepository.findById(review.getRestaurant().getRestaurantNum())
-                .orElseThrow(()->new IllegalArgumentException("해당 restaurant를 찾을 수 없습니다."));
+                .orElseThrow(() -> new IllegalArgumentException("해당 restaurant를 찾을 수 없습니다."));
         Integer currentReviewCount = reviewRepository.countByRestaurant(restaurant);
         restaurant.updateAvgScore(currentReviewCount, review.getScore());
         restaurantRepository.save(restaurant);
@@ -86,18 +87,18 @@ public class ReviewService {
     }
 
     @Transactional
-    public List<ReviewListResponseDto> findAllReviewsSort(String search, String sort){
+    public List<ReviewListResponseDto> findAllReviewsSort(String search, String sort) {
         List<Review> reviews = reviewRepository.findAllByContentORMenuNameORRestaurant(search, search, search);
         List<Review> reviewsResponse = new ArrayList<>();
 
         //삭제 확인
-        for(Review review: reviews){
-            if(review.getDeleteFlag())
+        for (Review review : reviews) {
+            if (review.getDeleteFlag())
                 continue;
             reviewsResponse.add(review);
         }
         //sort 종류에 따라 정렬
-        if(sort.equals("-created-date")) {
+        if (sort.equals("-created-date")) {
             Collections.sort(reviewsResponse, new Comparator<Review>() {
                 @Override
                 public int compare(Review o1, Review o2) {
@@ -105,7 +106,7 @@ public class ReviewService {
                 }
             });
             Collections.reverse(reviewsResponse);
-        }else if(sort.equals("-score")){
+        } else if (sort.equals("-score")) {
             Collections.sort(reviewsResponse, new Comparator<Review>() {
                 @Override
                 public int compare(Review o1, Review o2) {
@@ -113,7 +114,7 @@ public class ReviewService {
                 }
             });
             Collections.reverse(reviewsResponse);
-        }else if(sort.equals("-liked-cnt")){
+        } else if (sort.equals("-liked-cnt")) {
             Collections.sort(reviewsResponse, new Comparator<Review>() {
                 @Override
                 public int compare(Review o1, Review o2) {
@@ -128,21 +129,38 @@ public class ReviewService {
 
     }
 
-    @Transactional
-    public List<ReviewListResponseDto> todaysLikedReviews(){
-        LocalDate todaysDate = LocalDate.now();
+//    @Transactional
+//    public List<ReviewListResponseDto> todaysLikedReviews(){
+//        LocalDate todaysDate = LocalDate.now();
+//
+//        List<Review> reviews = reviewRepository.findByDeleteFlagOrderByLikedCntDesc(false);
+//        List<Review> responseReviews = new ArrayList<>();
+//        for (Review review : reviews){
+//            if (review.getCreatedDate().toLocalDate().equals(todaysDate)){
+//               responseReviews.add(review);
+//            }
+//        }
+//        return responseReviews.stream()
+//                .map(ReviewListResponseDto::new)
+//                .collect(Collectors.toList());
+//    }
 
+    @Transactional
+    public List<ReviewListResponseDto> thisWeeksLikedReviews() {
+        LocalDate now = LocalDate.now();
         List<Review> reviews = reviewRepository.findByDeleteFlagOrderByLikedCntDesc(false);
         List<Review> responseReviews = new ArrayList<>();
-        for (Review review : reviews){
-            if (review.getCreatedDate().toLocalDate().equals(todaysDate)){
-               responseReviews.add(review);
+        for (Review review : reviews) {
+            long diff = DAYS.between(review.getCreatedDate().toLocalDate(), now);
+            if (diff <= 7){
+                responseReviews.add(review);
             }
         }
         return responseReviews.stream()
                 .map(ReviewListResponseDto::new)
                 .collect(Collectors.toList());
     }
+
 
     @Transactional
     public List<ReviewListResponseDto> recentReviews() {
@@ -157,7 +175,7 @@ public class ReviewService {
     public List<ReviewListResponseDto> restaurantReviews(Long restaurantNum, String sort) {
         List<Review> reviews = new ArrayList<>();
 
-        if(sort.equals("-created-date")){
+        if (sort.equals("-created-date")) {
             reviews = reviewRepository.findByDeleteFlagAndRestaurantRestaurantNumOrderByCreatedDateDesc(false, restaurantNum);
         }
 
@@ -169,20 +187,21 @@ public class ReviewService {
     public List<ReviewListResponseDto> myReviews(Long userNum, String sort) {
         List<Review> reviews = new ArrayList<>();
 
-        if(sort.equals("-created-date")){
+        if (sort.equals("-created-date")) {
             reviews = reviewRepository.findByDeleteFlagAndUserUserNumOrderByCreatedDateDesc(false, userNum);
         }
 
-        return  reviews.stream()
+        return reviews.stream()
                 .map(ReviewListResponseDto::new)
                 .collect(Collectors.toList());
     }
 
     public String delete(Long num) {
         Review entity = reviewRepository.findById(num)
-                .orElseThrow(()->new IllegalArgumentException("해당 리뷰가 존재하지 않습니다. num = " + num));
+                .orElseThrow(() -> new IllegalArgumentException("해당 리뷰가 존재하지 않습니다. num = " + num));
         entity.setDeleteFlag(true);
         reviewRepository.save(entity);
         return "Success";
     }
+
 }
