@@ -78,9 +78,14 @@ public class ReviewApiController {
         return reviewService.findAllReviewsSort(query, sort);
     }
 
-    @GetMapping("/api/reviews/today")
-    public List<ReviewListResponseDto> todaysLikedReviews(){
-        return reviewService.todaysLikedReviews();
+//    @GetMapping("/api/reviews/today")
+//    public List<ReviewListResponseDto> todaysLikedReviews(){
+//        return reviewService.todaysLikedReviews();
+//    }
+
+    @GetMapping("/api/reviews/thisWeek")
+    public List<ReviewListResponseDto> thisWeeksLikedReviews(){
+        return reviewService.thisWeeksLikedReviews();
     }
 
     @GetMapping("/api/reviews/recent")
