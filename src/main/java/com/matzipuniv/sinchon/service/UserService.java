@@ -44,7 +44,7 @@ public class UserService {
             System.out.println("없는 유저입니다. user_num = "+num);
         }
         long dayGone = compareDay(LocalDateTime.now(), entity.getAuthenticatedDate());
-        if(dayGone > 30) {
+        if(dayGone > 365) {
             entity.updateUniv(null);
         }
         return new UserResponseDto(entity);
