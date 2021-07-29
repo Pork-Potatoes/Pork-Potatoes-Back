@@ -3,6 +3,7 @@ package com.matzipuniv.sinchon.service;
 import com.matzipuniv.sinchon.domain.*;
 import com.matzipuniv.sinchon.domain.User;
 import com.matzipuniv.sinchon.web.dto.UserResponseDto;
+import com.matzipuniv.sinchon.web.dto.UserUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -71,11 +72,12 @@ public class UserService {
     }
 
     @Transactional
-    public String updateNickname(Long num, String nickname) {
+    public String updateNickname(Long num, UserUpdateRequestDto nicknameDto) {
         User entity = userRepository.findByUserNumAndDeleteFlagFalse(num);
         if(entity==null) {
             return "없는 유저입니다. user_num = "+num;
         } else {
+            String nickname = nicknameDto.getNickname();
             if(!nickname.equals("null") || !(nickname == null)){
                 entity.updateNickname(nickname);
                 return "modified";

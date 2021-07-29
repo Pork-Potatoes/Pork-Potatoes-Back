@@ -4,6 +4,7 @@ import com.matzipuniv.sinchon.config.CustomOAuth2UserService;
 import com.matzipuniv.sinchon.service.S3Uploader;
 import com.matzipuniv.sinchon.service.UserService;
 import com.matzipuniv.sinchon.web.dto.UserResponseDto;
+import com.matzipuniv.sinchon.web.dto.UserUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,7 +34,7 @@ public class UserApiController {
     }
 
     @PatchMapping("/{userNum}/nickname")
-    public String updateNickname(@PathVariable Long userNum, @RequestBody String nickname) {
+    public String updateNickname(@PathVariable Long userNum, @RequestBody UserUpdateRequestDto nickname) {
         return userService.updateNickname(userNum, nickname);
     }
 
