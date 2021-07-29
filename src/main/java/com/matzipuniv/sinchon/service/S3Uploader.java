@@ -70,8 +70,10 @@ public class S3Uploader {
     }
 
     public String delete(String currentFilePath) {
+        int idx = currentFilePath.lastIndexOf("/");
+        String fileName = currentFilePath.substring(idx+1);
         try {
-            s3Client.deleteObject(bucket, currentFilePath);
+            s3Client.deleteObject(bucket, fileName);
             return "deleted";
         }
         catch(Exception e) {
