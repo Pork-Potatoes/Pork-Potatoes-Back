@@ -44,9 +44,11 @@ public class UserService {
         if(entity==null) {
             System.out.println("없는 유저입니다. user_num = "+num);
         }
-        long dayGone = compareDay(LocalDateTime.now(), entity.getAuthenticatedDate());
-        if(dayGone > 365) {
-            entity.updateUniv(null);
+        if(entity.getAuthenticatedDate()!=null) {
+            long dayGone = compareDay(LocalDateTime.now(), entity.getAuthenticatedDate());
+            if(dayGone > 365) {
+                entity.updateUniv(null);
+            }
         }
         return new UserResponseDto(entity);
     }
@@ -96,6 +98,8 @@ public class UserService {
         }
         else {
             try{
+                String curr = entity.getProfileUrl();
+                s3Uploader.delete(curr);
                 profileUrl = s3Uploader.upload(entity.getProfileUrl(), uploadFile);
                 if(profileUrl!=null) {
                     entity.updateProfileUrl("http://" + s3Uploader.CLOUD_FRONT_DOMAIN_NAME + "/" + profileUrl);
@@ -114,20 +118,19 @@ public class UserService {
     @Transactional
     public String deleteProfileUrl(Long num) {
         //미완성
-        String profileUrl;
         User entity = userRepository.findByUserNumAndDeleteFlagFalse(num);
         if(entity==null) {
             return "없는 유저입니다. user_num = "+num;
         } else {
             String currUrl = entity.getProfileUrl();
-            if(!currUrl.equals("/uploads/defaultProfile.png")) {
+            if(!currUrl.equals("http://d18omhl2ssqffk.cloudfront.net/default-20215529215533.png")) {
                 try {
                     s3Uploader.delete(currUrl);
                 } catch(Exception e) {
                     return "delete file error" + e.getMessage();
                 }
             }
-            entity.updateProfileUrl("http://" + s3Uploader.CLOUD_FRONT_DOMAIN_NAME + "/defaultProfile-20214829004823.png");
+            entity.updateProfileUrl("http://d18omhl2ssqffk.cloudfront.net/default-20215529215533.png");
             return "deleted";
         }
     }
