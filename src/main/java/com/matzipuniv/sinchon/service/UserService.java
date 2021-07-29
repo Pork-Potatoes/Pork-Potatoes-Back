@@ -8,13 +8,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
-import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
+import java.io.File;
+import java.util.*;
 
 @RequiredArgsConstructor
 @Service
@@ -41,6 +42,10 @@ public class UserService {
         User entity = userRepository.findByUserNumAndDeleteFlagFalse(num);
         if(entity==null) {
             System.out.println("없는 유저입니다. user_num = "+num);
+        }
+        long dayGone = compareDay(LocalDateTime.now(), entity.getAuthenticatedDate());
+        if(dayGone > 365) {
+            entity.updateUniv(null);
         }
         return new UserResponseDto(entity);
     }
@@ -120,7 +125,7 @@ public class UserService {
                     return "delete file error" + e.getMessage();
                 }
             }
-            entity.updateProfileUrl("http://" + s3Uploader.CLOUD_FRONT_DOMAIN_NAME + "/testProfile-20212127152122.png");
+            entity.updateProfileUrl("http://" + s3Uploader.CLOUD_FRONT_DOMAIN_NAME + "/defaultProfile-20214829004823.png");
             return "deleted";
         }
     }
@@ -155,5 +160,11 @@ public class UserService {
                 return "univ is null";
             }
         }
+    }
+
+    public long compareDay(LocalDateTime now, LocalDateTime auth_date) {
+        LocalDateTime now2 = now.truncatedTo(ChronoUnit.DAYS);
+        LocalDateTime auth_date2 = auth_date.truncatedTo(ChronoUnit.DAYS);
+        return ChronoUnit.DAYS.between(auth_date2, now);
     }
 }
