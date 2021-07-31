@@ -31,7 +31,7 @@ import java.util.*;
 @Slf4j
 @RequiredArgsConstructor
 @Component
-public class S3Uploader1{
+public class S3UploaderReview {
     private AmazonS3 s3Client;
     public static final String CLOUD_FRONT_DOMAIN_NAME = "d18omhl2ssqffk.cloudfront.net";
 
@@ -101,8 +101,15 @@ public class S3Uploader1{
     }
 
     public String delete(String currentFilePath){
-        s3Client.deleteObject(bucket, currentFilePath);
-        return "deleted";
+        int idx = currentFilePath.lastIndexOf("/");
+        String fileName = currentFilePath.substring(idx+1);
+        try {
+            s3Client.deleteObject(bucket, fileName);
+            return "deleted";
+        }
+        catch(Exception e) {
+            return "error occured" + e.getMessage();
+        }
     }
 
 }

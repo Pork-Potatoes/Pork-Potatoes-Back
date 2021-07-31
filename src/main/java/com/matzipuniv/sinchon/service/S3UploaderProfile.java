@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
@@ -25,7 +26,7 @@ import java.util.Optional;
 @Slf4j
 @RequiredArgsConstructor
 @Component
-public class S3Uploader {
+public class S3UploaderProfile {
     private AmazonS3 s3Client;
     public static final String CLOUD_FRONT_DOMAIN_NAME = "d18omhl2ssqffk.cloudfront.net";
 
@@ -52,21 +53,45 @@ public class S3Uploader {
     }
 
     public String upload(String currentFilePath, MultipartFile file) throws IOException {
-        SimpleDateFormat date = new SimpleDateFormat("yyyymmddHHmmss");
-        String fileName = FilenameUtils.getBaseName(file.getOriginalFilename()) + "-" + date.format(new Date()) + "." + FilenameUtils.getExtension(file.getOriginalFilename());;
+        int isOk = 1;
 
-        if ("".equals(currentFilePath) == false && currentFilePath != null) {
-            boolean isExistObject = s3Client.doesObjectExist(bucket, currentFilePath);
-
-            if (isExistObject == true) {
-                s3Client.deleteObject(bucket, currentFilePath);
+        if(file!=null){
+            String contentType = file.getContentType();
+            if(ObjectUtils.isEmpty(contentType)){
+                isOk = 0;
+            } else {
+                if(contentType.contains("image/jpeg")) {
+                    isOk = 1;
+                }
+                else if(contentType.contains("image/png")) {
+                    isOk = 1;
+                }
+                else{
+                    isOk = 0;
+                }
             }
         }
 
-        s3Client.putObject(new PutObjectRequest(bucket, fileName, file.getInputStream(), null)
-                .withCannedAcl(CannedAccessControlList.PublicRead));
 
-        return fileName;
+        if(isOk == 1) {
+            SimpleDateFormat date = new SimpleDateFormat("yyyymmddHHmmss");
+            String fileName = FilenameUtils.getBaseName(file.getOriginalFilename()) + "-" + date.format(new Date()) + "." + FilenameUtils.getExtension(file.getOriginalFilename());
+
+            if ("".equals(currentFilePath) == false && currentFilePath != null) {
+                boolean isExistObject = s3Client.doesObjectExist(bucket, currentFilePath);
+
+                if (isExistObject == true) {
+                    s3Client.deleteObject(bucket, currentFilePath);
+                }
+            }
+
+            s3Client.putObject(new PutObjectRequest(bucket, fileName, file.getInputStream(), null)
+                    .withCannedAcl(CannedAccessControlList.PublicRead));
+
+            return fileName;
+        } else {
+            return null;
+        }
     }
 
     public String delete(String currentFilePath) {

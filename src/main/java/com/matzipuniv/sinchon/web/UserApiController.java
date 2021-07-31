@@ -1,7 +1,5 @@
 package com.matzipuniv.sinchon.web;
 
-import com.matzipuniv.sinchon.config.CustomOAuth2UserService;
-import com.matzipuniv.sinchon.service.S3Uploader;
 import com.matzipuniv.sinchon.service.UserService;
 import com.matzipuniv.sinchon.web.dto.UserResponseDto;
 import com.matzipuniv.sinchon.web.dto.UserUpdateRequestDto;
@@ -9,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -29,33 +26,33 @@ public class UserApiController {
     }
 
     @DeleteMapping("/{userNum}")
-    public String deleteUser(@PathVariable Long userNum) {
+    public String deleteByNum(@PathVariable Long userNum) {
         return userService.deleteUser(userNum);
     }
 
     @PatchMapping("/{userNum}/nickname")
-    public String updateNickname(@PathVariable Long userNum, @RequestBody UserUpdateRequestDto nickname) {
+    public String updateNicknameByNum(@PathVariable Long userNum, @RequestBody UserUpdateRequestDto nickname) {
         return userService.updateNickname(userNum, nickname);
     }
 
     @PatchMapping("/{userNum}/image")
-    public String updateProfile(@PathVariable Long userNum, @RequestParam("uploadFile")MultipartFile uploadFile) {
-        return userService.updateProfileUrl(userNum, uploadFile);
+    public String updateProfileByNum(@PathVariable Long userNum, @RequestParam("uploadFile")MultipartFile uploadFile) {
+        return userService.updateProfile(userNum, uploadFile);
     }
 
     @DeleteMapping("/{userNum}/image")
-    public String deleteProfile(@PathVariable Long userNum) {
-        return userService.deleteProfileUrl(userNum);
+    public String deleteProfileByNum(@PathVariable Long userNum) {
+        return userService.deleteProfile(userNum);
     }
 
     @GetMapping("/{userNum}/authenticate")
     public String findUnivByNum(@PathVariable Long userNum) {
-        return userService.findUnivByNum(userNum);
+        return userService.findUniv(userNum);
     }
 
     @PostMapping("/{userNum}/authenticate")
-    public String setUniv(@PathVariable Long userNum, @RequestBody String univ) {
-        return userService.setUnivByNum(userNum, univ);
+    public String setUnivByNum(@PathVariable Long userNum, @RequestBody String univ) {
+        return userService.setUniv(userNum, univ);
     }
 
 }
