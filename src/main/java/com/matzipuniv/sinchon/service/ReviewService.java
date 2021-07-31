@@ -2,19 +2,14 @@ package com.matzipuniv.sinchon.service;
 
 
 import com.matzipuniv.sinchon.domain.*;
-import com.matzipuniv.sinchon.web.dto.ImageResponseDto;
 import com.matzipuniv.sinchon.web.dto.ReviewRequestDto;
 import com.matzipuniv.sinchon.web.dto.ReviewListResponseDto;
 import com.matzipuniv.sinchon.web.dto.ReviewResponseDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import javax.transaction.Transactional;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
 import static java.time.temporal.ChronoUnit.DAYS;
@@ -26,8 +21,7 @@ public class ReviewService {
     private final RestaurantRepository restaurantRepository;
     private final ReviewRepository reviewRepository;
     private final ImageRepository imageRepository;
-    private final FileHandler1 fileHandler1;
-    private final S3Uploader1 s3Uploader1;
+    private final S3UploaderReview s3UploaderReview;
 
     @Transactional
     public ReviewResponseDto searchByNum(Long num, List<String> filePath) {
@@ -62,7 +56,7 @@ public class ReviewService {
             throw new Exception("학교 인증이 되지 않은 사용자는 리뷰 등록을 할 수 없습니다.");
         }
 
-        List<Image> imageList = s3Uploader1.upload(files, review);
+        List<Image> imageList = s3UploaderReview.upload(files, review);
 
         if (!imageList.isEmpty()) {
             for (Image image : imageList) {
@@ -128,22 +122,6 @@ public class ReviewService {
                 .collect(Collectors.toList());
 
     }
-
-//    @Transactional
-//    public List<ReviewListResponseDto> todaysLikedReviews(){
-//        LocalDate todaysDate = LocalDate.now();
-//
-//        List<Review> reviews = reviewRepository.findByDeleteFlagOrderByLikedCntDesc(false);
-//        List<Review> responseReviews = new ArrayList<>();
-//        for (Review review : reviews){
-//            if (review.getCreatedDate().toLocalDate().equals(todaysDate)){
-//               responseReviews.add(review);
-//            }
-//        }
-//        return responseReviews.stream()
-//                .map(ReviewListResponseDto::new)
-//                .collect(Collectors.toList());
-//    }
 
     @Transactional
     public List<ReviewListResponseDto> thisWeeksLikedReviews() {
