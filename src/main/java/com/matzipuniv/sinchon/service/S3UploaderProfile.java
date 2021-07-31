@@ -74,7 +74,7 @@ public class S3UploaderProfile {
 
 
         if(isOk == 1) {
-            SimpleDateFormat date = new SimpleDateFormat("yyyymmddHHmmss");
+            SimpleDateFormat date = new SimpleDateFormat("yyyyMMddHHmmss");
             String fileName = FilenameUtils.getBaseName(file.getOriginalFilename()) + "-" + date.format(new Date()) + "." + FilenameUtils.getExtension(file.getOriginalFilename());
 
             if ("".equals(currentFilePath) == false && currentFilePath != null) {
