@@ -30,10 +30,13 @@ public class User extends BaseTimeEntity{
     private Integer coin;
 
     @Column
-    private String university;
+    private String email;
 
     @Column
-    private String email;
+    private String socialLogin;
+
+    @Column
+    private String university;
 
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
@@ -41,7 +44,7 @@ public class User extends BaseTimeEntity{
     private LocalDateTime authenticatedDate;
 
     @Column
-    private String socialLogin;
+    private String authKey;
 
     @Column
     private Boolean deleteFlag;
@@ -89,6 +92,9 @@ public class User extends BaseTimeEntity{
   
     public void updateCoin(Integer coin){
         this.coin += 100;
+    }
 
+    public void updateAuthKey(String authKey) {
+        this.authKey = authKey;
     }
 }

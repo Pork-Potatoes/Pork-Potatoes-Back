@@ -2,9 +2,11 @@ package com.matzipuniv.sinchon.service;
 
 import com.matzipuniv.sinchon.domain.*;
 import com.matzipuniv.sinchon.domain.User;
+import com.matzipuniv.sinchon.web.dto.MailDto;
 import com.matzipuniv.sinchon.web.dto.UserResponseDto;
 import com.matzipuniv.sinchon.web.dto.UserUpdateRequestDto;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -13,12 +15,14 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-@RequiredArgsConstructor
+@AllArgsConstructor
 @Service
 public class UserService {
+    private JavaMailSender mailSender;
     private final UserRepository userRepository;
     private final PinRepository pinRepository;
     private final S3UploaderProfile s3UploaderProfile;
+    private static final String FROM_ADDRESS = "matzipuniv@gmail.com";
 
     @Transactional
     public List<UserResponseDto> findAll() {
@@ -36,11 +40,13 @@ public class UserService {
     @Transactional
     public UserResponseDto findByNum(Long num){
         User entity = userRepository.findByUserNumAndDeleteFlagFalse(num);
+        String univ = entity.getUniversity();
+        LocalDateTime auth = entity.getAuthenticatedDate();
         if(entity==null) {
             System.out.println("없는 유저입니다. user_num = "+num);
         }
-        if(entity.getAuthenticatedDate()!=null) {
-            long dayGone = compareDay(LocalDateTime.now(), entity.getAuthenticatedDate());
+        if(univ!=null && auth!=null) {
+            long dayGone = compareDay(LocalDateTime.now(), auth);
             if(dayGone > 365) {
                 entity.updateUniv(null);
             }
@@ -128,27 +134,70 @@ public class UserService {
     @Transactional
     public String findUniv(Long num) {
         User entity = userRepository.findByUserNumAndDeleteFlagFalse(num);
+        String univ = entity.getUniversity();
+        LocalDateTime date = entity.getAuthenticatedDate();
         if(entity==null) {
             return "없는 유저입니다. user_num = "+num;
         }
-        String authenticate = entity.getUniversity();
-        return ((authenticate==null) ? "not authenciated" : authenticate);
+        if(univ!=null && date!=null) {
+            return "success";
+        } else if(univ==null && date!=null) {
+            return "re-authenticate";
+        } else if(univ!=null && date==null) {
+            return "authenticating";
+        } else {
+            return "not-authenticated";
+        }
     }
 
     @Transactional
-    public String setUniv(Long num, String univ) {
-        LocalDateTime now = LocalDateTime.now();
-        User entity = userRepository.findByUserNumAndDeleteFlagFalse(num);
+    public String mailSend(Long userNum, String univ, MailDto mailDto) {
+        User entity = userRepository.findByUserNumAndDeleteFlagFalse(userNum);
         if(entity==null) {
-            return "없는 유저입니다. user_num = "+num;
+            return "없는 유저입니다. user_num = "+userNum;
         }
-        if(!(univ==null) || !univ.equals("null")){
+        try {
+            String auth = getAuthCode(6);
+            MailHandler mailHandler = new MailHandler(mailSender);
+
+            // 받는 사람
+            mailHandler.setTo(mailDto.getAddress());
+            // 보내는 사람
+            mailHandler.setFrom(FROM_ADDRESS);
+            // 제목
+            mailHandler.setSubject(mailDto.getTitle());
+            // HTML Layout
+            String htmlContent = "<p>" + mailDto.getMessage() +"</p>" +
+                    "<p><a href='https://matzipmajor.com/api/users/" + userNum + "/authenticate?mailKey=" + auth + "'>여기를 클릭하세요</a></p>";
+            mailHandler.setText(htmlContent, true);
+
+            mailHandler.send();
+            entity.updateAuthKey(auth);
             entity.updateUniv(univ);
-            entity.updateAuthenticatedDate(now);
             return "success";
-        }else {
-            return "univ is null";
         }
+        catch(Exception e){
+            e.printStackTrace();
+            return "error: " + e.getMessage();
+        }
+    }
+
+    @Transactional
+    public String mailConfirm(Long userNum, String auth) {
+        LocalDateTime now = LocalDateTime.now();
+        User entity = userRepository.findByUserNumAndDeleteFlagFalse(userNum);
+        if(entity==null) {
+            return "없는 유저입니다. user_num = "+userNum;
+        }
+        String realAuth = entity.getAuthKey();
+        if(realAuth.equals(auth)) {
+            entity.updateAuthKey(null);
+            entity.updateAuthenticatedDate(now);
+            return "univ: " + entity.getUniversity() + "  date: "+entity.getAuthenticatedDate();
+        } else {
+            return "something went wrong!";
+        }
+
     }
 
     public long compareDay(LocalDateTime now, LocalDateTime auth_date) {
@@ -156,4 +205,17 @@ public class UserService {
         LocalDateTime auth_date2 = auth_date.truncatedTo(ChronoUnit.DAYS);
         return ChronoUnit.DAYS.between(auth_date2, now2);
     }
+
+    private String getAuthCode(int size) {
+        Random random = new Random();
+        StringBuffer buffer = new StringBuffer();
+        int num = 0;
+        while(buffer.length() < size) {
+            num = random.nextInt(10);
+            buffer.append(num);
+        }
+        return buffer.toString();
+    }
+
+
 }
