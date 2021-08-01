@@ -142,7 +142,13 @@ public class UserService {
         if(entity==null) {
             return "없는 유저입니다. user_num = "+num;
         }
-        return ((!(univ==null) || !univ.equals("null")) ? "success" : "univ is null");
+        if(!(univ==null) || !univ.equals("null")){
+            entity.updateUniv(univ);
+            entity.updateAuthenticatedDate(now);
+            return "success";
+        }else {
+            return "univ is null";
+        }
     }
 
     public long compareDay(LocalDateTime now, LocalDateTime auth_date) {
