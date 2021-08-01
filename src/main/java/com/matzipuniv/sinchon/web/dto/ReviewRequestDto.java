@@ -34,20 +34,6 @@ public class ReviewRequestDto {
         this.tagMood = entity.getTagMood();
     }
 
-
-
-//    public Review toEntity(){
-//        return Review.builder()
-//                .restaurant(restaurant)
-//                .user(user)
-//                .content(content)
-//                .score(score)
-//                .anonymousFlag(anonymousFlag)
-//                .menuName(menuName)
-//                .tagFood(tagFood)
-//                .tagMood(tagMood)
-//                .build();
-//    }
 }
 
 
