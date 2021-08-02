@@ -1,14 +1,18 @@
 package com.matzipuniv.sinchon.service;
 
+import com.amazonaws.util.IOUtils;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.util.ResourceUtils;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 
 public class MailHandler {
@@ -46,7 +50,7 @@ public class MailHandler {
 
     // 첨부 파일
     public void setAttach(String displayFileName, String pathToAttachment) throws MessagingException, IOException {
-        File file = new ClassPathResource(pathToAttachment).getFile();
+        File file = new File(ResourceUtils.getFile(pathToAttachment).getAbsolutePath());
         FileSystemResource fsr = new FileSystemResource(file);
 
         messageHelper.addAttachment(displayFileName, fsr);
@@ -54,10 +58,7 @@ public class MailHandler {
 
     // 이미지 삽입
     public void setInline(String contentId, String pathToInline) throws MessagingException, IOException {
-        File file = new ClassPathResource(pathToInline).getFile();
-        FileSystemResource fsr = new FileSystemResource(file);
 
-        messageHelper.addInline(contentId, fsr);
     }
 
     // 발송
