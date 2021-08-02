@@ -167,11 +167,10 @@ public class UserService {
             // 제목
             mailHandler.setSubject(mailDto.getTitle());
             // HTML Layout
-            String htmlContent = "<p> <img src =' cid:banner' height='180' width='1000'> </p>" +
+            String htmlContent = "<p> <img src ='http://d18omhl2ssqffk.cloudfront.net/banner-20210802145400.png' height='180' width='1000'> </p>" +
                     "<p>" + mailDto.getMessage() +"</p>" +
                     "<p><a href='https://matzipmajor.com/api/users/" + userNum + "/authenticate?mailKey=" + auth + "'>여기를 클릭하세요</a></p>";
             mailHandler.setText(htmlContent, true);
-            mailHandler.setInline("banner", "static/uploads/banner.png");
 
             mailHandler.send();
             entity.updateAuthKey(auth);
