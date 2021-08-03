@@ -182,4 +182,19 @@ public class ReviewService {
         return "Success";
     }
 
+    public String like(Long reviewNum, Long userNum){
+        Review entity = reviewRepository.findById(reviewNum).
+                orElseThrow(() -> new IllegalArgumentException("해당 리뷰가 없습니다. num = " + reviewNum));
+        if (entity.getDeleteFlag() == true) {
+            throw new IllegalArgumentException("해당 리뷰가 삭제되었습니다. num = " + reviewNum);
+        }
+        User user = userRepository.findByUserNumAndDeleteFlagFalse(userNum);
+        if(user == null){
+            throw new IllegalArgumentException("없는 유저입니다. user_num = "+userNum);
+        }
+        entity.updateLikedCnt();
+        reviewRepository.save(entity);
+        return "Success";
+    }
+
 }

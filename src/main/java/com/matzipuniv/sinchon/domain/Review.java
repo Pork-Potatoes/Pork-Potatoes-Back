@@ -81,19 +81,10 @@ public class Review extends BaseTimeEntity{
     public void setDeleteFlag(Boolean deleteFlag) {
         this.deleteFlag = deleteFlag;
     }
-//
-//    public void addImage(Image image){
-//        this.image.add(image);
-//
-//        if(image.getReview() != this){
-//            image.setReview(this);
-//        }
-//    }
-//
-//    public void setImage(List<Image> image){
-//        this.image = image;
-//    }
 
+    public void updateLikedCnt(){
+      this.likedCnt++;
+    }
 
 }
 

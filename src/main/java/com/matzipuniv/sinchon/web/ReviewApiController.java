@@ -83,6 +83,8 @@ public class ReviewApiController {
         return reviewService.delete(reviewNum);
     }
 
-   
-
+    @PatchMapping("/api/reviews/{reviewNum}/{userNum}")
+    public String like(@PathVariable Long reviewNum, @PathVariable Long userNum){
+        return reviewService.like(reviewNum, userNum);
+    }
 }
