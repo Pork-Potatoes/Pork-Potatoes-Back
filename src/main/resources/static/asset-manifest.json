@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "./static/css/main.fbed1e59.chunk.css",
-    "main.js": "./static/js/main.9d8f542a.chunk.js",
-    "main.js.map": "./static/js/main.9d8f542a.chunk.js.map",
-    "runtime-main.js": "./static/js/runtime-main.1e9d5c8f.js",
-    "runtime-main.js.map": "./static/js/runtime-main.1e9d5c8f.js.map",
-    "static/js/2.07a56c86.chunk.js": "./static/js/2.07a56c86.chunk.js",
-    "static/js/2.07a56c86.chunk.js.map": "./static/js/2.07a56c86.chunk.js.map",
-    "static/js/3.ff95a18a.chunk.js": "./static/js/3.ff95a18a.chunk.js",
-    "static/js/3.ff95a18a.chunk.js.map": "./static/js/3.ff95a18a.chunk.js.map",
-    "index.html": "./index.html",
-    "static/css/main.fbed1e59.chunk.css.map": "./static/css/main.fbed1e59.chunk.css.map",
-    "static/js/2.07a56c86.chunk.js.LICENSE.txt": "./static/js/2.07a56c86.chunk.js.LICENSE.txt",
-    "static/media/Modal.css": "./static/media/cancel.5563e53e.svg",
-    "static/media/icon.729074a0.png": "./static/media/icon.729074a0.png",
-    "static/media/logo.1777a93b.png": "./static/media/logo.1777a93b.png",
-    "static/media/reviewImg.80b92bf1.png": "./static/media/reviewImg.80b92bf1.png"
+    "main.css": "/static/css/main.21dc6855.chunk.css",
+    "main.js": "/static/js/main.3f0f44d2.chunk.js",
+    "main.js.map": "/static/js/main.3f0f44d2.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.d1fe413c.js",
+    "runtime-main.js.map": "/static/js/runtime-main.d1fe413c.js.map",
+    "static/js/2.78e9047a.chunk.js": "/static/js/2.78e9047a.chunk.js",
+    "static/js/2.78e9047a.chunk.js.map": "/static/js/2.78e9047a.chunk.js.map",
+    "static/js/3.ff95a18a.chunk.js": "/static/js/3.ff95a18a.chunk.js",
+    "static/js/3.ff95a18a.chunk.js.map": "/static/js/3.ff95a18a.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.21dc6855.chunk.css.map": "/static/css/main.21dc6855.chunk.css.map",
+    "static/js/2.78e9047a.chunk.js.LICENSE.txt": "/static/js/2.78e9047a.chunk.js.LICENSE.txt",
+    "static/media/Modal.css": "/static/media/cancel.5563e53e.svg",
+    "static/media/icon.729074a0.png": "/static/media/icon.729074a0.png",
+    "static/media/logo.1777a93b.png": "/static/media/logo.1777a93b.png",
+    "static/media/reviewImg.80b92bf1.png": "/static/media/reviewImg.80b92bf1.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.1e9d5c8f.js",
-    "static/js/2.07a56c86.chunk.js",
-    "static/css/main.fbed1e59.chunk.css",
-    "static/js/main.9d8f542a.chunk.js"
+    "static/js/runtime-main.d1fe413c.js",
+    "static/js/2.78e9047a.chunk.js",
+    "static/css/main.21dc6855.chunk.css",
+    "static/js/main.3f0f44d2.chunk.js"
   ]
 }
