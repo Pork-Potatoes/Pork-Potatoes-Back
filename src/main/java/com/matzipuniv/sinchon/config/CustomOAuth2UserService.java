@@ -3,6 +3,7 @@ package com.matzipuniv.sinchon.config;
 import com.matzipuniv.sinchon.domain.User;
 import com.matzipuniv.sinchon.domain.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -12,6 +13,7 @@ import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Collections;
 
@@ -19,7 +21,7 @@ import java.util.Collections;
 @Service
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
     private final UserRepository userRepository;
-    private final HttpSession httpSession;
+    private final HttpServletRequest httpsession2;
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
@@ -34,7 +36,10 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 
         User user = saveOrUpdate(registrationId, attributes);
 
+        HttpSession httpSession = httpsession2.getSession();
         httpSession.setAttribute("user",new SessionUser(user));
+        SessionUser user2 = (SessionUser) httpSession.getAttribute("user");
+        System.out.println("로그인유저: " + user2.getEmail());
         String userRole = Role.MEMBER.getValue();
         if(user.getUniversity()!=null) {
             userRole = Role.STUDENT.getValue();

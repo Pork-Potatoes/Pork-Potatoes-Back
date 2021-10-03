@@ -4,19 +4,57 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<script language="javascript" type="text/javascript">
+    var wsUri = "ws://localhost:8080/myHandler/websocket";
+    var output;
+
+    function init() {
+        output = document.getElementById("output");
+        testWebSocket();
+    }
+
+    function testWebSocket() {
+        websocket = new WebSocket(wsUri);
+        websocket.onopen = function(evt) { onOpen(evt) ;};
+        websocket.onclose = function(evt) { onClose(evt) ;};
+        websocket.onmessage = function(evt) { onMessage(evt) ;};
+        websocket.onerror = function(evt) { onError(evt) ;};
+    }
+
+    function onOpen(evt) {
+        writeToScreen("연결완료");
+        doSend("1,시연-ashley_0726@naver.com,1,마린파스타");
+    }
+
+    function onClose(evt) {
+        writeToScreen("연결해제");
+    }
+
+    function onMessage(evt) {
+        writeToScreen('<span style="color: blue;">수신: ' + evt.data + '</span>');
+    }
+
+    function onError(evt) {
+        writeToScreen('<span style="color: red;">에러:</span>' + evt.data);
+    }
+
+    function doSend(message) {
+        writeToScreen("발신: " + message);
+        websocket.send(message);
+    }
+
+    function writeToScreen(message) {
+        var pre = document.createElement("p");
+        pre.style.wordWrap = "break-word";
+        pre.innerHTML = message;
+        output.appendChild(pre);
+    }
+
+    window.addEventListener("load", init, false);
+
+</script>
 <body>
-<td id="like">
-    <c:choose>
-        <c:when test="${ltlike ==0}">
-            <button type="button" class="btn btn-light" id="likebtn">좋아요</button>
-            <input type="hidden" id="likecheck" value="${ltlike }">
-        </c:when>
-        <c:when test="${ltlike ==1}">
-            <button type="button" class="btn btn-danger" id="likebtn">좋아요</button>
-            <input type="hidden" id="likecheck" value="${ltlike }">
-        </c:when>
-    </c:choose>
-</td>
+    <h2>WebSocket Test</h2>
+    <div id="output"></div>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 </html>

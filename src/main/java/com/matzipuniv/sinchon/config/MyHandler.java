@@ -1,18 +1,27 @@
 package com.matzipuniv.sinchon.config;
 
+import com.matzipuniv.sinchon.domain.User;
+import com.matzipuniv.sinchon.service.UserService;
+import com.matzipuniv.sinchon.web.dto.UserResponseDto;
+import lombok.RequiredArgsConstructor;
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Controller
 public class MyHandler extends TextWebSocketHandler {
     private static final Logger logger = LoggerFactory.getLogger(WebSocketHandler.class);
 
@@ -45,17 +54,18 @@ public class MyHandler extends TextWebSocketHandler {
                 if (count.equals("0")) {
                     comment = "의 좋아요를 취소했습니다.";
                 } else if (count.equals("1")) {
-                    comment = "을 좋아합니다.";
+                    comment = "을/를 좋아합니다.";
                 }
+
                 String mid = currentUserName(session);//좋아요 누른 사람
 
                 WebSocketSession receiversession = userSessionsMap.get(receiver);//글 작성자가 현재 접속중인가 체크
 
                 if (receiversession != null) {
-                    TextMessage txtmsg = new TextMessage(mid + "님이" + receiver + "님의" + btitle + comment);
+                    TextMessage txtmsg = new TextMessage(mid + "님이 " + receiver + "님의 " + btitle + comment);
                     receiversession.sendMessage(txtmsg);//작성자에게 알려줍니다
                 } else {
-                    TextMessage txtmsg = new TextMessage(mid + "님이" + receiver + "님의" + btitle + comment);
+                    TextMessage txtmsg = new TextMessage(mid + "님이 " + receiver + "님의 " + btitle + comment);
                     session.sendMessage(txtmsg);//보내지는지 체크하기
                 }
 
@@ -73,7 +83,11 @@ public class MyHandler extends TextWebSocketHandler {
 
     private String currentUserName(WebSocketSession session) {
         String mid = session.getId();
-        //String mid = session.getPrincipal().getName();
-        return mid;
+        Map<String, Object> map = session.getAttributes();
+        SessionUser user = (SessionUser) map.get("user");
+        String plz = user.getEmail();
+        String plz2 = user.getName();
+        String complete = plz2 + "-" + plz;
+        return complete;
     }
 }

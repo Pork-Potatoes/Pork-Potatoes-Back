@@ -1,14 +1,17 @@
 package com.matzipuniv.sinchon.web;
 
+import com.matzipuniv.sinchon.config.SessionUser;
 import com.matzipuniv.sinchon.service.UserService;
 import com.matzipuniv.sinchon.web.dto.MailDto;
 import com.matzipuniv.sinchon.web.dto.UserResponseDto;
 import com.matzipuniv.sinchon.web.dto.UserUnivRequestDto;
 import com.matzipuniv.sinchon.web.dto.UserUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -68,6 +71,11 @@ public class UserApiController {
     @GetMapping("/{userNum}/authenticate")
     public String confirmMail(@PathVariable Long userNum, @RequestParam String mailKey) {
         return userService.mailConfirm(userNum, mailKey);
+    }
+
+    @GetMapping("/islogged")
+    public String logged() {
+        return userService.isLogged();
     }
 
 
