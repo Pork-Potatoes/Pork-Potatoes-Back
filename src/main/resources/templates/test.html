@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<td id="like">
+    <c:choose>
+        <c:when test="${ltlike ==0}">
+            <button type="button" class="btn btn-light" id="likebtn">좋아요</button>
+            <input type="hidden" id="likecheck" value="${ltlike }">
+        </c:when>
+        <c:when test="${ltlike ==1}">
+            <button type="button" class="btn btn-danger" id="likebtn">좋아요</button>
+            <input type="hidden" id="likecheck" value="${ltlike }">
+        </c:when>
+    </c:choose>
+</td>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+</html>
