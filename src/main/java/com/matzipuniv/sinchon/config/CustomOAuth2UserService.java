@@ -37,9 +37,11 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         User user = saveOrUpdate(registrationId, attributes);
 
         HttpSession httpSession = httpsession2.getSession();
-        httpSession.setAttribute("user",new SessionUser(user));
+        httpSession.setAttribute("user", new SessionUser(user));
+
         SessionUser user2 = (SessionUser) httpSession.getAttribute("user");
-        System.out.println("로그인유저: " + user2.getEmail());
+        System.out.println("로그인유저: " + user2.getEmail() +" - "+ user2.getUserNum());
+
         String userRole = Role.MEMBER.getValue();
         if(user.getUniversity()!=null) {
             userRole = Role.STUDENT.getValue();

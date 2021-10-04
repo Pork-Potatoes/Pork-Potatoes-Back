@@ -1,6 +1,7 @@
 package com.matzipuniv.sinchon.config;
 
 import com.matzipuniv.sinchon.domain.User;
+import com.matzipuniv.sinchon.domain.UserRepository;
 import com.matzipuniv.sinchon.service.UserService;
 import com.matzipuniv.sinchon.web.dto.UserResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -35,8 +36,8 @@ public class MyHandler extends TextWebSocketHandler {
         // TODO Auto-generated method stub
         logger.info("Socket 연결");
         sessions.add(session);
-        logger.info(currentUserName(session));//현재 접속한 사람
-        userSessionsMap.put(currentUserName(session),session);
+        logger.info(currentUserID(session));//현재 접속한 사람
+        userSessionsMap.put(currentUserID(session),session);
     }
 
     @Override
@@ -51,21 +52,22 @@ public class MyHandler extends TextWebSocketHandler {
                 String count = msgs[2];//0이면 좋아요 취소 1이면 좋아요
                 String btitle = msgs[3];//게시물 제목
                 String comment = "";
-                if (count.equals("0")) {
-                    comment = "의 좋아요를 취소했습니다.";
-                } else if (count.equals("1")) {
+                if (count.equals("1")) {
                     comment = "을/를 좋아합니다.";
+                } else if (count.equals("2")) {
+                    comment = "을/를 스크랩했습니다";
                 }
 
-                String mid = currentUserName(session);//좋아요 누른 사람
+                String sendUser = currentUserNick(session);
 
                 WebSocketSession receiversession = userSessionsMap.get(receiver);//글 작성자가 현재 접속중인가 체크
 
                 if (receiversession != null) {
-                    TextMessage txtmsg = new TextMessage(mid + "님이 " + receiver + "님의 " + btitle + comment);
+                    String receiveUser = currentUserNick(receiversession);
+                    TextMessage txtmsg = new TextMessage(sendUser + "님이 " + receiveUser + "님의 " + btitle + comment);
                     receiversession.sendMessage(txtmsg);//작성자에게 알려줍니다
                 } else {
-                    TextMessage txtmsg = new TextMessage(mid + "님이 " + receiver + "님의 " + btitle + comment);
+                    TextMessage txtmsg = new TextMessage(sendUser + "님이 " + receiver + "님의 " + btitle + comment);
                     session.sendMessage(txtmsg);//보내지는지 체크하기
                 }
 
@@ -78,16 +80,22 @@ public class MyHandler extends TextWebSocketHandler {
         // TODO Auto-generated method stub
         logger.info("Socket 끊음");
         sessions.remove(session);
-        userSessionsMap.remove(currentUserName(session),session);
+        userSessionsMap.remove(currentUserID(session),session);
     }
 
-    private String currentUserName(WebSocketSession session) {
+    private String currentUserID(WebSocketSession session) {
         String mid = session.getId();
         Map<String, Object> map = session.getAttributes();
         SessionUser user = (SessionUser) map.get("user");
-        String plz = user.getEmail();
-        String plz2 = user.getName();
-        String complete = plz2 + "-" + plz;
-        return complete;
+        String identifyCode = user.getUserNum().toString();
+        return identifyCode;
+    }
+
+    private String currentUserNick(WebSocketSession session) {
+        String mid = session.getId();
+        Map<String, Object> map = session.getAttributes();
+        SessionUser user = (SessionUser) map.get("user");
+        String nickname = user.getName();
+        return nickname;
     }
 }
