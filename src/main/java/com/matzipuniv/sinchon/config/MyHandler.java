@@ -1,8 +1,14 @@
 package com.matzipuniv.sinchon.config;
 
+import com.matzipuniv.sinchon.domain.Review;
+import com.matzipuniv.sinchon.domain.ReviewRepository;
 import com.matzipuniv.sinchon.domain.User;
 import com.matzipuniv.sinchon.domain.UserRepository;
+import com.matzipuniv.sinchon.service.FolderService;
+import com.matzipuniv.sinchon.service.ReviewService;
 import com.matzipuniv.sinchon.service.UserService;
+import com.matzipuniv.sinchon.web.dto.FolderResponseDto;
+import com.matzipuniv.sinchon.web.dto.ReviewResponseDto;
 import com.matzipuniv.sinchon.web.dto.UserResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.Session;
@@ -10,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketHandler;
@@ -22,9 +29,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Controller
+@RequiredArgsConstructor
+@RestController
 public class MyHandler extends TextWebSocketHandler {
     private static final Logger logger = LoggerFactory.getLogger(WebSocketHandler.class);
+    private final ReviewRepository reviewRepository;
+    private final UserService userService;
+    private final FolderService folderService;
 
     //로그인 한 인원 전체
     private List<WebSocketSession> sessions = new ArrayList<WebSocketSession>();
@@ -43,31 +54,46 @@ public class MyHandler extends TextWebSocketHandler {
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         String msg = message.getPayload();//자바스크립트에서 넘어온 Msg
+        Long userNum = Long.parseLong("1");
+        String content = "";
 
         if(msg != null) {
             String[] msgs = msg.split(",");
-            if (msgs != null && msgs.length == 4) {
+            if (msgs != null && msgs.length == 2) {
                 String bid = msgs[0];//게시물 번호
-                String receiver = msgs[1];//글 작성자
-                String count = msgs[2];//0이면 좋아요 취소 1이면 좋아요
-                String btitle = msgs[3];//게시물 제목
+                String count = msgs[1];//1이면 좋아요 2이면 스크랩
                 String comment = "";
                 if (count.equals("1")) {
                     comment = "을/를 좋아합니다.";
+                    Review review = reviewRepository.findReviewByReviewNum(Long.parseLong(bid));
+                    userNum = review.getUser().getUserNum();
+                    content = review.getContent();
+                    if(content.length() > 10) {
+                        content = content.substring(0,10);
+                    }
+
                 } else if (count.equals("2")) {
                     comment = "을/를 스크랩했습니다";
+                    FolderResponseDto folder = folderService.findById(Long.parseLong(bid));
+                    userNum = folder.getUser().getUserNum();
+                    content = folder.getTitle();
+                    if(content.length() > 10) {
+                        content = content.substring(0,10);
+                    }
                 }
 
                 String sendUser = currentUserNick(session);
+                String userName = userService.findByNum(userNum).getNickname();
 
-                WebSocketSession receiversession = userSessionsMap.get(receiver);//글 작성자가 현재 접속중인가 체크
+                WebSocketSession receiversession = userSessionsMap.get(userNum.toString());//글 작성자가 현재 접속중인가 체크
+
 
                 if (receiversession != null) {
                     String receiveUser = currentUserNick(receiversession);
-                    TextMessage txtmsg = new TextMessage(sendUser + "님이 " + receiveUser + "님의 " + btitle + comment);
+                    TextMessage txtmsg = new TextMessage(sendUser + "님이 " + userName + "님의 " + content + comment);
                     receiversession.sendMessage(txtmsg);//작성자에게 알려줍니다
                 } else {
-                    TextMessage txtmsg = new TextMessage(sendUser + "님이 " + receiver + "님의 " + btitle + comment);
+                    TextMessage txtmsg = new TextMessage(sendUser + "님이 " + userName + "님의 " + content + comment);
                     session.sendMessage(txtmsg);//보내지는지 체크하기
                 }
 

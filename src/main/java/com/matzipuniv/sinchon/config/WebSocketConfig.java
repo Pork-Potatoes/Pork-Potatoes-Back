@@ -1,5 +1,10 @@
 package com.matzipuniv.sinchon.config;
 
+import com.matzipuniv.sinchon.domain.Folder;
+import com.matzipuniv.sinchon.domain.ReviewRepository;
+import com.matzipuniv.sinchon.service.FolderService;
+import com.matzipuniv.sinchon.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.server.ServerHttpRequest;
@@ -17,10 +22,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSessionAttributeListener;
 import java.util.Map;
 
+@RequiredArgsConstructor
 @Configuration
 @Controller
 @EnableWebSocket
 public class WebSocketConfig implements WebSocketConfigurer {
+    private final ReviewRepository reviewRepository;
+    private final UserService userService;
+    private final FolderService folderService;
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
@@ -31,6 +40,6 @@ public class WebSocketConfig implements WebSocketConfigurer {
 
     @Bean
     public WebSocketHandler myyHandler() {
-        return new MyHandler();
+        return new MyHandler(reviewRepository, userService, folderService);
     }
 }

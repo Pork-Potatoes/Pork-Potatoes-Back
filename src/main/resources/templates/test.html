@@ -17,13 +17,12 @@
         websocket = new WebSocket(wsUri);
         websocket.onopen = function(evt) { onOpen(evt) ;};
         websocket.onclose = function(evt) { onClose(evt) ;};
-        websocket.onmessage = function(evt) { onMessage(evt) ;};
+        websocket.onmessage = function (evt) {onMessage(evt);};
         websocket.onerror = function(evt) { onError(evt) ;};
     }
 
     function onOpen(evt) {
         writeToScreen("연결완료");
-        doSend("1,8,1,마린파스타");
     }
 
     function onClose(evt) {
@@ -50,11 +49,27 @@
         output.appendChild(pre);
     }
 
+    function sendIt(num) {
+        let postNum = document.getElementById("postNum").value;
+        let postNum2 = postNum.toString();
+        if(num==1) {
+            doSend(postNum2 + ",1");
+        }
+        else if(num==2) {
+            doSend(postNum2 + ",2");
+        }
+    }
+
     window.addEventListener("load", init, false);
 
 </script>
 <body>
     <h2>WebSocket Test</h2>
     <div id="output"></div>
+    <form>
+        게시글번호: <input type = "text" id ="postNum" size = "30"><br>
+        <input type="button" value="좋아요" onclick="sendIt(1)"><br>
+        <input type="button" value="스크랩" onclick="sendIt(2)"><br>
+    </form>
 </body>
 </html>
