@@ -1,5 +1,6 @@
 package com.matzipuniv.sinchon.service;
 
+import com.matzipuniv.sinchon.config.SessionUser;
 import com.matzipuniv.sinchon.domain.*;
 import com.matzipuniv.sinchon.domain.User;
 import com.matzipuniv.sinchon.web.dto.MailDto;
@@ -10,6 +11,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -18,10 +21,10 @@ import java.util.*;
 @AllArgsConstructor
 @Service
 public class UserService {
-    private JavaMailSender mailSender;
     private final UserRepository userRepository;
     private final PinRepository pinRepository;
     private final S3UploaderProfile s3UploaderProfile;
+    private JavaMailSender mailSender;
     private static final String FROM_ADDRESS = "matzipuniv@gmail.com";
 
     @Transactional
