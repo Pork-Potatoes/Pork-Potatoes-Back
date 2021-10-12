@@ -7,10 +7,10 @@ import com.matzipuniv.sinchon.web.dto.UserResponseDto;
 import com.matzipuniv.sinchon.web.dto.UserUnivRequestDto;
 import com.matzipuniv.sinchon.web.dto.UserUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -19,6 +19,7 @@ import java.util.List;
 @RequestMapping("/api/users")
 public class UserApiController {
     private final UserService userService;
+    private final HttpServletRequest httpServletRequest;
 
     @GetMapping("")
     public List<UserResponseDto> findAll() {
@@ -73,11 +74,17 @@ public class UserApiController {
         return userService.mailConfirm(userNum, mailKey);
     }
 
-    @GetMapping("/islogged")
-    public String logged() {
-        return userService.isLogged();
+    @GetMapping("/currentUser")
+    public String currentUser() {
+        HttpSession httpsession = httpServletRequest.getSession();
+        SessionUser user = (SessionUser) httpsession.getAttribute("user");
+        if(user != null) {
+            Long response = user.getUserNum();
+            return response.toString();
+        }
+        else {
+            String fail = "fail";
+            return fail;
+        }
     }
-
-
-
 }

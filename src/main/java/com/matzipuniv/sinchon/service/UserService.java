@@ -21,11 +21,10 @@ import java.util.*;
 @AllArgsConstructor
 @Service
 public class UserService {
-    private JavaMailSender mailSender;
-    private final HttpServletRequest httpServletRequest;
     private final UserRepository userRepository;
     private final PinRepository pinRepository;
     private final S3UploaderProfile s3UploaderProfile;
+    private JavaMailSender mailSender;
     private static final String FROM_ADDRESS = "matzipuniv@gmail.com";
 
     @Transactional
@@ -203,14 +202,6 @@ public class UserService {
             return "something went wrong!";
         }
 
-    }
-
-    @Transactional
-    public String isLogged() {
-        HttpSession httpsession = httpServletRequest.getSession();
-        SessionUser user = (SessionUser) httpsession.getAttribute("user");
-        String response = user.getName() + "    " + user.getEmail();
-        return response;
     }
 
     public long compareDay(LocalDateTime now, LocalDateTime auth_date) {
