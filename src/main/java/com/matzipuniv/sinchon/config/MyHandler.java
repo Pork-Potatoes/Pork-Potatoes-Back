@@ -89,7 +89,6 @@ public class MyHandler extends TextWebSocketHandler {
 
 
                 if (receiversession != null) {
-                    String receiveUser = currentUserNick(receiversession);
                     TextMessage txtmsg = new TextMessage(sendUser + "님이 " + userName + "님의 " + content + comment);
                     receiversession.sendMessage(txtmsg);//작성자에게 알려줍니다
                 } else {
