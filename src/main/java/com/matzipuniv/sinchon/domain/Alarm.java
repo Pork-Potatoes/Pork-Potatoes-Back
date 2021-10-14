@@ -35,10 +35,10 @@ public class Alarm extends BaseTimeEntity{
 
 
     @Builder
-    public Alarm(Long user, String alarmMessage, Integer type){
+    public Alarm(User user, String alarmMessage, Integer type){
         this.user = user;
-        this.alarmReadFlag = false;
-        this.alarmMessage = alarmMessage;
+        this.readFlag = false;
+        this.message = alarmMessage;
         this.type = type;
     }
 
