@@ -2,6 +2,7 @@ package com.matzipuniv.sinchon.config;
 
 import com.matzipuniv.sinchon.domain.Folder;
 import com.matzipuniv.sinchon.domain.ReviewRepository;
+import com.matzipuniv.sinchon.service.AlarmService;
 import com.matzipuniv.sinchon.service.FolderService;
 import com.matzipuniv.sinchon.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +31,7 @@ public class WebSocketConfig implements WebSocketConfigurer {
     private final ReviewRepository reviewRepository;
     private final UserService userService;
     private final FolderService folderService;
+    private final AlarmService alarmService;
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
@@ -40,6 +42,6 @@ public class WebSocketConfig implements WebSocketConfigurer {
 
     @Bean
     public WebSocketHandler myyHandler() {
-        return new MyHandler(reviewRepository, userService, folderService);
+        return new MyHandler(reviewRepository, userService, folderService, alarmService);
     }
 }

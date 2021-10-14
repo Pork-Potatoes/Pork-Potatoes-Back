@@ -1,5 +1,6 @@
 package com.matzipuniv.sinchon.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -27,8 +28,18 @@ public class Alarm extends BaseTimeEntity{
     @Column
     private Integer type;
 
+
     public void updateReadFlag(){
         this.readFlag = true;
+    }
+
+
+    @Builder
+    public Alarm(Long user, String alarmMessage, Integer type){
+        this.user = user;
+        this.alarmReadFlag = false;
+        this.alarmMessage = alarmMessage;
+        this.type = type;
     }
 
 }

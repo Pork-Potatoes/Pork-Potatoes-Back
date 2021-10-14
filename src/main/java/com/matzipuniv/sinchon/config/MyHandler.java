@@ -4,6 +4,7 @@ import com.matzipuniv.sinchon.domain.Review;
 import com.matzipuniv.sinchon.domain.ReviewRepository;
 import com.matzipuniv.sinchon.domain.User;
 import com.matzipuniv.sinchon.domain.UserRepository;
+import com.matzipuniv.sinchon.service.AlarmService;
 import com.matzipuniv.sinchon.service.FolderService;
 import com.matzipuniv.sinchon.service.ReviewService;
 import com.matzipuniv.sinchon.service.UserService;
@@ -36,6 +37,7 @@ public class MyHandler extends TextWebSocketHandler {
     private final ReviewRepository reviewRepository;
     private final UserService userService;
     private final FolderService folderService;
+    private final AlarmService alarmService;
 
     //로그인 한 인원 전체
     private List<WebSocketSession> sessions = new ArrayList<WebSocketSession>();
@@ -55,6 +57,7 @@ public class MyHandler extends TextWebSocketHandler {
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         String msg = message.getPayload();//자바스크립트에서 넘어온 Msg
         Long userNum = Long.parseLong("1");
+        String alarmMsg = "";
         String content = "";
 
         if(msg != null) {
@@ -64,38 +67,43 @@ public class MyHandler extends TextWebSocketHandler {
                 String count = msgs[1];//1이면 좋아요 2이면 스크랩
                 String comment = "";
                 if (count.equals("1")) {
-                    comment = "을/를 좋아합니다.";
+                    comment = "을(를) 좋아합니다.";
                     Review review = reviewRepository.findReviewByReviewNum(Long.parseLong(bid));
                     userNum = review.getUser().getUserNum();
                     content = review.getContent();
                     if(content.length() > 10) {
                         content = content.substring(0,10);
+                        content = content + "...";
                     }
 
                 } else if (count.equals("2")) {
-                    comment = "을/를 스크랩했습니다";
+                    comment = "을(를) 스크랩했습니다";
                     FolderResponseDto folder = folderService.findById(Long.parseLong(bid));
                     userNum = folder.getUser().getUserNum();
                     content = folder.getTitle();
                     if(content.length() > 10) {
                         content = content.substring(0,10);
+                        content = content + "...";
                     }
                 }
+                content = "[" + content + "]";
 
                 String sendUser = currentUserNick(session);
                 String userName = userService.findByNum(userNum).getNickname();
 
                 WebSocketSession receiversession = userSessionsMap.get(userNum.toString());//글 작성자가 현재 접속중인가 체크
 
-
                 if (receiversession != null) {
-                    String receiveUser = currentUserNick(receiversession);
                     TextMessage txtmsg = new TextMessage(sendUser + "님이 " + userName + "님의 " + content + comment);
+                    alarmMsg = txtmsg.getPayload();
                     receiversession.sendMessage(txtmsg);//작성자에게 알려줍니다
                 } else {
                     TextMessage txtmsg = new TextMessage(sendUser + "님이 " + userName + "님의 " + content + comment);
+                    alarmMsg = txtmsg.getPayload();
                     session.sendMessage(txtmsg);//보내지는지 체크하기
                 }
+
+                alarmService.saveAlarm(userNum, alarmMsg, Integer.parseInt(count));
 
             }
         }
