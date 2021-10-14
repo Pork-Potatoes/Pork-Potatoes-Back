@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script language="javascript" type="text/javascript">
+    var wsUri = "ws://localhost:8080/myHandler/websocket";
+    var output;
+
+    function init() {
+        output = document.getElementById("output");
+        testWebSocket();
+    }
+
+    function testWebSocket() {
+        websocket = new WebSocket(wsUri);
+        websocket.onopen = function(evt) { onOpen(evt) ;};
+        websocket.onclose = function(evt) { onClose(evt) ;};
+        websocket.onmessage = function (evt) {onMessage(evt);};
+        websocket.onerror = function(evt) { onError(evt) ;};
+    }
+
+    function onOpen(evt) {
+        writeToScreen("연결완료");
+    }
+
+    function onClose(evt) {
+        writeToScreen("연결해제");
+    }
+
+    function onMessage(evt) {
+        writeToScreen('<span style="color: blue;">수신: ' + evt.data + '</span>');
+    }
+
+    function onError(evt) {
+        writeToScreen('<span style="color: red;">에러:</span>' + evt.data);
+    }
+
+    function doSend(message) {
+        writeToScreen("발신: " + message);
+        websocket.send(message);
+    }
+
+    function writeToScreen(message) {
+        var pre = document.createElement("p");
+        pre.style.wordWrap = "break-word";
+        pre.innerHTML = message;
+        output.appendChild(pre);
+    }
+
+    function sendIt(num) {
+        let postNum = document.getElementById("postNum").value;
+        let postNum2 = postNum.toString();
+        if(num==1) {
+            doSend(postNum2 + ",1");
+        }
+        else if(num==2) {
+            doSend(postNum2 + ",2");
+        }
+    }
+
+    window.addEventListener("load", init, false);
+
+</script>
+<body>
+    <h2>WebSocket Test</h2>
+    <div id="output"></div>
+    <form>
+        게시글번호: <input type = "text" id ="postNum" size = "30"><br>
+        <input type="button" value="좋아요" onclick="sendIt(1)"><br>
+        <input type="button" value="스크랩" onclick="sendIt(2)"><br>
+    </form>
+</body>
+</html>
