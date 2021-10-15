@@ -2,6 +2,7 @@ package com.matzipuniv.sinchon.service;
 
 import com.matzipuniv.sinchon.domain.Alarm;
 import com.matzipuniv.sinchon.domain.AlarmRepository;
+import com.matzipuniv.sinchon.domain.User;
 import com.matzipuniv.sinchon.domain.UserRepository;
 import com.matzipuniv.sinchon.web.dto.AlarmDto;
 import com.matzipuniv.sinchon.web.dto.AlarmListDto;
@@ -38,13 +39,14 @@ public class AlarmService {
         return "success";
     }
 
-    public void saveAlarm(Long user, String message, int type) {
+    public void saveAlarm(Long usernum, String message, int type) {
+        User user = userRepository.findByUserNumAndDeleteFlagFalse(usernum);
         Alarm entity = Alarm.builder().user(user)
                                     .alarmMessage(message)
                                     .type(type)
                                     .build();
         alarmRepository.save(entity);
-        System.out.println(entity.getAlarmMessage());
+        System.out.println(entity.getMessage());
 
     }
 }

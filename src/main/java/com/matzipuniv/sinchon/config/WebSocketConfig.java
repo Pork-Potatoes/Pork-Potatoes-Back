@@ -35,7 +35,7 @@ public class WebSocketConfig implements WebSocketConfigurer {
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(myyHandler(), "/myHandler").setAllowedOriginPatterns("*")
+        registry.addHandler(myyHandler(), "/alarms").setAllowedOriginPatterns("*")
                 .addInterceptors(new HttpSessionHandshakeInterceptor())
                 .withSockJS();
     }
