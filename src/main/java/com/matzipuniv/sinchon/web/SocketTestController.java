@@ -9,11 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class SocketTestController {
 
     @GetMapping("/socketTest")
-    public String wsTest() {
-        return "test";
-    }
-
-    @GetMapping("/socketTest2")
     public String wssTest() {
         return "test2";
     }
