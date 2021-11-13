@@ -5,22 +5,31 @@
     <title>Title</title>
 </head>
 <script language="javascript" type="text/javascript">
-    var wsUri = "wss://matzipmajor.com/alarms/websocket";
+    var wsUri = "ws://localhost:8080/alarms/websocket";
     var output;
     var serverOffline;
 
     function init() {
         output = document.getElementById("output");
         serverOffline = false;
+        console.log("init");
         testWebSocket();
     }
 
     function testWebSocket() {
-        websocket = new WebSocket(wsUri);
-        websocket.onopen = function(evt) { onOpen(evt) ;};
-        websocket.onclose = function(evt) {onClose(evt) ;};
-        websocket.onmessage = function (evt) {onMessage(evt);};
-        websocket.onerror = function(evt) { onError(evt) ;};
+        console.log("start");
+        fetch('http://localhost:8080/api/users/currentUser')
+            .then(res => res.text())
+            .then(res => {
+                if(res != "fail") {
+                    websocket = new WebSocket(wsUri);
+                    websocket.onopen = function(evt) { onOpen(evt) ;};
+                    websocket.onclose = function(evt) {onClose(evt) ;};
+                    websocket.onmessage = function (evt) {onMessage(evt);};
+                    websocket.onerror = function(evt) { onError(evt) ;};
+                }
+            });
+
     }
 
     function onOpen(evt) {
