@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <script language="javascript" type="text/javascript">
-    var wsUri = "ws://localhost:8080/alarms/websocket";
+    var wsUri = "wss://matzipmajor.com/alarms/websocket";
     var output;
     var serverOffline;
 
@@ -18,7 +18,7 @@
 
     function testWebSocket() {
         console.log("start");
-        fetch('http://localhost:8080/api/users/currentUser')
+        fetch('https://matzipmajor.com/api/users/currentUser')
             .then(res => res.text())
             .then(res => {
                 if(res != "fail") {
