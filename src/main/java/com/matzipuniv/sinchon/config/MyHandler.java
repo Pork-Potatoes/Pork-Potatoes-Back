@@ -23,8 +23,10 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
+import org.w3c.dom.Text;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -55,12 +57,13 @@ public class MyHandler extends TextWebSocketHandler {
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+        int none = 0;
         String msg = message.getPayload();//자바스크립트에서 넘어온 Msg
         Long userNum = Long.parseLong("1");
         String alarmMsg = "";
         String content = "";
 
-        if(msg != null) {
+        if(msg != null && !msg.equals("ping")) {
             String[] msgs = msg.split(",");
             if (msgs != null && msgs.length == 2) {
                 String bid = msgs[0];//게시물 번호
@@ -68,42 +71,57 @@ public class MyHandler extends TextWebSocketHandler {
                 String comment = "";
                 if (count.equals("1")) {
                     comment = "을(를) 좋아합니다.";
-                    Review review = reviewRepository.findReviewByReviewNum(Long.parseLong(bid));
-                    userNum = review.getUser().getUserNum();
-                    content = review.getContent();
-                    if(content.length() > 10) {
-                        content = content.substring(0,10);
-                        content = content + "...";
+                    try {
+                        Review review = reviewRepository.findReviewByReviewNum(Long.parseLong(bid));
+                        userNum = review.getUser().getUserNum();
+                        content = review.getContent();
+                        if(content.length() > 10) {
+                            content = content.substring(0,10);
+                            content = content + "...";
+                        }
+                    }catch (Exception e) {
+                        TextMessage txt = new TextMessage("null");
+                        session.sendMessage(txt);
+                        none=1;
                     }
 
                 } else if (count.equals("2")) {
                     comment = "을(를) 스크랩했습니다";
-                    FolderResponseDto folder = folderService.findById(Long.parseLong(bid));
-                    userNum = folder.getUser().getUserNum();
-                    content = folder.getTitle();
-                    if(content.length() > 10) {
-                        content = content.substring(0,10);
-                        content = content + "...";
+                    try {
+                        FolderResponseDto folder = folderService.findById(Long.parseLong(bid));
+                        userNum = folder.getUser().getUserNum();
+                        content = folder.getTitle();
+                        if(content.length() > 10) {
+                            content = content.substring(0,10);
+                            content = content + "...";
+                        }
+                    } catch (Exception e) {
+                        TextMessage txt = new TextMessage("null");
+                        session.sendMessage(txt);
+                        none=1;
                     }
                 }
-                content = "[" + content + "]";
+                if(none != 1) {
+                    content = "[" + content + "]";
 
-                String sendUser = currentUserNick(session);
-                String userName = userService.findByNum(userNum).getNickname();
+                    String sendUser = currentUserNick(session);
+                    String userName = userService.findByNum(userNum).getNickname();
 
-                WebSocketSession receiversession = userSessionsMap.get(userNum.toString());//글 작성자가 현재 접속중인가 체크
+                    WebSocketSession receiversession = userSessionsMap.get(userNum.toString());//글 작성자가 현재 접속중인가 체크
 
-                if (receiversession != null) {
-                    TextMessage txtmsg = new TextMessage(sendUser + "님이 " + userName + "님의 " + content + comment);
-                    alarmMsg = txtmsg.getPayload();
-                    receiversession.sendMessage(txtmsg);//작성자에게 알려줍니다
-                } else {
-                    TextMessage txtmsg = new TextMessage(sendUser + "님이 " + userName + "님의 " + content + comment);
-                    alarmMsg = txtmsg.getPayload();
-                    session.sendMessage(txtmsg);//보내지는지 체크하기
+                    if (receiversession != null) {
+                        TextMessage txtmsg = new TextMessage(sendUser + "님이 " + userName + "님의 " + content + comment);
+                        alarmMsg = txtmsg.getPayload();
+                        receiversession.sendMessage(txtmsg);//작성자에게 알려줍니다
+                    } else {
+                        TextMessage txtmsg = new TextMessage(sendUser + "님이 " + userName + "님의 " + content + comment);
+                        alarmMsg = txtmsg.getPayload();
+                        session.sendMessage(txtmsg);//보내지는지 체크하기
+                    }
+
+                    alarmService.saveAlarm(userNum, alarmMsg, Integer.parseInt(count));
                 }
 
-                alarmService.saveAlarm(userNum, alarmMsg, Integer.parseInt(count));
 
             }
         }
@@ -117,7 +135,7 @@ public class MyHandler extends TextWebSocketHandler {
         userSessionsMap.remove(currentUserID(session),session);
     }
 
-    private String currentUserID(WebSocketSession session) {
+    private String currentUserID(WebSocketSession session) throws IOException {
         String mid = session.getId();
         Map<String, Object> map = session.getAttributes();
         SessionUser user = (SessionUser) map.get("user");

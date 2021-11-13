@@ -7,34 +7,54 @@
 <script language="javascript" type="text/javascript">
     var wsUri = "wss://matzipmajor.com/alarms/websocket";
     var output;
+    var serverOffline;
 
     function init() {
         output = document.getElementById("output");
+        serverOffline = false;
         testWebSocket();
     }
 
     function testWebSocket() {
         websocket = new WebSocket(wsUri);
         websocket.onopen = function(evt) { onOpen(evt) ;};
-        websocket.onclose = function(evt) { onClose(evt) ;};
+        websocket.onclose = function(evt) {onClose(evt) ;};
         websocket.onmessage = function (evt) {onMessage(evt);};
         websocket.onerror = function(evt) { onError(evt) ;};
     }
 
     function onOpen(evt) {
         writeToScreen("연결완료");
+        setTimeout(pingPong(), 50000);
     }
 
     function onClose(evt) {
         writeToScreen("연결해제");
+        clearInterval(repeat);
+        if(serverOffline == false) {
+            websocket = setTimeout(testWebSocket(), 100);
+        }
     }
 
     function onMessage(evt) {
-        writeToScreen('<span style="color: blue;">수신: ' + evt.data + '</span>');
+        if(evt.data.toString() == "null") {
+            writeToScreen('<span style="color: blue;">없는 게시물입니다</span>');
+        }
+        else {
+            writeToScreen('<span style="color: blue;">수신: ' + evt.data + '</span>');
+        }
     }
 
     function onError(evt) {
-        writeToScreen('<span style="color: red;">에러:</span>' + evt.data);
+        serverOffline = true;
+        writeToScreen('<span style="color: red;">에러: 서버가 오프라인입니다 </span>');
+    }
+
+    function pingPong() {
+        repeat = setInterval(function () {
+            websocket.send("ping");
+            console.log("ping");
+        }, 50000);
     }
 
     function doSend(message) {
@@ -51,12 +71,14 @@
 
     function sendIt(num) {
         let postNum = document.getElementById("postNum").value;
-        let postNum2 = postNum.toString();
-        if(num==1) {
-            doSend(postNum2 + ",1");
-        }
-        else if(num==2) {
-            doSend(postNum2 + ",2");
+        if(postNum != 'undefined' && postNum != null) {
+            let postNum2 = postNum.toString();
+            if(num==1) {
+                doSend(postNum2 + ",1");
+            }
+            else if(num==2) {
+                doSend(postNum2 + ",2");
+            }
         }
     }
 
